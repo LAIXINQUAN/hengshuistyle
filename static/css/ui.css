@@ -518,6 +518,62 @@ pre {
     border-color: var(--line) !important;
 }
 
+/* ---------- 公告页表格 ---------- */
+.table {
+    background: var(--surface) !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: var(--shadow) !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--surface-2) !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: transparent !important;
+}
+
+.table-danger {
+    background-color: var(--surface-2) !important;
+}
+
+.table td,
+.table th {
+    border-bottom-color: var(--line) !important;
+    color: var(--text) !important;
+}
+
+td a {
+    color: var(--accent) !important;
+}
+
+td a:hover {
+    color: var(--accent) !important;
+    border-bottom-color: var(--accent) !important;
+}
+
+.text-muted-date {
+    color: var(--muted) !important;
+}
+
+.text-read-count {
+    color: var(--accent) !important;
+}
+
+/* ---------- 生成器底部特性卡片 ---------- */
+.feature {
+    background: var(--surface-2) !important;
+    border-color: var(--line) !important;
+}
+
+.feature h4 {
+    color: var(--text) !important;
+}
+
+.feature p {
+    color: var(--muted) !important;
+}
+
 /* ---------- 表格 ---------- */
 table {
     background: var(--surface);
