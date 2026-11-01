@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+<script>/* 提前应用主题，避免首屏闪烁 */(function(){try{var t=localStorage.getItem("hst-theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <meta charset="utf-8">
 <title>“衡水体”引发的热议</title>
 <meta name="description" content="" />
@@ -19,6 +20,8 @@
 <link rel="stylesheet" type="text/css" href="../static/highlight/lines.css" />
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="../static/js/popup.js"></script>
+<link rel="stylesheet" href="../static/css/ui.css">
+<script src="../static/js/theme.js" defer></script>
 </head>
 <style>
 body {
@@ -343,7 +346,7 @@ clearInterval(timer);
 <span class="navbar-brand d-md-none" style="color:#fff; font-size:18px;">衡水体学习网</span>
 <!-- 汉堡按钮 -->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
+<span class="navbar-light-icon"></span>
 </button>
 <!-- 折叠菜单容器 -->
 <div class="collapse navbar-collapse" id="navbarNav">
@@ -396,7 +399,11 @@ clearInterval(timer);
 
 </ul>
 </div>
-</nav>
+<div class="theme-slot">
+<div class="theme-switch" role="switch" tabindex="0" aria-checked="false" aria-label="切换深色/浅色主题">
+<div class="theme-canvas"></div>
+</div>
+</div></nav>
 
 <div class="row content"><!--row开始-->
 <!--电脑端显示导航栏 bg-info 取消-->

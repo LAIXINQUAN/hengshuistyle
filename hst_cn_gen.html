@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<script>/* 提前应用主题，避免首屏闪烁 */(function(){try{var t=localStorage.getItem("hst-theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
 <title>衡水体生成器 · 中文转衡水体</title>
@@ -268,6 +269,8 @@ animation: spin 0.9s linear infinite;
 .feature-card { flex-direction: column; }
 }
 </style>
+<link rel="stylesheet" href="static/css/ui.css">
+<script src="static/js/theme.js" defer></script>
 </head>
 <body>
 
@@ -278,7 +281,7 @@ animation: spin 0.9s linear infinite;
 <div class="container">
 <!--<nav class="navbar navbar-expand-md bg-dark navbar-dark rounded-pill">
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
-<span class="navbar-toggler-icon"></span>
+<span class="navbar-light-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="navMenu">
 <ul class="navbar-nav mx-auto">
@@ -291,14 +294,18 @@ animation: spin 0.9s linear infinite;
 <li class="nav-item"><a class="nav-link" href="comment_list.html">公告</a></li>
 </ul>
 </div>
-</nav>-->
+<div class="theme-slot">
+<div class="theme-switch" role="switch" tabindex="0" aria-checked="false" aria-label="切换深色/浅色主题">
+<div class="theme-canvas"></div>
+</div>
+</div></nav>-->
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-custom" style="justify-content:flex-end;">
 <!-- 品牌/logo（移动端显示） -->
 <span class="navbar-brand d-md-none" style="color:#fff; font-size:18px;">衡水体学习网</span>
 <!-- 汉堡按钮 -->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
+<span class="navbar-light-icon"></span>
 </button>
 <!-- 折叠菜单容器 -->
 <div class="collapse navbar-collapse" id="navbarNav">
@@ -351,7 +358,11 @@ animation: spin 0.9s linear infinite;
 
 </ul>
 </div>
-</nav>
+<div class="theme-slot">
+<div class="theme-switch" role="switch" tabindex="0" aria-checked="false" aria-label="切换深色/浅色主题">
+<div class="theme-canvas"></div>
+</div>
+</div></nav>
 
 <div class="hengshui-wrapper">
 <div class="section-title">🖌️ 衡水体·中文生成器</div>

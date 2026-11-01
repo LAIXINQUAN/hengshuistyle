@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<script>/* 提前应用主题，避免首屏闪烁 */(function(){try{var t=localStorage.getItem("hst-theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>衡水体生成器 · 英文转衡水体</title>
@@ -360,6 +361,8 @@ padding: 1.5rem 1rem;
 }
 }
 </style>
+<link rel="stylesheet" href="static/css/ui.css">
+<script src="static/js/theme.js" defer></script>
 </head>
 <body>
 
@@ -374,7 +377,7 @@ padding: 1.5rem 1rem;
 <span class="navbar-brand d-md-none" style="color:#fff; font-size:18px;">衡水体学习网</span>
 <!-- 汉堡按钮 -->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
+<span class="navbar-light-icon"></span>
 </button>
 <!-- 折叠菜单容器 -->
 <div class="collapse navbar-collapse" id="navbarNav">
@@ -427,7 +430,11 @@ padding: 1.5rem 1rem;
 
 </ul>
 </div>
-</nav>
+<div class="theme-slot">
+<div class="theme-switch" role="switch" tabindex="0" aria-checked="false" aria-label="切换深色/浅色主题">
+<div class="theme-canvas"></div>
+</div>
+</div></nav>
 
 <div class="hengshui-wrapper">
 <div class="section-title">✒️ 衡水体生成器</div>
