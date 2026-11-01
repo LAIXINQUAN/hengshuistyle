@@ -339,7 +339,100 @@ strong {
 }
 
 .home-hero {
-    padding: 64px 0 44px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+    gap: 48px;
+    align-items: center;
+    padding: 56px 0 44px;
+}
+
+.home-hero-copy {
+    min-width: 0;
+}
+
+/* 右侧样例：直接放一张练成后的作文卷面，第一眼就能看到“衡水体”长什么样 */
+.hero-sample {
+    margin: 0;
+    padding: 10px 10px 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.hero-sample img {
+    display: block;
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    object-position: 50% 32%;
+    border-radius: 6px;
+}
+
+.hero-sample figcaption {
+    padding: 12px 6px 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: .05em;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* 深色主题下把纸面稍微压暗一点，避免整块白纸过于刺眼 */
+[data-theme="dark"] .hero-sample img {
+    filter: brightness(.9);
+}
+
+/* 三个入口：横排三格，格与格之间用发丝线分隔 */
+.entry-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-bottom: 56px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.entry {
+    display: flex;
+    gap: 12px;
+    padding: 22px 20px;
+    color: var(--text) !important;
+    transition: background-color .2s ease;
+}
+
+.entry + .entry {
+    border-left: 1px solid var(--line);
+}
+
+.entry:hover {
+    background: var(--surface-2);
+    text-decoration: none;
+}
+
+.entry-no {
+    flex: none;
+    font-family: var(--display);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--accent);
+}
+
+.entry-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.entry-body strong {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.entry-body span {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--muted);
 }
 
 .home-eyebrow {
@@ -412,12 +505,21 @@ strong {
     color: var(--muted);
 }
 
+/* 栏目标号用显示字体，和手写体大标题同源 */
+.section-label span {
+    margin-right: 10px;
+    font-family: var(--display);
+    font-size: 14px;
+    letter-spacing: 0;
+    color: var(--accent);
+}
+
 .section-title {
     margin: 0;
     padding: 0;
     border: 0 !important;
     font-family: var(--display);
-    font-size: 26px !important;
+    font-size: 30px !important;
     font-weight: 600 !important;
     line-height: 1.5;
     letter-spacing: .5px;
@@ -1236,7 +1338,32 @@ tbody td:first-child {
 
     /* 首页：单列排版，收紧留白 */
     .home-hero {
+        grid-template-columns: 1fr;
+        gap: 26px;
         padding: 40px 0 30px;
+    }
+
+    .hero-sample img {
+        height: 340px;
+        object-position: 50% 8%;
+    }
+
+    .entry-strip {
+        grid-template-columns: 1fr;
+        margin-bottom: 40px;
+    }
+
+    .entry {
+        padding: 18px 8px;
+    }
+
+    .entry + .entry {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+    }
+
+    .section-title {
+        font-size: 24px !important;
     }
 
     .home-title {
