@@ -64,7 +64,6 @@ color: #664d03;
 <a class="nav-link  active  " href="../showComment/3.html?nav=story">衡水体与考研英语</a>
 </li>
 <li class="nav-item">
-<a class="nav-link  " href="../essay_grading.html">AI作文改写</a>
 </li>
 -->
 <li class="nav-item dropdown">
@@ -75,7 +74,6 @@ color: #664d03;
 <a class="dropdown-item" href="../hst.html">衡水体入门教程</a>
 <div class="dropdown-divider"></div>
 <a class="dropdown-item" href="3.html">衡水体与考研英语</a>
-<a class="dropdown-item" href="../essay_grading.html">AI作文改写</a>
 </div>
 </li>
 <li class="nav-item">
@@ -86,11 +84,6 @@ color: #664d03;
 </li>
 
 
-<!--
-<li class="nav-item">
-<!-- 静态站点无后端服务，登录/注册入口已停用 -->
-</li>
--->
 
 </ul>
 </div>
@@ -149,31 +142,6 @@ color: #664d03;
 </div>
 -->
 </div>
-<div id="mask"></div>
-<!--注册弹框-->
-<div class="popup" >
-<button class="btn_close" style="">x</button>
-<div class="form-group">
-<center><label><font style="font-size:24px;font-weight:bold;padding-top:10px;color:#e04f5f;">登录/注册</font></label></center>
-<br/>
-<input type="text" class="form-control" placeholder="手机号" id="phone">
-<br/>
-<input type="text" class="form-control" placeholder="验证码" id="code">
-<br/>
-<input type="button" class="btn btn-small get-code" style="background-color: #80bdff;" onclick="send()" id="btnSendCode" value="点击获取验证码"/>
-<br/> <br/> <span id="jbPhoneTip"></span>
-<!--
-<label for="pwd">密码:</label>
-<input type="password" class="form-control" placeholder="密码(不少于6位)" id="pwd">
-<label for="pwd">确认密码:</label>
-<input type="password" class="form-control" placeholder="确认密码" id="pwd2" onkeyup="checkpassword()">
-<span id="tips"></span></input>-->
-</div>
-<span id="modifytip"></span>
-<center style="margin-top:2px">
-<button type="button" class="btn btn-primary" onclick="register()" id="register">登录/注册</button>
-</center>
-</div>
 
 
 <div id="footer">
@@ -196,41 +164,6 @@ color: #664d03;
 <br/> <br/>
 <script>
 $(function() {
-$('.btn_show').click(function(event) {
-var clickedButtonDOM = event.target; //获取按钮的DOM元素
-var id = clickedButtonDOM.getAttribute('id');//获取指定的元素
-$('#phone').val('');
-$('#code').val('');
-$('#mask').css({
-display: 'block',
-height: $(document).height()
-});
-var $Popup = $('.popup');
-$Popup.css({
-left: ($('body').width() - $Popup.width()) / 2+ 'px',
-top: ($(window).height() - $Popup.height()) / 2 + $(window).scrollTop() + 'px',
-display: 'block'
-});
-});
-$('.btn_show2').click(function(event) {
-var clickedButtonDOM = event.target; //获取按钮的DOM元素
-var id = clickedButtonDOM.getAttribute('id');//获取指定的元素
-$('#phone').val('');
-$('#code').val('');
-$('#mask').css({
-display: 'block',
-height: $(document).height()
-});
-var $Popup = $('.popup2');
-$Popup.css({
-left: ($('body').width() - $Popup.width()) / 2+ 'px',
-top: ($(window).height() - $Popup.height()) / 2 + $(window).scrollTop() + 'px',
-display: 'block'
-});
-});
-$('.btn_close').click(function() {
-$('#mask,.popup,.popup2').css('display', 'none');
-});
 // 只在移动端处理下拉菜单冲突
 if ($(window).width() < 768) {
 // 移动端：手动处理下拉菜单
@@ -262,143 +195,8 @@ $('.dropdown').removeClass('show');
 });
 }
 });
-function checkpassword() {
-var password = document.getElementById("pwd").value;
-var repassword = document.getElementById("pwd2").value;
-if(password == repassword) {
-document.getElementById("tips").innerHTML="";
-document.getElementById("register").disabled = false;
-}else {
-document.getElementById("tips").innerHTML="<br><font color='red'>两次输入密码不一致!</font>";
-document.getElementById("register").disabled = true;
-}
-}
 </script>
-<script>
-function register(){
-var phone = $('#phone').val();
-if(phone == null || phone == '')
-{
-alert("手机号不能为空！");
-return;
-}
-var code = $('#code').val();
-if(code == null || code == '')
-{
-alert("验证码不能为空！");
-return;
-}
-$.ajax({
-type: "POST", // 用POST方式传输
-dataType: "text", // 数据格式:JSON
-url: "/register.html", // 目标地址
-data: "phone=" + phone +"&code="+code,
-success: function (data){
-jsonObj = $.parseJSON(data);
-if(jsonObj.code == 1)
-{
-if (jsonObj.user_uri != null && jsonObj.user_uri != '')
-{
-window.location.href= jsonObj.user_uri; //验证成功
-}else
-{
-window.location.href='../index.html'; //验证成功
-}
-}
-else if(jsonObj.code == 0)
-{
-$("#jbPhoneTip").html("<font color='red'>× 校验失败，如需帮助，请联系系统管理员。</font>");
-}
-}
-});
-}
-var isPhone = 1;
-var isName = 1;
-var isCity = 1;
-var isWorkInfo = 1;
-//验证手机号码
-function checkPhone(){
-var phone = $('#phone').val();
-var pattern = /^1[0-9]{10}$/;
-isPhone = 1;
-if(phone == '') {
-alert('请输入手机号码');
-isPhone = 0;
-return;
-}
-if(!pattern.test(phone)){
-alert('请输入正确的手机号码');
-isPhone = 0;
-return;
-}
-}
-//自己编写的功能
-var InterValObj; //timer变量，控制时间
-var count = 30; //间隔函数，1秒执行
-var curCount;//当前剩余秒数
-function send()
-{
-checkPhone();
-if(isPhone){
-sendMessage(); //倒计时
-}else{
-$('#phone').focus();
-}
-}
-function sendMessage()
-{
-curCount = count;
-// 设置button效果，开始计时
-document.getElementById("btnSendCode").setAttribute("disabled","true" );//设置按钮为禁用状态
-document.getElementById("btnSendCode").value="请在" + curCount + "后再次获取";//更改按钮文字
-InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器timer处理函数，1秒执行一次
-var phone = $('#phone').val();
-// 向后台发送处理数据
-$.ajax({
-type: "POST", // 用POST方式传输
-dataType: "text", // 数据格式:JSON
-url: "/mobile.html", // 目标地址
-data: "mobile="+phone,
-success: function (data){
-//data = parseInt(data, 10);
-jsonObj = $.parseJSON(data);
-if(jsonObj.code == 1)
-{
-<!--$("#jbPhoneTip").html("<font color='#339933'>√ 短信验证码已发到您的手机，短信签名：面试天下网，请查收！</font>");-->
-$("#jbPhoneTip").html("<font color='#339933'>√ 短信验证码为您手机号码的后四位，请您直接输入即可！</font>");
-<!--alert(jsonObj.msg);-->
-}
-else if(jsonObj.code == 2)
-{
-$("#jbPhoneTip").html("<font color='red'>× 短信验证码发送频繁，请稍后再试！</font>");
-}
-else if(jsonObj.code == 3)
-{
-$("#jbPhoneTip").html("<font color='red'>× 此手机号已经被占用，无法注册！</font>");
-}
-else{
-$("#jbPhoneTip").html("<font color='red'>× 短信验证码发送失败，请重新发送！</font>");
-}
-}
-});
-}
-//timer处理函数
-function SetRemainTime()
-{
-if (curCount == 0)
-{
-window.clearInterval(InterValObj);// 停止计时器
-document.getElementById("btnSendCode").removeAttribute("disabled");//移除禁用状态改为可用
-document.getElementById("btnSendCode").value="重新发送验证码";
-$("#jbPhoneTip").html("");
-}
-else
-{
-curCount--;
-document.getElementById("btnSendCode").value="请在" + curCount + "秒后再次获取";
-}
-}
-</script>
+
 <script src="../static/KaTeX/katex.min.js"></script>
 <script src="../static/KaTeX/auto-render.min.js"></script>
 <script>
@@ -420,6 +218,5 @@ triggerRenderingLaTeX(document.body);
 });
 </script>
 <script src="../static/js/trafficstatsweb.js"></script>
-<script src="../static/js/product-promo-medium.js"></script>
 </body>
 </html>
