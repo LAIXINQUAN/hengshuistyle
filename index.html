@@ -10,79 +10,10 @@
 <meta name="msvalidate.01" content="69FD31A68BF62481A7DB30705C1E215D" />
 <link rel="stylesheet" href="static/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="static/css/style.css"/>
-<link rel="stylesheet" href="static/css/index.css"/>
+<link rel="stylesheet" href="static/css/ui.css">
 <script src="static/js/jquery.min.js"></script>
 <script src="static/js/popper.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
-<style>
-body {
-background-color: #fef9f0;
-}
-/* ===== 两大主要课程区块 ===== */
-#q2a-fudao {
-display: flex;
-flex-wrap: wrap;
-border-bottom: 2px solid #fad7d7;
-background-color: #fad7d7; /* 与内部间隔同色，形成视觉分隔 */
-gap: 12px; /* 卡片间隔，同时作为“边框”效果 */
-padding: 0; /* 容器内部间距由卡片自身控制 */
-margin-bottom: 0px;
-}
-#q2a-fudao > div {
-flex: 1 1 0; /* 让两个卡片平分宽度，但会被 flex-wrap 影响 */
-min-width: 280px; /* 保证在手机上不会挤成一团，触发换行 */
-padding: 25px 15px;
-background-color: #faebd7;
-text-align: center;
-border-radius: 4px; /* 柔和一点 */
-box-sizing: border-box;
-/* 去掉之前 table-cell 的影响 */
-display: block;
-}
-#q2a-fudao > div h4 {
-padding: 10px 0px;
-font-size: 21px;
-color: #dc3545;
-font-weight: bold;
-}
-#q2a-fudao > div p {
-color: #666;
-font-size: 16px;
-line-height: 1.6em;
-text-align: justify;
-}
-#q2a-fudao > div a.btn-more {
-display: inline-block;
-margin-top: 20px;
-padding: 12px 40px;
-color: #fff;
-background-color: #4a94d8;
-background-image: linear-gradient(0deg,#1890ff,#40a9ff);
-border-radius: 4px;
-text-align: center;
-font-size: 16px;
-text-decoration: none;
-}
-#q2a-fudao > div a.btn-more:hover {
-background-image: linear-gradient(0deg,#856404,#856404);
-}
-/* 手机端：强制每个卡片独占一行，和下面“更多课程”行为一致 */
-@media (max-width: 600px) {
-#q2a-fudao {
-flex-direction: column; /* 垂直排列 */
-gap: 12px;
-}
-#q2a-fudao > div {
-flex: none; /* 取消 flex 拉伸 */
-width: 100%; /* 占满容器宽度 */
-min-width: 0; /* 清除 min-width 干扰 */
-}
-}
-.clear{
-clear:both;
-}
-</style>
-<link rel="stylesheet" href="static/css/ui.css">
 <script src="static/js/theme.js" defer></script>
 </head>
 <body>
@@ -105,11 +36,6 @@ clear:both;
 <li class="nav-item">
 <a class="nav-link  " href="posts/6.html">什么是衡水体</a>
 </li>
-<!--
-<li class="nav-item">
-<a class="nav-link  " href="showComment/1.html?nav=introduction">认识衡水体</a>
-</li>
--->
 <li class="nav-item">
 <a class="nav-link  " href="hst_gen.html">衡水体 · 英文生成器</a>
 </li>
@@ -119,13 +45,6 @@ clear:both;
 <li class="nav-item">
 <a class="nav-link  " href="posts/2.html">衡水体26个英文字母</a>
 </li>
-<!--
-<li class="nav-item">
-<a class="nav-link  " href="showComment/3.html?nav=story">衡水体与考研英语</a>
-</li>
-<li class="nav-item">
-</li>
--->
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="index.html#" id="navbardrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 衡水体教程与英语考试
@@ -142,9 +61,6 @@ clear:both;
 <li class="nav-item">
 <a class="nav-link " href="showComment/2.html">关于网站</a>
 </li>
-
-
-
 </ul>
 </div>
 <div class="theme-slot">
@@ -153,32 +69,120 @@ clear:both;
 </div>
 </div></nav>
 
+<main class="home">
 
-<img src="static/images/top-all.png" width="100%" alt="">
+<!-- 书名页：一句话说清这个站做什么 -->
+<section class="home-hero reveal">
+<p class="home-eyebrow">清书英文站 · 英文书写</p>
+<h1 class="home-title">把英文写成<br>一行干净的字</h1>
+<p class="home-lead">衡水体以圆润饱满、整齐划一的笔画，把卷面变成隐形的加分项。这里有一份从字母讲到篇章的入门教程，也有两份可以直接打印的练字工具。</p>
+<p class="home-meta"><span>5 章教程</span><span>12 节正文</span><span>2 份生成器</span></p>
+</section>
 
-<div id="q2a-fudao">
-<div class="q2a">
-<div class="img">
-<img height="100" src="static/images/bird5.png" alt="">
+<div class="home-rule reveal"><span></span></div>
+
+<!-- 两份练字工具 -->
+<section class="home-section reveal">
+<div class="section-head">
+<p class="section-label">练字工具</p>
+<h2 class="section-title">先写起来，再谈手感</h2>
 </div>
-<h4>衡水体 · 英文生成器</h4>
-<p class="profile" style="text-align: justify;">
-这款衡水体英文生成器，专为中高考应试书写而生。它能将任意输入的英文，一键转化为规范、整洁的衡水体字帖。生成的字形严格遵循衡水体精髓：圆润饱满、无勾无连，每个字母大小均匀、重心平稳、微微右倾，确保扫描后卷面清晰美观，有效规避连笔造成的误判。工具提供可调节的辅助线设置，并支持浅色描摹模式与标准打印模式切换，满足从临摹到对照书写的进阶需求。无论是制作字母专项训练，还是生成篇章模写素材，它都是助力学生快速练成“高分卷面体”的提分利器。
-</p>
-<a class="btn-more" href="hst_gen.html" target="_blank">立即使用</a>
+<div class="work-grid">
+<article class="work-card">
+<div class="work-card-head">
+<span class="work-no">01</span>
+<span class="work-tag">英文 · 字帖</span>
 </div>
-<div class="fudao">
-<div class="img">
-<img height="100" src="static/images/bird9.png" alt="">
+<h3>衡水体 · 英文生成器</h3>
+<p>这款衡水体英文生成器，专为中高考应试书写而生。它能将任意输入的英文，一键转化为规范、整洁的衡水体字帖。生成的字形严格遵循衡水体精髓：圆润饱满、无勾无连，每个字母大小均匀、重心平稳、微微右倾，确保扫描后卷面清晰美观，有效规避连笔造成的误判。工具提供可调节的辅助线设置，并支持浅色描摹模式与标准打印模式切换，满足从临摹到对照书写的进阶需求。无论是制作字母专项训练，还是生成篇章模写素材，它都是助力学生快速练成“高分卷面体”的提分利器。</p>
+<a class="work-link" href="hst_gen.html" target="_blank">立即使用 <span aria-hidden="true">→</span></a>
+</article>
+<article class="work-card">
+<div class="work-card-head">
+<span class="work-no">02</span>
+<span class="work-tag">中文 · 字帖</span>
 </div>
-<h4>衡水体 · 中文生成器</h4>
-<p class="profile" style="text-align: justify;">
-这款衡水体中文生成器，将衡水体整洁、清晰的理念延伸至汉字书写。它能把输入的文本，自动排版生成米字格或田字格字帖，生成的字迹力求结构端庄、大小均一、不连笔，整体卷面效果干净利落，尤其适合追求工整度的考试场景。工具既内置了《通用规范汉字表》等海量练字内容，也支持用户自由定制文本，实现课文同步默写或高频考点词练习。通过调控字体的灰度深浅，可轻松制作描红、临摹及脱格进阶字帖。一键下载打印，即可拥有专属的提分字帖，是快速改善卷面分的实用工具。
-</p>
-<!--<a class="btn-more" href="javascript:alert('当前正在编写中，敬请期待...');">敬请期待</a>-->
-<a class="btn-more" href="hst_cn_gen.html" target="_blank">立即使用</a>
+<h3>衡水体 · 中文生成器</h3>
+<p>这款衡水体中文生成器，将衡水体整洁、清晰的理念延伸至汉字书写。它能把输入的文本，自动排版生成米字格或田字格字帖，生成的字迹力求结构端庄、大小均一、不连笔，整体卷面效果干净利落，尤其适合追求工整度的考试场景。工具既内置了《通用规范汉字表》等海量练字内容，也支持用户自由定制文本，实现课文同步默写或高频考点词练习。通过调控字体的灰度深浅，可轻松制作描红、临摹及脱格进阶字帖。一键下载打印，即可拥有专属的提分字帖，是快速改善卷面分的实用工具。</p>
+<a class="work-link" href="hst_cn_gen.html" target="_blank">立即使用 <span aria-hidden="true">→</span></a>
+</article>
+</div>
+</section>
+
+<!-- 教程目录 -->
+<section class="home-section reveal">
+<div class="section-head">
+<p class="section-label">教程目录</p>
+<h2 class="section-title">十二节，从笔画到卷面</h2>
+</div>
+<div class="chapter-index">
+<div class="chapter-row">
+<span class="chapter-no">01</span>
+<div class="chapter-body">
+<span class="chapter-name">前言</span>
+<span class="chapter-sections">
+<a href="hst/6.html">什么是衡水体</a>
+<a href="hst/4.html">衡水体引发的热议</a>
+</span>
+</div>
+<span class="chapter-count">2 节</span>
+</div>
+<div class="chapter-row">
+<span class="chapter-no">02</span>
+<div class="chapter-body">
+<span class="chapter-name">入门教程</span>
+<span class="chapter-sections">
+<a href="hst/3.html">衡水体的核心特点</a>
+<a href="hst/2.html">26 个英文字母写法</a>
+<a href="hst/1.html">意大利体介绍</a>
+<a href="hst/9.html">衡水体练习指南</a>
+</span>
+</div>
+<span class="chapter-count">4 节</span>
+</div>
+<div class="chapter-row">
+<span class="chapter-no">03</span>
+<div class="chapter-body">
+<span class="chapter-name">规范与自查</span>
+<span class="chapter-sections">
+<a href="hst/7.html">大写字母的高度与占格</a>
+<a href="hst/8.html">花体与衡水体的区别</a>
+</span>
+</div>
+<span class="chapter-count">2 节</span>
+</div>
+<div class="chapter-row">
+<span class="chapter-no">04</span>
+<div class="chapter-body">
+<span class="chapter-name">间距与排版</span>
+<span class="chapter-sections">
+<a href="hst/10.html">倾斜度与字形</a>
+<a href="hst/11.html">间距与行距</a>
+</span>
+</div>
+<span class="chapter-count">2 节</span>
+</div>
+<div class="chapter-row">
+<span class="chapter-no">05</span>
+<div class="chapter-body">
+<span class="chapter-name">应试实战</span>
+<span class="chapter-sections">
+<a href="hst/12.html">考试书写节奏</a>
+<a href="hst/13.html">卷面自评</a>
+</span>
+</div>
+<span class="chapter-count">2 节</span>
 </div>
 </div>
+<p class="chapter-more"><a href="hst.html">从教程导论开始阅读 →</a></p>
+</section>
+
+<section class="home-quote reveal">
+<p>“练字是少数几件，投入就一定看得见的事。”</p>
+</section>
+
+</main>
+
 </div>
 
 

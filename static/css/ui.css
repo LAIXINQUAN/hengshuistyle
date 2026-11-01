@@ -16,6 +16,8 @@
     --accent-soft: #e7f0ec;
     --shadow: 0 1px 2px rgba(24, 38, 32, 0.05);
     --radius: 10px;
+    /* 标题使用衬线字体，接近纸媒的书卷感；正文仍用无衬线，保证屏幕可读性 */
+    --serif: "Songti SC", "SimSun", "Noto Serif SC", Georgia, "Times New Roman", serif;
 }
 
 [data-theme="dark"] {
@@ -313,63 +315,295 @@ strong {
         190px -20px 0 10px transparent;
 }
 
-/* ---------- 首页课程卡片 ---------- */
-#q2a-fudao {
-    background-color: transparent !important;
-    border-bottom: 0 !important;
-    gap: 18px;
-    margin-top: 22px;
+/* ============================================================
+   首页 · 纸媒版式
+   大标题、宽留白、发丝线分隔：像一本文集的书名页，
+   而不是堆满卡片和按钮的落地页。
+   ============================================================ */
+
+.home {
+    padding-bottom: 8px;
 }
 
-#q2a-fudao > div {
-    background-color: var(--surface) !important;
+.home-hero {
+    padding: 64px 0 44px;
+}
+
+.home-eyebrow {
+    margin: 0 0 18px;
+    font-size: 12px;
+    letter-spacing: .24em;
+    color: var(--muted);
+}
+
+.home-title {
+    margin: 0 0 22px;
+    font-family: var(--serif);
+    font-size: 46px !important;
+    font-weight: 600 !important;
+    line-height: 1.32;
+    letter-spacing: 1px;
+    color: var(--text) !important;
+}
+
+.home-lead {
+    max-width: 660px;
+    margin: 0 0 26px;
+    font-size: 16px;
+    line-height: 2;
+    color: var(--muted);
+}
+
+.home-meta {
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: .06em;
+    color: var(--muted);
+}
+
+.home-meta span + span::before {
+    content: "/";
+    margin: 0 10px;
+    color: var(--line);
+}
+
+/* 版面上的一条栏线，左侧留一小段强调色作为起点 */
+.home-rule {
+    position: relative;
+    height: 1px;
+    margin: 0 0 56px;
+    background: var(--line);
+}
+
+.home-rule span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 56px;
+    height: 1px;
+    background: var(--accent);
+}
+
+.home-section {
+    margin-bottom: 64px;
+}
+
+.section-head {
+    margin-bottom: 26px;
+}
+
+.section-label {
+    margin: 0 0 10px;
+    font-size: 12px;
+    letter-spacing: .2em;
+    color: var(--muted);
+}
+
+.section-title {
+    margin: 0;
+    padding: 0;
+    border: 0 !important;
+    font-family: var(--serif);
+    font-size: 26px !important;
+    font-weight: 600 !important;
+    line-height: 1.5;
+    letter-spacing: .5px;
+}
+
+/* 两份练字工具 */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.work-card {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 32px 28px;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 30px 26px 26px !important;
-    box-shadow: var(--shadow);
-    transition: border-color .2s ease, transform .2s ease;
+    transition: border-color .22s ease, background-color .25s ease, transform .22s ease;
 }
 
-#q2a-fudao > div:hover {
+.work-card:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
 }
 
-#q2a-fudao > div h4 {
-    color: var(--text) !important;
-    font-size: 19px;
+.work-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+}
+
+.work-no {
+    font-family: var(--serif);
+    font-size: 15px;
+    letter-spacing: .08em;
+    color: var(--muted);
+}
+
+.work-tag {
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--muted);
+}
+
+.work-card h3 {
+    margin: 0 0 12px;
+    font-size: 21px !important;
     font-weight: 600;
-    padding: 12px 0 6px !important;
+    letter-spacing: .3px;
 }
 
-#q2a-fudao > div p {
-    color: var(--muted) !important;
-    font-size: 15px;
+.work-card p {
+    flex: 1;
+    margin: 0 0 22px;
+    font-size: 14.5px;
+    line-height: 1.95;
+    color: var(--muted);
+    text-align: justify;
 }
 
-#q2a-fudao > div a.btn-more {
-    color: #ffffff !important;
-    background-color: var(--accent) !important;
-    background-image: none !important;
-    border-radius: 8px;
-    padding: 10px 30px;
-    font-size: 15px;
+.work-link {
+    align-self: flex-start;
+    font-size: 14px;
     font-weight: 500;
-    transition: opacity .18s ease;
+    color: var(--accent) !important;
 }
 
-#q2a-fudao > div a.btn-more:hover {
-    opacity: .88;
-    background-image: none !important;
+.work-link span {
+    display: inline-block;
+    margin-left: 4px;
+    transition: transform .2s ease;
+}
+
+.work-link:hover {
+    text-decoration: none;
+}
+
+.work-link:hover span {
+    transform: translateX(4px);
+}
+
+/* 教程目录：编号 + 章名 + 节链接，行与行之间用发丝线分隔 */
+.chapter-index {
+    border-top: 1px solid var(--line);
+}
+
+.chapter-row {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 8px;
+    align-items: baseline;
+    padding: 22px 6px;
+    border-bottom: 1px solid var(--line);
+    transition: background-color .2s ease;
+}
+
+.chapter-row:hover {
+    background: var(--surface-2);
+}
+
+.chapter-no {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--muted);
+}
+
+.chapter-body {
+    min-width: 0;
+}
+
+.chapter-name {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+.chapter-sections {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.chapter-sections a {
+    color: var(--muted) !important;
+}
+
+.chapter-sections a:hover {
+    color: var(--accent) !important;
+}
+
+.chapter-sections a + a::before {
+    content: "·";
+    margin: 0 8px;
+    color: var(--line);
+}
+
+.chapter-count {
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.chapter-more {
+    margin: 18px 0 0;
+    font-size: 14px;
+}
+
+/* 收尾的一句引言 */
+.home-quote {
+    padding: 52px 0 40px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+}
+
+.home-quote p {
+    max-width: 720px;
+    margin: 0 auto;
+    font-family: var(--serif);
+    font-size: 22px !important;
+    line-height: 1.9;
+    letter-spacing: .5px;
+    color: var(--muted);
 }
 
 /* 深色主题下强调色较浅，按钮文字改用深色以保证对比度 */
-[data-theme="dark"] #q2a-fudao > div a.btn-more,
 [data-theme="dark"] .btn-primary {
     color: #0e1a16 !important;
 }
 
 /* ---------- 文章 / 公告页 ---------- */
+/* 公告列表页的页标题，与首页的书名页保持同一套语气 */
+.list-page {
+    padding-top: 44px;
+}
+
+.page-title {
+    margin: 0 0 22px;
+    font-family: var(--serif);
+    font-size: 30px !important;
+    font-weight: 600 !important;
+    letter-spacing: .5px;
+}
+
+/* 公告表格中的日期与阅读数不允许折行 */
+td.text-muted-date,
+td.text-read-count {
+    white-space: nowrap;
+}
+
 .announcement-card {
     background: var(--surface) !important;
     border: 1px solid var(--line) !important;
@@ -419,19 +653,157 @@ blockquote {
     background-color: var(--surface-2) !important;
     border-color: var(--line) !important;
     color: var(--text) !important;
+    padding: 20px 16px 24px;
 }
 
-.row.content > .col-9 {
+.row.content > .col-9,
+.row.content > .col-12 {
     background-color: var(--surface) !important;
     border-color: var(--line) !important;
     color: var(--text) !important;
+    padding: 28px 34px 34px;
 }
 
 .row.content > .col-3 a,
 .row.content > .col-3 li,
 .row.content > .col-3 span,
+.row.content > .col-3 strong,
+.row.content > .col-3 font,
 .row.content > .col-3 .chapter-toggle {
     color: var(--text) !important;
+}
+
+/* 目录里的普通链接压低到次要层级，悬停时再回到强调色 */
+.row.content > .col-3 font {
+    font-size: 14px !important;
+    color: var(--muted) !important;
+}
+
+.row.content > .col-3 a:hover font,
+.row.content > .col-3 a:hover strong,
+.chapter-toggle:hover strong {
+    color: var(--accent) !important;
+}
+
+/* 目录内的分隔线收窄，避免整栏被横线切碎 */
+.row.content > .col-3 hr {
+    margin: 9px 0;
+    border-top: 1px solid var(--line);
+    opacity: 1;
+}
+
+/* 页眉内部的栅格只是排版容器，不要继承正文的白色底 */
+.row.content .chapter-header .row,
+.row.content .chapter-header .col-12,
+.chapter-header .text-area {
+    background-color: transparent !important;
+}
+
+/* ---------- 正文排版层级 ---------- */
+/* 教程与文章页的主标题：改用衬线墨字，去掉原来偏艳的红色 */
+.row.content > .col-9 .chapter-header h1,
+.row.content > .col-12 .chapter-header h1 {
+    font-family: var(--serif);
+    font-size: 26px !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    letter-spacing: .5px;
+    color: var(--text) !important;
+    padding: 16px 0 6px !important;
+    /* 长标题折行时尽量让两行长度接近，避免末行只剩几个字 */
+    text-wrap: balance;
+}
+
+.row.content > .col-9 h2,
+.row.content > .col-12 h2 {
+    font-size: 21px !important;
+    font-weight: 600 !important;
+    line-height: 1.6 !important;
+    margin: 2.6rem 0 .9rem !important;
+    padding-bottom: 10px !important;
+}
+
+.row.content > .col-9 h3,
+.row.content > .col-12 h3 {
+    font-size: 17px !important;
+    margin: 1.9rem 0 .7rem !important;
+}
+
+/* 正文行高放宽到 1.95，中文长段落在屏幕上更好读 */
+.row.content > .col-9 p,
+.row.content > .col-12 p {
+    font-size: 16px;
+    line-height: 1.95;
+    margin: 0 0 1.05em;
+}
+
+.row.content > .col-9 p.img-caption,
+.row.content > .col-12 p.img-caption {
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 8px 0 24px;
+    color: var(--muted);
+}
+
+.row.content > .col-9 ul,
+.row.content > .col-9 ol,
+.row.content > .col-12 ul,
+.row.content > .col-12 ol {
+    margin: 0 0 1.2em;
+    padding-left: 1.2em;
+}
+
+.row.content > .col-9 li,
+.row.content > .col-12 li {
+    line-height: 1.9;
+    margin: 6px 0;
+}
+
+/* 教程配图自适应正文宽度，避免超出屏幕 */
+.row.content > .col-9 img,
+.row.content > .col-12 img,
+.announcement-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.row.content > .col-9 hr,
+.row.content > .col-12 hr {
+    margin: 30px 0;
+    border-top: 1px solid var(--line);
+    opacity: 1;
+}
+
+/* 表格横向滚动的容器，窄屏时可左右拖动而不撑破页面 */
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 移动端折叠教程目录的开关 */
+.toc-toggle {
+    display: none;
+}
+
+/* ---------- 滚动出现 ---------- */
+/* 只有脚本成功运行并加上 .js-reveal 时才隐藏内容，
+   这样即使脚本加载失败，页面也能正常显示 */
+.js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+
+.js-reveal .reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 /* ---------- 回到顶部（小火箭） ---------- */
@@ -837,11 +1209,151 @@ tbody td:first-child {
         transform: scale(0.3818);
     }
 
-    #q2a-fudao > div {
-        padding: 22px 18px !important;
+    /* 首页：单列排版，收紧留白 */
+    .home-hero {
+        padding: 40px 0 30px;
+    }
+
+    .home-title {
+        font-size: 32px !important;
+        letter-spacing: .5px;
+    }
+
+    .home-lead {
+        font-size: 15px;
+        line-height: 1.9;
+    }
+
+    .home-rule {
+        margin-bottom: 40px;
+    }
+
+    .home-section {
+        margin-bottom: 46px;
+    }
+
+    .work-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .work-card {
+        padding: 26px 22px 22px;
+    }
+
+    .chapter-row {
+        grid-template-columns: 46px 1fr auto;
+        padding: 18px 4px;
+    }
+
+    .chapter-no {
+        font-size: 21px;
+    }
+
+    .home-quote {
+        padding: 40px 0 30px;
+    }
+
+    .home-quote p {
+        font-size: 18px !important;
+    }
+
+    /* 教程目录在窄屏改为可折叠面板，正文占满整行 */
+    .toc-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 0 12px;
+        padding: 12px 16px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: .04em;
+        cursor: pointer;
+    }
+
+    .toc-toggle .toc-caret {
+        color: var(--muted);
+        transition: transform .2s ease;
+    }
+
+    .toc-toggle[aria-expanded="true"] .toc-caret {
+        transform: rotate(180deg);
+    }
+
+    .row.content > .col-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 12px;
+        border-radius: var(--radius) !important;
+    }
+
+    .row.content > .col-3.is-collapsed {
+        display: none;
+    }
+
+    .row.content > .col-9,
+    .row.content > .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 20px 18px 24px;
+        border-radius: var(--radius) !important;
+    }
+
+    /* 正文主标题在窄屏降到 21px，避免一行只剩几个字 */
+    .row.content > .col-9 .chapter-header h1,
+    .row.content > .col-12 .chapter-header h1 {
+        font-size: 21px !important;
+        letter-spacing: 0;
+    }
+
+    .row.content > .col-9 p,
+    .row.content > .col-12 p {
+        font-size: 15.5px;
+        line-height: 1.9;
+    }
+
+    /* 公告表格：标题列保底宽度，其余列不折行，超出时横向滑动 */
+    .notice-table td:first-child {
+        min-width: 170px;
     }
 
     .announcement-card {
         padding: 1.4rem 1.1rem !important;
     }
+}
+
+/* 桌面端：左右两栏合成一块完整的版面，避免中间出现双线 */
+@media (min-width: 768px) {
+    .row.content > .col-3 {
+        border-radius: var(--radius) 0 0 var(--radius) !important;
+        border-right: 0 !important;
+    }
+
+    .row.content > .col-9 {
+        border-radius: 0 var(--radius) var(--radius) 0 !important;
+    }
+
+    .row.content > .col-12 {
+        border-radius: var(--radius);
+    }
+}
+
+/* ---------- 主题切换过渡 ---------- */
+/* 切换深浅色时，让大面积色块平滑过渡，避免整页硬闪 */
+.navbar-custom,
+.navbar.bg-dark,
+#footer,
+.row.content > .col-3,
+.row.content > .col-9,
+.row.content > .col-12,
+.announcement-card,
+.control-panel,
+.hengshui-wrapper,
+.instructions {
+    transition: background-color .25s ease, border-color .25s ease, color .25s ease;
 }
