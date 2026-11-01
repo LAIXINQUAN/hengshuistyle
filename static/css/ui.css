@@ -474,6 +474,59 @@ blockquote {
     line-height: 1.6;
 }
 
+/* ---------- 教程中的时间分配条 ---------- */
+.time-bar {
+    display: flex;
+    gap: 3px;
+    margin: 18px 0 6px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.time-bar .seg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 14px 6px;
+    background: var(--surface-2);
+    border-radius: 6px;
+    text-align: center;
+}
+
+.time-bar .seg:first-child {
+    border-radius: 6px 2px 2px 6px;
+}
+
+.time-bar .seg:last-child {
+    border-radius: 2px 6px 6px 2px;
+}
+
+.time-bar .seg strong {
+    font-weight: 600;
+}
+
+.time-bar .seg span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.time-bar .seg-a { flex: 3; }
+.time-bar .seg-b { flex: 3; }
+.time-bar .seg-c { flex: 12; background: var(--accent-soft); }
+.time-bar .seg-d { flex: 2; }
+
+@media (max-width: 600px) {
+    .time-bar {
+        flex-wrap: wrap;
+    }
+
+    .time-bar .seg {
+        flex: 1 1 45%;
+    }
+}
+
 /* ---------- 文章正文里的浅色块 ---------- */
 .content li:not(pre li) {
     background-color: var(--surface-2) !important;
