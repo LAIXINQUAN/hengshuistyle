@@ -465,6 +465,15 @@ blockquote {
     box-shadow: 0 10px 22px rgba(20, 30, 25, .18);
 }
 
+/* ---------- 教程配图说明 ---------- */
+.img-caption {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    margin: 8px 0 22px;
+    line-height: 1.6;
+}
+
 /* ---------- 文章正文里的浅色块 ---------- */
 .content li:not(pre li) {
     background-color: var(--surface-2) !important;

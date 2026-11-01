@@ -1,0 +1,931 @@
+<!doctype html>
+<html>
+<head>
+<script>/* 提前应用主题，避免首屏闪烁 */(function(){try{var t=localStorage.getItem("hst-theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<meta charset="utf-8">
+<title>怎么才能练好衡水体呢？每天需要练习多久？需要坚持多少天才可以？</title>
+<meta name="description" content="怎么才能练好衡水体呢？每天需要练习多久？需要坚持多少天才可以？" />
+<link href="../static/images/bird5_2.png" rel="icon"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../static/css/share.css"/>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../static/css/style.css"/>
+<link href="../static/KaTeX/katex.min.css" rel="stylesheet">
+<link href="../static/css/font-awesome.css" rel="stylesheet">
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/highlight/styles/rainbow.css" />
+<link rel="stylesheet" type="text/css" href="../static/highlight/lines.css" />
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="../static/js/popup.js"></script>
+<link rel="stylesheet" href="../static/css/ui.css">
+<script src="../static/js/theme.js" defer></script>
+</head>
+<style>
+body {
+background-color: #fef9f0;
+}
+h2{
+font-size:20px;
+font-weight:bold;
+}
+h3{
+font-size:18px;
+font-weight:bold;
+}
+h4{
+font-size:16px;
+font-weight:bold;
+}
+h2,h3,h4{
+margin:8px 0px;
+padding:0px;
+}
+p{
+margin:12px 6px;
+padding:0px;
+word-wrap:break-word;
+}
+td p{
+margin:12px 0px;
+padding:0px 5px;
+}
+blockquote p{
+font-size:14px;
+margin: 5px 0px;
+}
+.top{
+position: fixed;
+right:50px;
+bottom:100px;
+display: none;
+z-index:10;
+}
+/*li {
+display: list-item;
+list-style-type: '▸';
+text-align: -webkit-match-parent;
+padding: 9px 9px;
+margin: 3px 0;
+background-color: red;
+}*/
+.content{
+}
+.content ul:not(pre ul) {
+display: block;
+list-style-type: disc;
+margin-block-start: 0em;
+margin-block-end: 1em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+padding-inline-start: 3px;
+}
+.content li:not(pre li) {
+display: list-item;
+list-style-type: '▸';
+padding: 5px 5px;
+margin: 6px 0;
+background-color: #fff9e6;
+font-size: 0.95em;
+color: #664d03;
+border-radius: 12px;
+}
+.content li:not(pre li)::marker {
+color: #B94A48; /* 仅设置标记的颜色 */
+}
+.content li:not(pre li):hover {
+background-color: #fff3cd; /* 悬停时稍微深一点 */
+}
+/*文章统计部分样式*/
+.update-info {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+color: #5f6b7a;
+font-size: 0.9rem;
+margin: 0.5rem 0 0.5rem;
+flex-wrap: wrap;
+}
+.update-info i {
+color: #5b8cb8;
+margin-right: 0.2rem;
+}
+/*文章统计部分样式*/
+/*页眉开始*/
+/* --- 页眉装饰核心样式 --- */
+.chapter-header {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+max-width: 1200px;
+margin: 6px auto;
+padding: 6px 6px;
+background-color: #E9F3F0; /* 淡青色底纹 */
+border-radius: 4px;
+box-sizing: border-box;
+font-family: "Times New Roman", "SimSun", serif;
+}
+/* 左、右装饰区 */
+.side-deco {
+flex: 0 0 120px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+/* 中间文字区 */
+.text-area {
+flex: 1;
+text-align: center;
+padding: 0 20px;
+}
+/* 主标题 */
+.chapter-label {
+font-size: 20px;
+font-weight: bold;
+color: #333;
+letter-spacing: 1px;
+margin-bottom: 4px;
+}
+.chapter-label span {
+color: #A52A2A; /* 樱桃红色点缀 */
+}
+/* 副标题/元数据信息 */
+.meta-info {
+font-size: 14px;
+color: #666;
+font-family: "Microsoft YaHei", sans-serif;
+letter-spacing: 0.5px;
+line-height: 1.6;
+}
+/* SVG 装饰图案样式 */
+.deco-svg {
+width: 120px;
+height: auto;
+display: block;
+}
+/* 右侧图案镜像翻转，实现对称 */
+.deco-right .deco-svg {
+transform: scaleX(-1);
+}
+/* 手机适配：小屏幕隐藏装饰 */
+@media (max-width: 600px) {
+.side-deco {
+display: none;
+}
+.chapter-header {
+padding: 20px 10px;
+}
+.chapter-label {
+font-size: 18px;
+}
+}
+/*页眉结束*/
+/*
+a[data-toggle="collapse"]::before {
+content: "▶ ";
+font-size: 12px;
+}
+a[data-toggle="collapse"][aria-expanded="true"]::before {
+content: "▼ ";
+}
+*/
+</style>
+<style>
+/* 章节标题基础样式 */
+.chapter-toggle {
+cursor: pointer;
+text-decoration: none;
+display: flex;
+align-items: center;
+padding: 4px 0;
+}
+/* 田字格图标 */
+.chapter-toggle .toggle-icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 18px;
+height: 18px;
+margin-right: 6px;
+border: 2px solid #8B5A2B; /* 边框颜色 */
+border-radius: 3px;
+background: #FFF8DC; /* 浅米色背景 */
+position: relative;
+flex-shrink: 0;
+}
+/* 田字格内部十字线 - 横线 */
+.chapter-toggle .toggle-icon::before {
+content: '';
+position: absolute;
+left: 2px;
+right: 2px;
+top: 50%;
+height: 1px;
+background: #8B5A2B;
+transform: translateY(-50%);
+}
+/* 田字格内部十字线 - 竖线（展开后消失） */
+.chapter-toggle .toggle-icon::after {
+content: '';
+position: absolute;
+top: 2px;
+bottom: 2px;
+left: 50%;
+width: 1px;
+background: #8B5A2B;
+transform: translateX(-50%);
+transition: transform 0.2s ease, opacity 0.2s ease;
+}
+/* 展开状态：隐藏竖线（+ 变成 -） */
+.chapter-toggle[aria-expanded="true"] .toggle-icon::after {
+transform: translateX(-50%) scaleY(0);
+opacity: 0;
+}
+/* ---------- 新增：底部低调推广方框样式 ---------- */
+.subtle-promo-box {
+max-width: 800px;
+margin: 1.2rem auto 1.2rem;
+padding: 0.9rem 1.4rem;
+background-color: #f7f5f0; /* 极浅的米灰色，融入页面背景 */
+border-left: 3px solid #d6c8b2; /* 淡木色左边框，作为低调点缀 */
+border-radius: 8px;
+font-size: 0.95rem;
+color: #5e5546; /* 柔和深棕文字 */
+line-height: 1.7;
+box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+transition: background-color 0.2s ease;
+}
+.subtle-promo-box:hover {
+background-color: #f3efe7; /* 悬停时略微加深，提供微交互 */
+}
+.subtle-promo-box i {
+color: #b0976e; /* 图标颜色与边框呼应 */
+margin-right: 0.4rem;
+font-size: 0.9rem;
+}
+.subtle-promo-text {
+display: inline;
+font-weight: 400;
+letter-spacing: 0.02em;
+}
+/* 移动端适当缩小间距 */
+@media (max-width: 600px) {
+.subtle-promo-box {
+margin-left: 1rem;
+margin-right: 1rem;
+padding: 0.8rem 1rem;
+font-size: 0.9rem;
+}
+}
+</style>
+<script src="../static/js/rocket.js" type="text/javascript"></script>
+<script>
+window.onload = function() {
+var goTop = find("gotop");
+window.onscroll = function() {
+scroll().top > 0 ? show(goTop) : hide(goTop); // 如果大于0 就显示 否则隐藏
+leader = scroll().top; // 把 卷去的头部 给 起始位置
+console.log(scroll().top);
+}
+var leader = 0,target = 0,timer = null;
+// leader 起始位置 target 目标位置
+goTop.onclick = function() {
+target = 0; // 点击完毕之后 奔向0 去的 不写也可以
+timer = setInterval(function() {
+leader = leader + (target - leader ) / 10;
+window.scrollTo(0,leader); // 去往页面中的某个位置
+if(leader == target)
+{
+clearInterval(timer);
+}
+},20);
+}
+}
+</script>
+<body>
+
+<div id="gotop" class="top">
+
+<img src="../static/images/rocket2.png" alt="" width="50%"/>
+
+</div>
+<!-- ========== 新增：酷炫弹框 ========== -->
+<div class="share-modal-overlay" id="shareModalOverlay">
+<div class="share-modal" id="shareModal">
+<!-- 背景闪光装饰 -->
+<div class="shine-effect"></div>
+<!-- 成功图标区域 -->
+<div class="success-icon-wrapper" id="successIconWrapper">
+<div class="success-circle">
+<i class="fa fa-check"></i>
+</div>
+</div>
+<!-- 标题 -->
+<h4>✨ 复制成功！</h4>
+<h4>以文会友，打造好学人设！</h4>
+<!-- 复制内容预览 -->
+<div class="copy-content" id="copyContentPreview">
+<span class="label">📋 已复制到剪贴板：</span>
+<span id="copiedText"></span>
+</div>
+<!-- 关闭按钮 -->
+<button class="btn-modal-close" id="btnModalClose">
+<i class="fa fa-thumbs-up"></i> 知道了
+</button>
+</div>
+</div>
+<!-- ========== 酷炫弹框结束 ========== -->
+<div class="container">
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-custom" style="justify-content:flex-end;">
+<!-- 品牌/logo（移动端显示） -->
+<span class="navbar-brand d-md-none" style="color:#fff; font-size:18px;">衡水体学习网</span>
+<!-- 汉堡按钮 -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-light-icon"></span>
+</button>
+<!-- 折叠菜单容器 -->
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+<a class="nav-link " href="../index.html">首页</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../posts/6.html">什么是衡水体</a>
+</li>
+<!--
+<li class="nav-item">
+<a class="nav-link  " href="../showComment/1.html?nav=introduction">认识衡水体</a>
+</li>
+-->
+<li class="nav-item">
+<a class="nav-link  " href="../hst_gen.html">衡水体 · 英文生成器</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../hst_cn_gen.html">衡水体 · 中文生成器</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../posts/2.html">衡水体26个英文字母</a>
+</li>
+<!--
+<li class="nav-item">
+<a class="nav-link  " href="../showComment/3.html?nav=story">衡水体与考研英语</a>
+</li>
+<li class="nav-item">
+</li>
+-->
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="9.html#" id="navbardrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+衡水体教程与英语考试
+</a>
+<div class="dropdown-menu" aria-labelledby="navbardrop1">
+<a class="dropdown-item" href="../hst.html">衡水体入门教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="../showComment/3.html">衡水体与考研英语</a>
+</div>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../comment_list.html">网站公告</a>
+</li>
+<li class="nav-item">
+<a class="nav-link " href="../showComment/2.html">关于网站</a>
+</li>
+
+
+
+</ul>
+</div>
+<div class="theme-slot">
+<div class="theme-switch" role="switch" tabindex="0" aria-checked="false" aria-label="切换深色/浅色主题">
+<div class="theme-canvas"></div>
+</div>
+</div></nav>
+
+<div class="row content"><!--row开始-->
+<!--电脑端显示导航栏 bg-info 取消-->
+<div class="col-3" style="border: 1px solid #E1B400;background-color:#DDC7AE;color:#1b1e21;">
+<p style="text-align:center;margin-top:18px"><strong><a href="../hst.html" class="color:#0c5460;font-weight: bold;"><strong style="color:#664d03">《衡水体入门教程》</strong></a></strong></p><hr />
+
+<!--#664d03 原先的div颜色：color:#1b1e21-->
+<a data-toggle="collapse" data-target=".multi-collapse1" aria-expanded="true" class="chapter-toggle"><span class="toggle-icon"></span><strong style="color:#664d03">1&nbsp;前言 </strong></a><hr />
+
+
+<div class="collapse multi-collapse1" id="1.1">
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#0c5460;" >1.1&nbsp</font>
+
+<a href="6.html"><font style="color:#0c5460;">什么是衡水体？</font></a>
+
+<br/><hr />
+</div>
+
+<div class="collapse multi-collapse1" id="1.2">
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#0c5460;" >1.2&nbsp</font>
+
+<a href="4.html"><font style="color:#0c5460;">衡水体引发的热议</font></a>
+
+<br/><hr />
+</div>
+
+
+
+<!--#664d03 原先的div颜色：color:#1b1e21-->
+<a data-toggle="collapse" data-target=".multi-collapse2" aria-expanded="true" class="chapter-toggle"><span class="toggle-icon"></span><strong style="color:#664d03">2&nbsp;入门教程 </strong></a><hr />
+
+
+<div class="collapse multi-collapse2" id="2.1">
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#0c5460;" >2.1&nbsp</font>
+
+<a href="3.html"><font style="color:#0c5460;">衡水体的核心特点</font></a>
+
+<br/><hr />
+</div>
+
+<div class="collapse multi-collapse2" id="2.2">
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#0c5460;" >2.2&nbsp</font>
+
+<a href="2.html"><font style="color:#0c5460;">衡水体26个英文字母写法</font></a>
+
+<br/><hr />
+</div>
+
+<div class="collapse multi-collapse2" id="2.3">
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#0c5460;" >2.3&nbsp</font>
+
+<a href="1.html"><font style="color:#0c5460;">意大利体介绍</font></a>
+
+<br/><hr />
+</div>
+
+<div class="collapse multi-collapse2" id="2.4">
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#0c5460;" >2.4&nbsp</font>
+
+<a style="background-color:yellow;border-radius:8px; padding:4px;" href="9.html"><font style="color:#000000" >衡水体练习指南</font></a>
+
+<br/><hr />
+</div>
+
+
+
+<a data-toggle="collapse" data-target=".multi-collapse3" aria-expanded="true" class="chapter-toggle"><span class="toggle-icon"></span><strong style="color:#664d03">3&nbsp;规范与自查 </strong></a><hr />
+
+<div class="collapse multi-collapse3" id="3.1">
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#0c5460;" >3.1&nbsp</font>
+<a href="7.html"><font style="color:#0c5460;">大写字母的高度与占格</font></a>
+<br/><hr />
+</div>
+
+<div class="collapse multi-collapse3" id="3.2">
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#0c5460;" >3.2&nbsp</font>
+<a href="8.html"><font style="color:#0c5460;">花体与衡水体的区别</font></a>
+<br/><hr />
+</div>
+</div>
+<!--电脑端显示导航栏-->
+<!--正文开始-->
+<div class=" col-9 " style="border: 1px solid #E1B400; background-color: #faebd7" >
+<!--<div class="col-12" style="border: 1px solid #E1B400; background-color: #faebd7 ">-->
+<!--<div class="col-9" style="border: 1px solid #E1B400;">-->
+<div class="chapter-header"><!-- 页眉部分 -->
+<!-- 左侧樱桃 -->
+<div class="side-deco">
+<svg class="deco-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<!--枝干 -->
+<path d="M100 20 Q120 50 130 80" stroke="#8B5A2B" stroke-width="3" fill="none" />
+<path d="M115 55 Q95 70 80 80" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<path d="M125 75 Q145 90 160 95" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<!--叶子 -->
+<path d="M110 50 Q100 40 90 50 Q100 55 110 50Z" fill="#6B8E23" />
+<path d="M130 60 Q140 50 150 60 Q140 65 130 60Z" fill="#6B8E23" />
+<path d="M120 85 Q130 75 140 85 Q130 90 120 85Z" fill="#6B8E23" />
+<!--樱桃1（上方最大） -->
+<circle cx="80" cy="100" r="25" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M80 75 Q85 70 90 72" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="72" cy="92" r="4" fill="rgba(255,255,255,0.3)"/>
+<!--樱桃2（左下方 -->
+<circle cx="55" cy="140" r="22" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M55 118 Q60 113 65 115" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="48" cy="133" r="3.5" fill="rgba(255,255,255,0.3)"/>
+<!--樱桃3（右下方 -->
+<circle cx="100" cy="145" r="22" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M100 123 Q105 118 110 120" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="93" cy="138" r="3.5" fill="rgba(255,255,255,0.3)"/>
+</svg>
+</div>
+<div class="text-area"><!--包裹标题和文章统计-->
+<div class="row ">
+<div class="col-12 text-center" style="padding:5px">
+<h1 style="font-size:24px;font-weight:bold;padding-top:10px;color:#e04f5f;">大写字母的高度与占格</h1>
+</div>
+</div>
+<!--更美观的效果-->
+<div class="update-info">
+
+<span><i class="far fa-calendar-alt"></i> 创建时间：2026-08-24</span>
+
+<!--<span>|</span>-->
+<span><i class="fas fa-sync-alt"></i> 更新时间：2026-08-24</span>
+<!--<span>|</span>-->
+<span><i class="far fa-eye"></i> 阅读次数：1195 次</span>
+
+</div>
+</div><!--包裹标题和文章统计-->
+<!-- 右侧樱桃（镜像翻转） -->
+<div class="side-deco deco-right">
+<svg class="deco-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<!--与左侧完全一致的图案，CSS 会自动镜像翻转 -->
+<path d="M100 20 Q120 50 130 80" stroke="#8B5A2B" stroke-width="3" fill="none" />
+<path d="M115 55 Q95 70 80 80" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<path d="M125 75 Q145 90 160 95" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<path d="M110 50 Q100 40 90 50 Q100 55 110 50Z" fill="#6B8E23" />
+<path d="M130 60 Q140 50 150 60 Q140 65 130 60Z" fill="#6B8E23" />
+<path d="M120 85 Q130 75 140 85 Q130 90 120 85Z" fill="#6B8E23" />
+<circle cx="80" cy="100" r="25" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M80 75 Q85 70 90 72" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="72" cy="92" r="4" fill="rgba(255,255,255,0.3)"/>
+<circle cx="55" cy="140" r="22" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M55 118 Q60 113 65 115" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="48" cy="133" r="3.5" fill="rgba(255,255,255,0.3)"/>
+<circle cx="100" cy="145" r="22" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M100 123 Q105 118 110 120" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="93" cy="138" r="3.5" fill="rgba(255,255,255,0.3)"/>
+</svg>
+</div>
+</div><!--页眉部分-->
+<hr />
+<h2>大写字母到底写多高？</h2>
+<p>衡水体的大写字母有两个硬标准：<strong>高度一致</strong>、<strong>不连笔</strong>。同一行里所有大写字母的顶部要落在同一条隐形水平线上，底部全部压住基准线，写出来的观感才像印刷体。</p>
+<p>放在四线三格里，大写字母占<strong>上、中两格</strong>：顶部贴近第一条线，底部落在第三条线（基准线）上，中间不留缝。</p>
+
+<p><center><img alt="大写字母统一高度示范" class="img-fluid" src="../static/images/upload/202608/1785843802.png" style="max-width:100%" /></center></p>
+<p class="img-caption">图 1　Z、H、D、O、N 的顶部保持齐平，底部全部压线，整行像一条水平带</p>
+
+<h2>大小写的比例关系</h2>
+<p>大小写混排时，大写字母要略高于小写字母的“身体”。经验值是高出<strong>三分之一左右</strong>：高出太多显得突兀，和小写齐平又分不清大小写。</p>
+
+<p><center><img alt="Aa Oo Ia Ro 大小写高度对比" class="img-fluid" src="../static/images/upload/202608/1785844322.png" style="max-width:100%" /></center></p>
+<p class="img-caption">图 2　Aa、Oo、Ia、Ro —— 大写略高出基准线上方的虚线，约为小写字母高度的三分之一</p>
+
+<h2>四线三格怎么看</h2>
+<p>四线三格不是装饰，而是一套定位系统。四条横线把纸面分成三格，每个字母的“头”和“脚”都有固定落点：</p>
+<table class="table table-striped">
+<tbody>
+<tr><td><strong>第一条线</strong></td><td>大写字母、上伸字母（b、d、h、k、l）的顶部上限</td></tr>
+<tr><td><strong>第二条线</strong></td><td>小写字母身体的顶部，也是大写高度的参照虚线</td></tr>
+<tr><td><strong>第三条线</strong></td><td>基准线，所有字母的底部都要压在这条线上</td></tr>
+<tr><td><strong>第四条线</strong></td><td>下伸字母（g、j、p、q、y）的尾部下限</td></tr>
+</tbody>
+</table>
+
+<h2>三个最容易犯的错</h2>
+<ul>
+<li>1、<strong>大小写高度失控</strong>：小写突然变大、大写突然缩小，整行像波浪线。</li>
+<li>2、<strong>顶部不齐</strong>：每个大写字母都往上顶一点，一眼就能看出参差。</li>
+<li>3、<strong>底部悬空</strong>：字母没有压住基准线，卷面显得松垮。</li>
+</ul>
+<p>练习时先把同一组字母（例如 A、D、O、Z、N）连着写十遍，只盯三件事：顶部齐平、底部压线、倾斜角一致。写顺了再换下一组。</p>
+<p>也可以用站内的<a href="../hst_gen.html">英文生成器</a>输入这组字母，生成带四线格的范本，打印出来对照临摹，比自己盲写快很多。</p>
+
+<div class="row">
+<div class="col-12 text-center" style="padding:5px">
+<sub><font color="red" class="text-primary fw-bold">本教程共8节，当前为第7节!</font></sub>
+<br />
+<sub><font color="red" class="text-primary fw-bold">本教程最新修订时间为：2026-09-01 23:45:32</font></sub>
+<div style="width:90%;margin: 10px auto;">
+<input type="submit" id="previous" value="上一节" style="padding: 5px 25px;" class="btn btn-primary"/>
+<input type="submit" id="next" value="下一节" style="padding: 5px 25px;" class="btn btn-primary"/>
+</div>
+
+<!-- ========== 新增：分享按钮（位于翻页按钮之下） ========== -->
+<div class="share-btn-wrapper">
+<button type="button" class="btn-share" id="btnShare" title="分享此页面">
+<i class="fa fa-share-alt"></i> 分享页面
+</button>
+</div>
+<!-- ========== 分享按钮结束 ========== -->
+</div>
+</div>
+<hr />
+<!--<div class="col-12 text-center" style="padding:5px;margin:10px;color:red"><a href="../comment_list.html" target="_blank"><strong style="color:red">网站公告：2026年7月招聘兼职>>>>>></strong></a></div> -->
+<!-- ========== 新增：低调推广方框（放置于正文底部） ========== -->
+<!--
+<div class="subtle-promo-box">
+<i class="fa fa-volume-up" aria-hidden="true"></i>
+<span class="subtle-promo-text">📌 面试天下网：一款服务于大一新生的口袋书，让大家在无聊的公共课上可以学习大模型技术！</span><br />
+<i class="fa fa-volume-up" aria-hidden="true"></i>
+<span class="subtle-promo-text">📌 <a href="../comment_list.html" target="_blank"><strong style="color:purple">网站公告：人人都需要的干眼克星上线啦&gt;&gt;&gt;&gt;&gt;&gt;</strong></a></span><br />
+<i class="fa fa-volume-up" aria-hidden="true"></i>
+<span class="subtle-promo-text">📌 <a href="../comment_list.html" target="_blank"><strong style="color:purple">网站公告：2026年7月招聘兼职&gt;&gt;&gt;&gt;&gt;&gt;</strong></a></span>
+</div>
+-->
+<!-- ========== 推广方框结束 ========== -->
+
+</div><!--正文结束-->
+</div><!--row结束：导航+正文-->
+</div><!--container结束-->
+
+
+<div id="footer">
+<div class="text-center" style="margin-bottom:0">
+<br/>
+<font style="color:#999;font-size:18px"><strong style="color:#999;font-size:18px"> 衡水体学习网 @ 2026年</strong></font>
+<br/>
+<p style="margin: 6px 0px;">
+<font style="color:#999;font-size:15px;margin-top:10px;">衡水体学习网 - 让工整书写成为你的考场优势</font><br />
+<!--
+
+<font style="color:#999;font-size:12px;margin-top:10px;">运行时间：839 天，网站会员：302 人，最新注册时间：2026-10-21 22:18:38</font><br />
+
+-->
+</p>
+<br/>
+<br/>
+</div>
+</div>
+<br/> <br/>
+<script>
+$(function() {
+// 只在移动端处理下拉菜单冲突
+if ($(window).width() < 768) {
+// 移动端：手动处理下拉菜单
+$('.dropdown-toggle').on('click', function(e) {
+e.preventDefault();
+e.stopPropagation();
+var $this = $(this);
+var $parent = $this.parent('.dropdown');
+var $menu = $this.siblings('.dropdown-menu');
+// 关闭其他打开的下拉菜单
+$('.dropdown-menu').not($menu).removeClass('show');
+$('.dropdown').not($parent).removeClass('show');
+// 切换当前下拉菜单
+$parent.toggleClass('show');
+$menu.toggleClass('show');
+// 确保折叠菜单保持打开状态
+$('#navbarNav').addClass('show');
+});
+// 点击导航链接后自动关闭折叠菜单
+$('.navbar-nav .nav-link:not(.dropdown-toggle)').click(function() {
+$('#navbarNav').collapse('hide');
+});
+// 点击外部关闭下拉菜单
+$(document).click(function(event) {
+if (!$(event.target).closest('.dropdown').length) {
+$('.dropdown-menu').removeClass('show');
+$('.dropdown').removeClass('show');
+}
+});
+}
+});
+</script>
+
+<script src="../static/KaTeX/katex.min.js"></script>
+<script src="../static/KaTeX/auto-render.min.js"></script>
+<script>
+function triggerRenderingLaTeX(element) {
+renderMathInElement(
+element,
+{
+delimiters: [
+{left: "$$", right: "$$", display: true},
+{left: "\\[", right: "\\]", display: true},
+{left: "$", right: "$", display: false},
+{left: "\\(", right: "\\)", display: false}
+]
+}
+);
+}
+document.addEventListener("DOMContentLoaded", function() {
+triggerRenderingLaTeX(document.body);
+});
+</script>
+<script src="../static/js/trafficstatsweb.js"></script>
+<!-- ========== 新增：酷炫分享功能JavaScript ========== -->
+<script>
+$(function() {
+// 分享按钮点击事件
+$('#btnShare').click(function() {
+// (1) 获取 meta description 的内容
+var description = $('meta[name="description"]').attr('content') || '';
+// (2) 获取当前页面的URL
+var url = window.location.href;
+// 组合要复制的内容：描述 + 换行 + URL
+var shareText = '【衡水体学习网】' + description + ' ' + url;
+// 使用 Clipboard API 复制到剪贴板
+if (navigator.clipboard && navigator.clipboard.writeText) {
+navigator.clipboard.writeText(shareText).then(function() {
+// 复制成功，显示酷炫弹框
+showCoolModal(shareText);
+}).catch(function(err) {
+console.error('复制失败:', err);
+fallbackCopy(shareText);
+});
+} else {
+fallbackCopy(shareText);
+}
+});
+// 关闭弹框
+$('#btnModalClose').click(function() {
+hideCoolModal();
+});
+// 点击遮罩层关闭
+$('#shareModalOverlay').click(function(e) {
+if (e.target === this) {
+hideCoolModal();
+}
+});
+// 显示酷炫弹框
+function showCoolModal(shareText) {
+// 设置复制内容预览
+$('#copiedText').text(shareText);
+// 显示弹框
+var overlay = $('#shareModalOverlay');
+overlay.addClass('show');
+// 重置动画
+var modal = $('#shareModal');
+modal.css('animation', 'none');
+modal[0].offsetHeight; // 触发回流
+modal.css('animation', 'slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)');
+// 创建粒子特效
+createParticles();
+// 创建波纹特效
+createRipple();
+// 重置成功图标动画
+var circle = $('.success-circle');
+circle.css('animation', 'none');
+circle[0].offsetHeight;
+circle.css('animation', 'pulse 0.6s ease');
+// 防止背景滚动
+$('body').css('overflow', 'hidden');
+}
+// 隐藏弹框
+function hideCoolModal() {
+var overlay = $('#shareModalOverlay');
+overlay.css('animation', 'fadeOut 0.3s ease');
+setTimeout(function() {
+overlay.removeClass('show');
+overlay.css('animation', '');
+// 恢复背景滚动
+$('body').css('overflow', '');
+// 清除粒子
+$('.particle, .ripple').remove();
+}, 300);
+}
+// 创建粒子特效
+function createParticles() {
+var wrapper = $('#successIconWrapper');
+var colors = ['#667eea', '#764ba2', '#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff'];
+// 先清除旧粒子
+$('.particle').remove();
+for (var i = 0; i < 12; i++) {
+var particle = $('<div class="particle"></div>');
+var angle = (i / 12) * 360;
+var distance = 40 + Math.random() * 30;
+var tx = Math.cos(angle * Math.PI / 180) * distance;
+var ty = Math.sin(angle * Math.PI / 180) * distance;
+particle.css({
+'background': colors[Math.floor(Math.random() * colors.length)],
+'--tx': tx + 'px',
+'--ty': ty + 'px',
+'left': '50%',
+'top': '50%',
+'margin-left': '-4px',
+'margin-top': '-4px',
+'animation-delay': (Math.random() * 0.2) + 's'
+});
+wrapper.append(particle);
+}
+// 粒子动画结束后清除
+setTimeout(function() {
+$('.particle').remove();
+}, 1000);
+}
+// 创建波纹特效
+function createRipple() {
+var wrapper = $('#successIconWrapper');
+$('.ripple').remove();
+var ripple = $('<div class="ripple"></div>');
+wrapper.append(ripple);
+setTimeout(function() {
+ripple.remove();
+}, 800);
+}
+// 降级复制方案
+function fallbackCopy(text) {
+var textarea = document.createElement('textarea');
+textarea.value = text;
+textarea.style.position = 'fixed';
+textarea.style.top = '-9999px';
+textarea.style.left = '-9999px';
+document.body.appendChild(textarea);
+textarea.focus();
+textarea.select();
+try {
+var successful = document.execCommand('copy');
+if (successful) {
+showCoolModal(text);
+} else {
+alert('复制失败，请手动复制页面链接');
+}
+} catch (err) {
+console.error('降级复制失败:', err);
+alert('复制失败，请手动复制页面链接');
+}
+document.body.removeChild(textarea);
+}
+// ESC键关闭弹框
+$(document).keydown(function(e) {
+if (e.key === 'Escape' && $('#shareModalOverlay').hasClass('show')) {
+hideCoolModal();
+}
+});
+});
+</script>
+<!-- ========== 酷炫分享功能JavaScript结束 ========== -->
+
+<!--<script type="text/javascript">
+$(function() {
+$("img").each(function(){
+width = $(this).width();
+if (width > 800){
+$(this).removeAttr("max-width");
+$(this).removeAttr("max-height");
+$(this).attr("width", "100%");
+$(this).attr("height", "100%");
+}
+});
+});
+</script>-->
+
+
+<script type="text/javascript">
+<!---->
+var courseUrlId = 7;
+var maxCourseUrlId = 8;
+if (courseUrlId == 0){
+$("#previous").attr("disabled", true);
+}else{
+$("#previous").removeAttr("disabled");
+}
+if (courseUrlId == maxCourseUrlId){
+$("#next").attr("disabled", true);
+}else{
+$("#next").removeAttr("disabled");
+}
+$(function() {
+$('#previous').click(function() {
+if (courseUrlId == 1){
+window.location.href="../hst.html";
+}else{
+window.location.href="../hst/9.html";
+}
+});
+$('#next').click(function() {
+window.location.href="../hst/8.html";
+});
+});
+$(function() {
+$('#go').click(function() {
+var goto = $('#goto').val();
+if(goto == null || goto == '')
+{
+alert("跳转节序不能为空！");
+return;
+}
+// 静态站点无 /hst/go 服务，校验节序后直接跳转到对应章节
+var chapters = [1, 2, 3, 4, 6, 9];
+var chapterNo = parseInt(goto, 10);
+if (chapters.indexOf(chapterNo) === -1) {
+alert("没有第 " + goto + " 节，请输入 1、2、3、4、6、9 中的节序！");
+return;
+}
+window.location.href="../hst/" + chapterNo + ".html";
+});
+});
+</script>
+<script>
+// 自动展开当前章节，收起其他章节
+$(function() {
+// 定义当前页面属于哪个章节（手动指定，或通过 URL 判断）
+var currentChapter = 3;
+// 先收起所有章节
+$('.collapse[class*="multi-collapse"]').collapse('hide');
+// 展开当前章节
+$('.multi-collapse' + currentChapter).collapse('show');
+});
+</script>
+
+<!--
+
+
+<script>
+var popup = new Popup();
+popup.alert('本页面内容仅限会员使用，欢迎成为面试天下的会员！更多介绍，请阅读网站公告！');
+</script>
+
+
+-->
+</body>
+</html>
