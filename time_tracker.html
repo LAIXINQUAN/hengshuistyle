@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
+<title>衡水体练习时间记录器</title>
+<link href="static/images/dragonfly.png" rel="icon"/>
+<!-- Chart.js 轻量图表库 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">
+</script>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+background: #0a0a1a;
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', system-ui, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+padding: 1.5rem;
+margin: 0;
+position: relative;
+overflow-x: hidden;
+}
+/* 动态网格背景 */
+body::before {
+content: "";
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image:
+linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+background-size: 50px 50px;
+z-index: 0;
+pointer-events: none;
+animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove {
+0% {
+transform: translate(0, 0);
+}
+100% {
+transform: translate(50px, 50px);
+}
+}
+/* 流动光晕背景 */
+body::after {
+content: "";
+position: fixed;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle at 30% 40%, rgba(0, 180, 255, 0.12) 0%, transparent 40%),
+radial-gradient(circle at 70% 60%, rgba(180, 0, 255, 0.10) 0%, transparent 40%),
+radial-gradient(circle at 50% 50%, rgba(0, 255, 200, 0.06) 0%, transparent 50%);
+z-index: 0;
+pointer-events: none;
+animation: glowFloat 18s ease-in-out infinite alternate;
+}
+@keyframes glowFloat {
+0% {
+transform: translate(0, 0) scale(1);
+}
+100% {
+transform: translate(-2%, -2%) scale(1.05);
+}
+}
+.container {
+max-width: 880px;
+width: 100%;
+background: rgba(12, 16, 32, 0.75);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border-radius: 2.2rem;
+box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7),
+0 0 0 1px rgba(0, 255, 255, 0.18),
+inset 0 0 30px rgba(0, 180, 255, 0.05);
+padding: 2.2rem 2.2rem 2.8rem;
+transition: all 0.3s ease;
+position: relative;
+z-index: 2;
+border: 1px solid rgba(0, 255, 255, 0.2);
+}
+/* 顶部光条装饰 */
+.container::before {
+content: "";
+position: absolute;
+top: 0;
+left: 20%;
+width: 60%;
+height: 2px;
+background: linear-gradient(90deg, transparent, #00ffff, #b400ff, #00ffff, transparent);
+border-radius: 4px;
+opacity: 0.8;
+}
+h1 {
+font-size: 2rem;
+font-weight: 700;
+background: linear-gradient(135deg, #00e5ff, #b400ff);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+display: flex;
+align-items: center;
+gap: 0.6rem;
+margin-bottom: 0.4rem;
+letter-spacing: -0.3px;
+filter: drop-shadow(0 0 12px rgba(0, 200, 255, 0.4));
+}
+.subtitle {
+color: #9ca3ff;
+font-size: 0.95rem;
+margin-bottom: 2rem;
+border-left: 4px solid #00e5ff;
+padding-left: 1.2rem;
+font-weight: 400;
+background: linear-gradient(to right, rgba(0, 229, 255, 0.08), transparent);
+border-radius: 0 8px 8px 0;
+text-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
+}
+.notice {
+color: #9ca3ff;
+font-size: 0.95rem;
+margin-bottom: 2rem;
+/*border-left: 4px solid #00e5ff;
+padding-left: 1.2rem;*/
+font-weight: 400;
+background: linear-gradient(to right, rgba(0, 229, 255, 0.08), transparent);
+border-radius: 0 8px 8px 0;
+text-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
+}
+.subtitle strong {
+color: #ffffff;
+font-weight: 600;
+}
+.input-section {
+background: rgba(10, 15, 30, 0.7);
+border-radius: 1.4rem;
+padding: 1.6rem;
+margin-bottom: 1.4rem;
+border: 1px solid rgba(0, 255, 255, 0.25);
+position: relative;
+box-shadow: 0 0 25px rgba(0, 180, 255, 0.08), inset 0 0 20px rgba(0, 0, 0, 0.4);
+backdrop-filter: blur(8px);
+}
+label {
+font-weight: 600;
+color: #e0e7ff;
+font-size: 1.05rem;
+margin-bottom: 0.8rem;
+display: block;
+text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+}
+textarea {
+width: 100%;
+height: 500px;
+padding: 1.1rem;
+font-size: 0.95rem;
+line-height: 1.7;
+border: 1px solid rgba(0, 255, 255, 0.35);
+border-radius: 1.1rem;
+background: rgba(5, 8, 20, 0.8);
+resize: vertical;
+outline: none;
+font-family: 'Fira Code', 'Courier New', monospace;
+color: #d6e6ff;
+transition: all 0.3s ease;
+box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.7);
+}
+textarea:focus {
+border-color: #00ffff;
+box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), inset 0 0 18px rgba(0, 0, 0, 0.7);
+background: rgba(8, 12, 26, 0.9);
+}
+textarea::placeholder {
+color: #5a6a8c;
+font-style: italic;
+}
+.format-hint {
+font-size: 0.8rem;
+color: #8b9ad0;
+margin-top: 0.6rem;
+display: flex;
+align-items: center;
+gap: 0.4rem;
+background: rgba(0, 255, 255, 0.08);
+padding: 0.5rem 1rem;
+border-radius: 2rem;
+width: fit-content;
+border: 1px solid rgba(0, 255, 255, 0.2);
+}
+.format-hint i {
+font-style: normal;
+font-size: 1rem;
+}
+/* 操作按钮行 */
+.action-row {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+gap: 1.2rem;
+margin: 1.8rem 0 1rem;
+}
+.btn-generate {
+background: linear-gradient(135deg, #0f0f2d, #1a1040);
+color: #ffffff;
+border: 1px solid #00ffff;
+padding: 0.9rem 2.8rem;
+border-radius: 3rem;
+font-size: 1.1rem;
+font-weight: 600;
+letter-spacing: 0.5px;
+display: flex;
+align-items: center;
+gap: 0.6rem;
+cursor: pointer;
+box-shadow: 0 0 25px rgba(0, 255, 255, 0.35), 0 8px 20px rgba(0, 0, 0, 0.6);
+transition: all 0.3s ease;
+text-transform: uppercase;
+backdrop-filter: blur(5px);
+position: relative;
+overflow: hidden;
+}
+.btn-generate::after {
+content: "";
+position: absolute;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.15), transparent);
+transform: rotate(45deg);
+transition: 0.5s;
+opacity: 0;
+}
+.btn-generate:hover {
+background: linear-gradient(135deg, #1a1050, #0f0f3d);
+border-color: #b400ff;
+box-shadow: 0 0 40px rgba(180, 0, 255, 0.5), 0 8px 25px rgba(0, 0, 0, 0.8);
+transform: translateY(-3px);
+}
+.btn-generate:hover::after {
+opacity: 1;
+}
+.btn-generate:active {
+transform: translateY(1px);
+box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+.btn-clear {
+background: rgba(20, 20, 40, 0.7);
+color: #cbd5ff;
+border: 1px solid rgba(255, 255, 255, 0.2);
+padding: 0.75rem 2rem;
+border-radius: 3rem;
+font-size: 0.95rem;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+cursor: pointer;
+transition: all 0.3s ease;
+backdrop-filter: blur(10px);
+}
+.btn-clear:hover {
+background: rgba(180, 0, 50, 0.25);
+border-color: #ff4d6d;
+color: #ffb3c1;
+box-shadow: 0 0 20px rgba(255, 50, 80, 0.4);
+}
+.save-indicator {
+font-size: 0.8rem;
+color: #00ffc3;
+display: flex;
+align-items: center;
+gap: 0.3rem;
+margin-left: 0.8rem;
+opacity: 0;
+transition: opacity 0.25s ease;
+text-shadow: 0 0 10px #00ffc3;
+}
+.save-indicator.visible {
+opacity: 1;
+}
+.chart-container {
+margin-top: 2rem;
+background: rgba(8, 12, 26, 0.65);
+backdrop-filter: blur(15px);
+border-radius: 1.4rem;
+padding: 1.4rem 1.2rem 1rem;
+box-shadow: 0 0 30px rgba(0, 180, 255, 0.15), inset 0 0 15px rgba(0, 0, 0, 0.5);
+border: 1px solid rgba(0, 255, 255, 0.25);
+transition: opacity 0.3s ease;
+}
+canvas {
+width: 100%;
+height: auto;
+max-height: 380px;
+display: block;
+filter: drop-shadow(0 0 8px rgba(0, 200, 255, 0.3));
+}
+.no-data-message {
+text-align: center;
+color: #7b89b0;
+padding: 2rem;
+font-style: italic;
+background: rgba(0, 0, 0, 0.3);
+border-radius: 1rem;
+margin-top: 1rem;
+border: 1px dashed rgba(0, 255, 255, 0.2);
+}
+.stats-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 0.8rem;
+color: #b7c4f0;
+font-size: 0.9rem;
+flex-wrap: wrap;
+gap: 1rem;
+background: rgba(0, 10, 30, 0.5);
+padding: 0.7rem 1.2rem;
+border-radius: 2rem;
+backdrop-filter: blur(5px);
+}
+.storage-info {
+font-size: 0.75rem;
+color: #00e5ff;
+background: rgba(0, 255, 255, 0.1);
+padding: 0.3rem 1rem;
+border-radius: 1rem;
+border: 1px solid rgba(0, 255, 255, 0.3);
+}
+hr {
+border: 0.5px solid rgba(0, 255, 255, 0.15);
+margin: 1.8rem 0 0.5rem;
+}
+.footer-note {
+margin-top: 2rem;
+font-size: 0.8rem;
+color: #6a7aaa;
+text-align: center;
+text-shadow: 0 0 5px rgba(0, 200, 255, 0.2);
+}
+@media (max-width: 500px) {
+.container {
+padding: 1.5rem;
+}
+.action-row {
+flex-direction: column;
+width: 100%;
+}
+.btn-generate,
+.btn-clear {
+width: 100%;
+justify-content: center;
+}
+}
+/* ========== 自定义弹窗样式 ========== */
+.custom-modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.75);
+backdrop-filter: blur(6px);
+-webkit-backdrop-filter: blur(6px);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 9999;
+animation: fadeIn 0.25s ease;
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+@keyframes slideUp {
+from { transform: translateY(30px); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+.custom-modal-box {
+background: rgba(15, 20, 40, 0.95);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(0, 255, 255, 0.35);
+border-radius: 1.5rem;
+padding: 2rem 2rem 1.6rem;
+max-width: 420px;
+width: 90%;
+box-shadow: 0 0 50px rgba(0, 180, 255, 0.2),
+0 20px 40px rgba(0, 0, 0, 0.6);
+animation: slideUp 0.3s ease;
+text-align: center;
+}
+.custom-modal-icon {
+font-size: 3rem;
+margin-bottom: 0.8rem;
+animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.1); }
+}
+.custom-modal-title {
+font-size: 1.3rem;
+font-weight: 700;
+color: #ffffff;
+margin-bottom: 0.6rem;
+text-shadow: 0 0 12px rgba(0, 200, 255, 0.5);
+}
+.custom-modal-message {
+font-size: 0.95rem;
+color: #b0c8ff;
+line-height: 1.6;
+margin-bottom: 1.8rem;
+white-space: pre-line;
+}
+.custom-modal-buttons {
+display: flex;
+gap: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+.custom-modal-btn {
+padding: 0.7rem 2rem;
+border-radius: 2.5rem;
+font-size: 0.95rem;
+font-weight: 600;
+cursor: pointer;
+border: none;
+transition: all 0.25s ease;
+letter-spacing: 0.3px;
+min-width: 100px;
+}
+.custom-modal-btn-cancel {
+background: rgba(255, 255, 255, 0.08);
+color: #cbd5ff;
+border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.custom-modal-btn-cancel:hover {
+background: rgba(255, 255, 255, 0.15);
+border-color: rgba(255, 255, 255, 0.4);
+}
+.custom-modal-btn-danger {
+background: linear-gradient(135deg, #ff4d6d, #c9184a);
+color: #ffffff;
+border: 1px solid rgba(255, 100, 120, 0.5);
+box-shadow: 0 0 20px rgba(255, 50, 80, 0.35);
+}
+.custom-modal-btn-danger:hover {
+box-shadow: 0 0 35px rgba(255, 50, 80, 0.6);
+transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>
+✍️ 衡水体练习时间记录器 · 固定时间 · 量变引发质变
+</h1>
+<br />
+<div class="notice">
+🔊 提醒：每天10-15分钟刻意练习，不是随便抄写，要一边写一边对照标准。 🔥人气：1178+
+</div>
+<div class="subtitle">
+记录格式：<strong>日期，分钟，内容</strong> （例如：2026年7月1日，15分钟，练习衡水体）
+</div>
+<!-- 上半部分：输入框 -->
+<div class="input-section">
+<div style="display: flex; align-items: center; flex-wrap: wrap;">
+<label for="logInput">✍️ 学习记录</label>
+<span class="save-indicator" id="saveIndicator">💾 已自动保存</span>
+</div>
+<textarea id="logInput"
+placeholder="2026年7月1日，10分钟，学习了衡水体知识。&#10;2026年7月2日，15分钟，继续学习了衡水体知识。&#10;2026年7月3日，20分钟，复习衡水体知识。"></textarea>
+<div class="format-hint">
+<span>💡</span> 每条记录一行，使用中文逗号“，”分隔日期、分钟数和描述。
+</div>
+</div>
+<!-- 下半部分：按钮与图表区域 -->
+<div class="action-row">
+<button class="btn-generate" id="generateChartBtn">
+<span>📈</span> 生成学习时长折线图
+</button>
+<button class="btn-clear" id="clearDataBtn">
+<span>🗑️</span> 清除本地数据
+</button>
+</div>
+<!-- 图表显示区 -->
+<div class="chart-container" id="chartContainer">
+<canvas id="studyChart" width="400" height="200"></canvas>
+<div id="fallbackMessage" class="no-data-message" style="display: none;"></div>
+</div>
+<!-- 统计信息 -->
+<div id="statsInfo" class="stats-row" style="display: none;">
+<span>📊 总记录数: <span id="totalEntries">0</span></span>
+<span>⏱️ 总学习时长: <span id="totalMinutes">0</span> 分钟</span>
+<span class="storage-info" id="storageStatus">💾 数据已同步到本地</span>
+</div>
+<hr>
+<div class="footer-note">
+数据自动保存在浏览器本地存储中（localStorage），不会上传到服务器
+<br /><br />
+衡水体学习网@2026年
+</div>
+</div>
+<script>
+(function() {
+// ========== 本地存储相关常量 ==========
+const STORAGE_KEY = 'study_log_entries';
+// DOM 元素
+const textarea = document.getElementById('logInput');
+const generateBtn = document.getElementById('generateChartBtn');
+const clearDataBtn = document.getElementById('clearDataBtn');
+const canvas = document.getElementById('studyChart');
+const chartContainer = document.getElementById('chartContainer');
+const fallbackMessage = document.getElementById('fallbackMessage');
+const statsInfo = document.getElementById('statsInfo');
+const totalEntriesSpan = document.getElementById('totalEntries');
+const totalMinutesSpan = document.getElementById('totalMinutes');
+const saveIndicator = document.getElementById('saveIndicator');
+const storageStatus = document.getElementById('storageStatus');
+let currentChart = null;
+let saveTimeout = null;
+// ========== 本地存储操作 ==========
+function saveToLocalStorage(text) {
+try {
+localStorage.setItem(STORAGE_KEY, text);
+return true;
+} catch (e) {
+console.warn('本地存储失败:', e);
+return false;
+}
+}
+function loadFromLocalStorage() {
+try {
+const saved = localStorage.getItem(STORAGE_KEY);
+return saved !== null ? saved : '';
+} catch (e) {
+console.warn('读取本地存储失败:', e);
+return '';
+}
+}
+function clearLocalStorage() {
+try {
+localStorage.removeItem(STORAGE_KEY);
+return true;
+} catch (e) {
+console.warn('清除本地存储失败:', e);
+return false;
+}
+}
+function showSaveIndicator() {
+if (saveIndicator) {
+saveIndicator.classList.add('visible');
+clearTimeout(saveIndicator._hideTimeout);
+saveIndicator._hideTimeout = setTimeout(() => {
+saveIndicator.classList.remove('visible');
+}, 2000);
+}
+}
+function autoSave() {
+clearTimeout(saveTimeout);
+saveTimeout = setTimeout(() => {
+const text = textarea.value;
+const success = saveToLocalStorage(text);
+if (success) {
+showSaveIndicator();
+if (storageStatus) {
+storageStatus.textContent = '💾 数据已同步到本地';
+storageStatus.style.color = '#00ffc3';
+}
+} else {
+if (storageStatus) {
+storageStatus.textContent = '⚠️ 保存失败，请检查空间';
+storageStatus.style.color = '#ff6b7a';
+}
+}
+}, 600);
+}
+// ========== 日志解析逻辑 ==========
+function parseLogEntries(logText) {
+if (!logText || !logText.trim()) {
+return [];
+}
+const lines = logText.split(/\r?\n/).filter(line => line.trim() !== '');
+const entries = [];
+for (let line of lines) {
+line = line.trim();
+const normalizedLine = line.replace(/，/g, ',');
+const parts = normalizedLine.split(',').map(s => s.trim()).filter(s => s.length > 0);
+if (parts.length < 2) {
+continue;
+}
+const rawDateStr = parts[0];
+const minutePart = parts[1];
+const minuteMatch = minutePart.match(/(\d+)/);
+if (!minuteMatch) {
+continue;
+}
+const minutes = parseInt(minuteMatch[1], 10);
+if (isNaN(minutes) || minutes < 0) {
+continue;
+}
+const formattedDate = parseChineseDate(rawDateStr);
+if (!formattedDate) {
+continue;
+}
+entries.push({
+date: formattedDate,
+minutes: minutes,
+rawDate: rawDateStr
+});
+}
+entries.sort((a, b) => a.date.localeCompare(b.date));
+const mergedMap = new Map();
+for (let entry of entries) {
+if (mergedMap.has(entry.date)) {
+mergedMap.get(entry.date).minutes += entry.minutes;
+} else {
+mergedMap.set(entry.date, {
+date: entry.date,
+minutes: entry.minutes,
+rawDate: entry.rawDate
+});
+}
+}
+const mergedEntries = Array.from(mergedMap.values()).sort((a, b) => a.date.localeCompare(b.date));
+return mergedEntries;
+}
+function parseChineseDate(dateStr) {
+if (!dateStr) return null;
+let str = dateStr.trim();
+const chineseRegex = /(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日?/;
+const matchChinese = str.match(chineseRegex);
+if (matchChinese) {
+const year = matchChinese[1];
+const month = matchChinese[2].padStart(2, '0');
+const day = matchChinese[3].padStart(2, '0');
+return `${year}-${month}-${day}`;
+}
+const numericRegex = /(\d{4})[-\/]\s*(\d{1,2})[-\/]\s*(\d{1,2})/;
+const matchNumeric = str.match(numericRegex);
+if (matchNumeric) {
+const year = matchNumeric[1];
+const month = matchNumeric[2].padStart(2, '0');
+const day = matchNumeric[3].padStart(2, '0');
+return `${year}-${month}-${day}`;
+}
+const compactRegex = /(\d{4})(\d{2})(\d{2})/;
+const matchCompact = str.match(compactRegex);
+if (matchCompact && str.length >= 8) {
+const year = matchCompact[1];
+const month = matchCompact[2];
+const day = matchCompact[3];
+if (parseInt(month) >= 1 && parseInt(month) <= 12 && parseInt(day) >= 1 && parseInt(day) <= 31) {
+return `${year}-${month}-${day}`;
+}
+}
+return null;
+}
+// ========== 图表相关 ==========
+function destroyChart() {
+if (currentChart) {
+currentChart.destroy();
+currentChart = null;
+}
+}
+function showFallbackMessage(text, isError = false) {
+if (fallbackMessage) {
+fallbackMessage.style.display = 'block';
+fallbackMessage.textContent = text;
+fallbackMessage.style.color = isError ? '#ff8a9a' : '#8b9ad0';
+fallbackMessage.style.background = isError ? 'rgba(180,0,30,0.2)' : 'rgba(0,0,0,0.3)';
+}
+if (canvas) {
+canvas.style.display = 'none';
+}
+if (statsInfo) {
+statsInfo.style.display = 'none';
+}
+}
+function showCanvas() {
+if (fallbackMessage) {
+fallbackMessage.style.display = 'none';
+}
+if (canvas) {
+canvas.style.display = 'block';
+}
+}
+function updateStats(entries) {
+if (!statsInfo || !totalEntriesSpan || !totalMinutesSpan) return;
+if (!entries || entries.length === 0) {
+statsInfo.style.display = 'none';
+return;
+}
+statsInfo.style.display = 'flex';
+totalEntriesSpan.textContent = entries.length;
+const totalMins = entries.reduce((sum, e) => sum + e.minutes, 0);
+totalMinutesSpan.textContent = totalMins;
+if (storageStatus) {
+const savedText = loadFromLocalStorage();
+if (savedText === textarea.value) {
+storageStatus.textContent = '💾 数据已同步到本地';
+storageStatus.style.color = '#00ffc3';
+} else {
+storageStatus.textContent = '📝 有未保存的修改';
+storageStatus.style.color = '#ffb74d';
+}
+}
+}
+function renderChart(entries) {
+destroyChart();
+if (!entries || entries.length === 0) {
+showFallbackMessage('暂无有效学习记录。请按格式输入日期与分钟数。', false);
+updateStats([]);
+return;
+}
+const labels = entries.map(entry => {
+const dateObj = new Date(entry.date + 'T00:00:00');
+if (isNaN(dateObj.getTime())) {
+return entry.date;
+}
+const month = dateObj.getMonth() + 1;
+const day = dateObj.getDate();
+return `${month}月${day}日`;
+});
+const dataPoints = entries.map(entry => entry.minutes);
+showCanvas();
+const ctx = canvas.getContext('2d');
+// 科技感图表配色
+Chart.defaults.color = '#b0c8ff';
+Chart.defaults.borderColor = 'rgba(0, 255, 255, 0.3)';
+currentChart = new Chart(ctx, {
+type: 'line',
+data: {
+labels: labels,
+datasets: [{
+label: '学习时长 (分钟)',
+data: dataPoints,
+borderColor: '#00ffff',
+backgroundColor: 'rgba(0, 255, 255, 0.1)',
+borderWidth: 3,
+pointBackgroundColor: '#ffffff',
+pointBorderColor: '#b400ff',
+pointBorderWidth: 2,
+pointRadius: 5,
+pointHoverRadius: 9,
+tension: 0.2,
+fill: true,
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: true,
+plugins: {
+tooltip: {
+backgroundColor: 'rgba(10,15,30,0.9)',
+titleColor: '#00ffff',
+bodyColor: '#e0e7ff',
+borderColor: '#00ffff',
+borderWidth: 1,
+callbacks: {
+title: function(tooltipItems) {
+const index = tooltipItems[0].dataIndex;
+return entries[index] ? '📅 ' + entries[index].date : '';
+},
+label: function(context) {
+return `⏱️ ${context.raw} 分钟`;
+}
+}
+},
+legend: {
+display: true,
+labels: {
+usePointStyle: true,
+boxWidth: 8,
+color: '#cbd5ff',
+}
+}
+},
+scales: {
+y: {
+beginAtZero: true,
+title: {
+display: true,
+text: '分钟',
+color: '#9ca3ff',
+},
+grid: {
+color: 'rgba(0,255,255,0.1)',
+},
+ticks: {
+stepSize: 10,
+color: '#b0c8ff',
+callback: function(value) {
+return value + ' min';
+}
+}
+},
+x: {
+title: {
+display: true,
+text: '日期',
+color: '#9ca3ff',
+},
+grid: {
+display: false,
+},
+ticks: {
+color: '#b0c8ff',
+maxRotation: 25,
+}
+}
+}
+}
+});
+updateStats(entries);
+}
+function handleGenerateChart() {
+const rawText = textarea.value;
+saveToLocalStorage(rawText);
+showSaveIndicator();
+const entries = parseLogEntries(rawText);
+if (entries.length === 0) {
+destroyChart();
+showFallbackMessage('没有识别到有效记录。请确保每行包含“日期，分钟”格式', false);
+updateStats([]);
+if (canvas) canvas.style.display = 'none';
+return;
+}
+renderChart(entries);
+}
+async function handleClearData() {
+const result = await customConfirm(
+'确定要清除所有本地学习记录吗？\n\n此操作将清空输入框内容和浏览器中保存的数据，且不可恢复。'
+);
+//if (confirm('确定要清除所有本地学习记录吗？\n\n此操作将清空输入框内容和浏览器中保存的数据，且不可恢复。')) {
+if (result) {
+clearLocalStorage();
+textarea.value = '';
+destroyChart();
+showFallbackMessage('数据已清除。请重新输入学习记录。', false);
+updateStats([]);
+if (canvas) canvas.style.display = 'none';
+if (saveIndicator) saveIndicator.classList.remove('visible');
+if (storageStatus) {
+storageStatus.textContent = '💾 数据已同步到本地';
+storageStatus.style.color = '#00ffc3';
+}
+}
+}
+// ========== 事件绑定 ==========
+generateBtn.addEventListener('click', handleGenerateChart);
+clearDataBtn.addEventListener('click', handleClearData);
+textarea.addEventListener('input', function() {
+autoSave();
+if (storageStatus) {
+storageStatus.textContent = '📝 编辑中…';
+storageStatus.style.color = '#ffb74d';
+}
+});
+// ========== 页面初始化 ==========
+window.addEventListener('load', function() {
+const savedText = loadFromLocalStorage();
+if (savedText) {
+textarea.value = savedText;
+setTimeout(() => {
+handleGenerateChart();
+}, 150);
+} else {
+textarea.value = `2026年7月1日，10分钟，练习了a~e。
+2026年7月2日，20分钟，继续学习了衡水体知识。`;
+saveToLocalStorage(textarea.value);
+setTimeout(() => {
+handleGenerateChart();
+}, 150);
+}
+if (storageStatus) {
+storageStatus.textContent = '💾 数据已同步到本地';
+storageStatus.style.color = '#00ffc3';
+}
+});
+window.addEventListener('beforeunload', function() {
+const text = textarea.value;
+saveToLocalStorage(text);
+destroyChart();
+});
+})();
+/**
+* 自定义确认弹窗（替代原生 confirm）
+* @param {string} message - 提示消息，支持 \n 换行
+* @returns {Promise<boolean>} - 用户点击"确定"返回 true，点击"取消"返回 false
+*/
+function customConfirm(message) {
+return new Promise((resolve) => {
+// 创建遮罩层
+const overlay = document.createElement('div');
+overlay.className = 'custom-modal-overlay';
+// 创建弹窗盒子
+const box = document.createElement('div');
+box.className = 'custom-modal-box';
+box.innerHTML = `
+<div class="custom-modal-icon">⚠️</div>
+<div class="custom-modal-title">确认操作</div>
+<div class="custom-modal-message">${message}</div>
+<div class="custom-modal-buttons">
+<button class="custom-modal-btn custom-modal-btn-cancel" id="modalCancel">取消</button>
+<button class="custom-modal-btn custom-modal-btn-danger" id="modalConfirm">确认清除</button>
+</div>
+`;
+overlay.appendChild(box);
+document.body.appendChild(overlay);
+// 绑定按钮事件
+const confirmBtn = box.querySelector('#modalConfirm');
+const cancelBtn = box.querySelector('#modalCancel');
+function closeModal(result) {
+overlay.style.opacity = '0';
+overlay.style.transition = 'opacity 0.2s ease';
+setTimeout(() => {
+overlay.remove();
+}, 200);
+resolve(result);
+}
+confirmBtn.addEventListener('click', () => closeModal(true));
+cancelBtn.addEventListener('click', () => closeModal(false));
+// 点击遮罩层关闭（视为取消）
+overlay.addEventListener('click', (e) => {
+if (e.target === overlay) {
+closeModal(false);
+}
+});
+// 按 ESC 键关闭（视为取消）
+const escHandler = (e) => {
+if (e.key === 'Escape') {
+closeModal(false);
+document.removeEventListener('keydown', escHandler);
+}
+};
+document.addEventListener('keydown', escHandler);
+});
+}
+</script>
+</body>
+</html>

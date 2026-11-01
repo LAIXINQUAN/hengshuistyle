@@ -1,0 +1,817 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>衡水体26个英文字母写法总结</title>
+<meta name="description" content="衡水体是专为考试阅卷优化的英文书写体系，以无衬线、几何化、严格压线、均匀间距与统一倾斜度为核心。入门需先练直线与圆，保持75-85度斜度，运笔用力精准。掌握26个字母规范写法，快速提升卷面清晰度与整洁度。" />
+<link rel="icon" href="../static/images/dragonfly.png" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../static/css/share.css"/>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../static/css/style.css"/>
+<link href="../static/KaTeX/katex.min.css" rel="stylesheet">
+<link href="../static/css/font-awesome.css" rel="stylesheet">
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/highlight/styles/rainbow.css" />
+<link rel="stylesheet" type="text/css" href="../static/highlight/lines.css" />
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="../static/js/popup.js"></script>
+<script src="../static/js/share.js"></script>
+</head>
+<style>
+body {
+background-color: #fef9f0;
+}
+h2{
+font-size:20px;
+font-weight:bold;
+}
+h3{
+font-size:18px;
+font-weight:bold;
+}
+h4{
+font-size:16px;
+font-weight:bold;
+}
+h2,h3,h4{
+margin:8px 0px;
+padding:0px;
+}
+p{
+margin:12px 6px;
+padding:0px;
+word-wrap:break-word;
+}
+td p{
+margin:12px 0px;
+padding:0px 5px;
+}
+blockquote p{
+font-size:14px;
+margin: 5px 0px;
+}
+.top{
+position: fixed;
+right:50px;
+bottom:100px;
+display: none;
+z-index:10;
+}
+/*li {
+display: list-item;
+list-style-type: '▸';
+text-align: -webkit-match-parent;
+padding: 9px 9px;
+margin: 3px 0;
+background-color: red;
+}*/
+.content{
+}
+.content ul:not(pre ul) {
+display: block;
+list-style-type: disc;
+margin-block-start: 0em;
+margin-block-end: 1em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+padding-inline-start: 3px;
+}
+.content li:not(pre li) {
+display: list-item;
+list-style-type: '▸';
+padding: 5px 5px;
+margin: 6px 0;
+background-color: #fff9e6;
+font-size: 0.95em;
+color: #664d03;
+border-radius: 12px;
+}
+.content li:not(pre li)::marker {
+color: #B94A48; /* 仅设置标记的颜色 */
+}
+.content li:not(pre li):hover {
+background-color: #fff3cd; /* 悬停时稍微深一点 */
+}
+/*文章统计部分样式*/
+.update-info {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+color: #5f6b7a;
+font-size: 0.9rem;
+margin: 0.5rem 0 0.5rem;
+flex-wrap: wrap;
+}
+.update-info i {
+color: #5b8cb8;
+margin-right: 0.2rem;
+}
+/*文章统计部分样式*/
+/*页眉开始*/
+/* --- 页眉装饰核心样式 --- */
+.chapter-header {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+max-width: 1200px;
+margin: 6px auto;
+padding: 6px 6px;
+background-color: #E9F3F0; /* 淡青色底纹 */
+border-radius: 4px;
+box-sizing: border-box;
+font-family: "Times New Roman", "SimSun", serif;
+}
+/* 左、右装饰区 */
+.side-deco {
+flex: 0 0 120px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+/* 中间文字区 */
+.text-area {
+flex: 1;
+text-align: center;
+padding: 0 20px;
+}
+/* 主标题 */
+.chapter-label {
+font-size: 20px;
+font-weight: bold;
+color: #333;
+letter-spacing: 1px;
+margin-bottom: 4px;
+}
+.chapter-label span {
+color: #A52A2A; /* 樱桃红色点缀 */
+}
+/* 副标题/元数据信息 */
+.meta-info {
+font-size: 14px;
+color: #666;
+font-family: "Microsoft YaHei", sans-serif;
+letter-spacing: 0.5px;
+line-height: 1.6;
+}
+/* SVG 装饰图案样式 */
+.deco-svg {
+width: 120px;
+height: auto;
+display: block;
+}
+/* 右侧图案镜像翻转，实现对称 */
+.deco-right .deco-svg {
+transform: scaleX(-1);
+}
+/* 手机适配：小屏幕隐藏装饰 */
+@media (max-width: 600px) {
+.side-deco {
+display: none;
+}
+.chapter-header {
+padding: 20px 10px;
+}
+.chapter-label {
+font-size: 18px;
+}
+}
+/*页眉结束*/
+/*
+a[data-toggle="collapse"]::before {
+content: "▶ ";
+font-size: 12px;
+}
+a[data-toggle="collapse"][aria-expanded="true"]::before {
+content: "▼ ";
+}
+*/
+</style>
+<style>
+/* 章节标题基础样式 */
+.chapter-toggle {
+cursor: pointer;
+text-decoration: none;
+display: flex;
+align-items: center;
+padding: 4px 0;
+}
+/* 田字格图标 */
+.chapter-toggle .toggle-icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 18px;
+height: 18px;
+margin-right: 6px;
+border: 2px solid #8B5A2B; /* 边框颜色 */
+border-radius: 3px;
+background: #FFF8DC; /* 浅米色背景 */
+position: relative;
+flex-shrink: 0;
+}
+/* 田字格内部十字线 - 横线 */
+.chapter-toggle .toggle-icon::before {
+content: '';
+position: absolute;
+left: 2px;
+right: 2px;
+top: 50%;
+height: 1px;
+background: #8B5A2B;
+transform: translateY(-50%);
+}
+/* 田字格内部十字线 - 竖线（展开后消失） */
+.chapter-toggle .toggle-icon::after {
+content: '';
+position: absolute;
+top: 2px;
+bottom: 2px;
+left: 50%;
+width: 1px;
+background: #8B5A2B;
+transform: translateX(-50%);
+transition: transform 0.2s ease, opacity 0.2s ease;
+}
+/* 展开状态：隐藏竖线（+ 变成 -） */
+.chapter-toggle[aria-expanded="true"] .toggle-icon::after {
+transform: translateX(-50%) scaleY(0);
+opacity: 0;
+}
+/* ---------- 新增：底部低调推广方框样式 ---------- */
+.subtle-promo-box {
+max-width: 800px;
+margin: 1.2rem auto 1.2rem;
+padding: 0.9rem 1.4rem;
+background-color: #f7f5f0; /* 极浅的米灰色，融入页面背景 */
+border-left: 3px solid #d6c8b2; /* 淡木色左边框，作为低调点缀 */
+border-radius: 8px;
+font-size: 0.95rem;
+color: #5e5546; /* 柔和深棕文字 */
+line-height: 1.7;
+box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+transition: background-color 0.2s ease;
+}
+.subtle-promo-box:hover {
+background-color: #f3efe7; /* 悬停时略微加深，提供微交互 */
+}
+.subtle-promo-box i {
+color: #b0976e; /* 图标颜色与边框呼应 */
+margin-right: 0.4rem;
+font-size: 0.9rem;
+}
+.subtle-promo-text {
+display: inline;
+font-weight: 400;
+letter-spacing: 0.02em;
+}
+/* 移动端适当缩小间距 */
+@media (max-width: 600px) {
+.subtle-promo-box {
+margin-left: 1rem;
+margin-right: 1rem;
+padding: 0.8rem 1rem;
+font-size: 0.9rem;
+}
+}
+</style>
+<script src="../static/js/rocket.js" type="text/javascript"></script>
+<script>
+window.onload = function() {
+var goTop = find("gotop");
+window.onscroll = function() {
+scroll().top > 0 ? show(goTop) : hide(goTop); // 如果大于0 就显示 否则隐藏
+leader = scroll().top; // 把 卷去的头部 给 起始位置
+console.log(scroll().top);
+}
+var leader = 0,target = 0,timer = null;
+// leader 起始位置 target 目标位置
+goTop.onclick = function() {
+target = 0; // 点击完毕之后 奔向0 去的 不写也可以
+timer = setInterval(function() {
+leader = leader + (target - leader ) / 10;
+window.scrollTo(0,leader); // 去往页面中的某个位置
+if(leader == target)
+{
+clearInterval(timer);
+}
+},20);
+}
+}
+</script>
+<body>
+
+<div id="gotop" class="top">
+
+<img src="../static/images/rocket2.png" alt="" width="50%"/>
+
+</div>
+<!-- ========== 新增：酷炫弹框 ========== -->
+<div class="share-modal-overlay" id="shareModalOverlay">
+<div class="share-modal" id="shareModal">
+<!-- 背景闪光装饰 -->
+<div class="shine-effect"></div>
+<!-- 成功图标区域 -->
+<div class="success-icon-wrapper" id="successIconWrapper">
+<div class="success-circle">
+<i class="fa fa-check"></i>
+</div>
+</div>
+<!-- 标题 -->
+<h4>✨ 复制成功！</h4>
+<h4>以文会友，打造好学人设！</h4>
+<!-- 复制内容预览 -->
+<div class="copy-content" id="copyContentPreview">
+<span class="label">📋 已复制到剪贴板：</span>
+<span id="copiedText"></span>
+</div>
+<!-- 关闭按钮 -->
+<button class="btn-modal-close" id="btnModalClose">
+<i class="fa fa-thumbs-up"></i> 知道了
+</button>
+</div>
+</div>
+<!-- ========== 酷炫弹框结束 ========== -->
+<div class="container">
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-custom" style="justify-content:flex-end;">
+<!-- 品牌/logo（移动端显示） -->
+<span class="navbar-brand d-md-none" style="color:#fff; font-size:18px;">衡水体学习网</span>
+<!-- 汉堡按钮 -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- 折叠菜单容器 -->
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+<a class="nav-link " href="../index.html">首页</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="6.html">什么是衡水体</a>
+</li>
+<!--
+<li class="nav-item">
+<a class="nav-link  " href="../showComment/1.html?nav=introduction">认识衡水体</a>
+</li>
+-->
+<li class="nav-item">
+<a class="nav-link  " href="../hst_gen.html">衡水体 · 英文生成器</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../hst_cn_gen.html">衡水体 · 中文生成器</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  active  " href="2.html">衡水体26个英文字母</a>
+</li>
+<!--
+<li class="nav-item">
+<a class="nav-link  " href="../showComment/3.html?nav=story">衡水体与考研英语</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../essay_grading.html">AI作文改写</a>
+</li>
+-->
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="2.html#" id="navbardrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+衡水体教程与英语考试
+</a>
+<div class="dropdown-menu" aria-labelledby="navbardrop1">
+<a class="dropdown-item" href="../hst.html">衡水体入门教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="../showComment/3.html">衡水体与考研英语</a>
+<a class="dropdown-item" href="../essay_grading.html">AI作文改写</a>
+</div>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../comment_list.html">网站公告</a>
+</li>
+<li class="nav-item">
+<a class="nav-link " href="../showComment/2.html">关于网站</a>
+</li>
+
+
+<!--
+<li class="nav-item">
+<!-- 静态站点无后端服务，登录/注册入口已停用 -->
+</li>
+-->
+
+</ul>
+</div>
+</nav>
+
+<div class="row content"><!--row开始-->
+<!--电脑端显示导航栏 bg-info 取消-->
+<!--电脑端显示导航栏-->
+<!--正文开始-->
+<div class=" col-12 " style="border: 1px solid #E1B400; background-color: #faebd7" >
+<!--<div class="col-12" style="border: 1px solid #E1B400; background-color: #faebd7 ">-->
+<!--<div class="col-9" style="border: 1px solid #E1B400;">-->
+<div class="chapter-header"><!-- 页眉部分 -->
+<!-- 左侧樱桃 -->
+<div class="side-deco">
+<svg class="deco-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<!--枝干 -->
+<path d="M100 20 Q120 50 130 80" stroke="#8B5A2B" stroke-width="3" fill="none" />
+<path d="M115 55 Q95 70 80 80" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<path d="M125 75 Q145 90 160 95" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<!--叶子 -->
+<path d="M110 50 Q100 40 90 50 Q100 55 110 50Z" fill="#6B8E23" />
+<path d="M130 60 Q140 50 150 60 Q140 65 130 60Z" fill="#6B8E23" />
+<path d="M120 85 Q130 75 140 85 Q130 90 120 85Z" fill="#6B8E23" />
+<!--樱桃1（上方最大） -->
+<circle cx="80" cy="100" r="25" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M80 75 Q85 70 90 72" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="72" cy="92" r="4" fill="rgba(255,255,255,0.3)"/>
+<!--樱桃2（左下方 -->
+<circle cx="55" cy="140" r="22" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M55 118 Q60 113 65 115" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="48" cy="133" r="3.5" fill="rgba(255,255,255,0.3)"/>
+<!--樱桃3（右下方 -->
+<circle cx="100" cy="145" r="22" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M100 123 Q105 118 110 120" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="93" cy="138" r="3.5" fill="rgba(255,255,255,0.3)"/>
+</svg>
+</div>
+<div class="text-area"><!--包裹标题和文章统计-->
+<div class="row ">
+<div class="col-12 text-center" style="padding:5px">
+<h1 style="font-size:24px;font-weight:bold;padding-top:10px;color:#e04f5f;">衡水体26个英文字母写法总结</h1>
+</div>
+</div>
+<!--更美观的效果-->
+<div class="update-info">
+
+<span><i class="far fa-calendar-alt"></i> 创建时间：2026-08-04</span>
+
+<!--<span>|</span>-->
+<span><i class="fas fa-sync-alt"></i> 更新时间：2026-08-05</span>
+<!--<span>|</span>-->
+<span><i class="far fa-eye"></i> 阅读次数：2157 次</span>
+
+</div>
+</div><!--包裹标题和文章统计-->
+<!-- 右侧樱桃（镜像翻转） -->
+<div class="side-deco deco-right">
+<svg class="deco-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<!--与左侧完全一致的图案，CSS 会自动镜像翻转 -->
+<path d="M100 20 Q120 50 130 80" stroke="#8B5A2B" stroke-width="3" fill="none" />
+<path d="M115 55 Q95 70 80 80" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<path d="M125 75 Q145 90 160 95" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<path d="M110 50 Q100 40 90 50 Q100 55 110 50Z" fill="#6B8E23" />
+<path d="M130 60 Q140 50 150 60 Q140 65 130 60Z" fill="#6B8E23" />
+<path d="M120 85 Q130 75 140 85 Q130 90 120 85Z" fill="#6B8E23" />
+<circle cx="80" cy="100" r="25" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M80 75 Q85 70 90 72" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="72" cy="92" r="4" fill="rgba(255,255,255,0.3)"/>
+<circle cx="55" cy="140" r="22" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M55 118 Q60 113 65 115" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="48" cy="133" r="3.5" fill="rgba(255,255,255,0.3)"/>
+<circle cx="100" cy="145" r="22" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+<path d="M100 123 Q105 118 110 120" stroke="#8B5A2B" stroke-width="2" fill="none" />
+<circle cx="93" cy="138" r="3.5" fill="rgba(255,255,255,0.3)"/>
+</svg>
+</div>
+</div><!--页眉部分-->
+<hr />
+<h2>一、衡水体的五大核心特点</h2>
+<p>衡水体的本质，是一场针对考试阅卷场景的“字体工程学”优化。它牺牲了书写的个性与速度，换来了卷面视觉噪音的最小化。它的美学不是艺术之美，而是一种极致的秩序之美、功能之美。衡水体有5大核心特点，如下所示：</p>
+<p><strong>1、极致的无衬线形态：零装饰、零连笔</strong></p>
+<p>这是衡水体最直观的特征。它完全舍弃了英文书法的装饰性，没有传统手写体的连笔，也没有字母起笔收笔的“小尾巴”。每个字母都像键盘敲出来的无衬线印刷体（如Arial），高度简化到只剩核心骨架，目的就是让字形干净利落，彻底消除潦草的隐患。</p>
+<p><strong>2、呆板的几何化结构：追求“圆”和“满”</strong></p>
+<p>衡水体把每个字母都高度几何化了。圆润是核心，像“a、c、o”这类字母要求写出饱满的正圆或椭圆，不能发瘪。同时，像“b、d、h、l”等字母的竖笔要直，“g、j、y”的尾部弧度要柔和。这种严格的几何规范，保证了每个单字的形状都稳定、清晰。</p>
+<p><strong>3、严格的“四线三格”定位：追求统一的重心</strong></p>
+<p>这是达到“印刷感”最核心的技术要求。每个字母都必须严格压线，特别是字母的主体部分要占满中间格。比如“a、c、e”要上下顶格，“b、d”的上部竖笔要顶到顶格。这种对格线纪律的极致遵守，让所有字母仿佛被一条无形的重心线串起，整齐得像列队的士兵。</p>
+<p><strong>4、均匀的“呼吸感”间距：词间能放一个“o”</strong></p>
+<p>卷面显得“糊”主要是因为间距失调。衡水体规范了两种间距：字母间距要紧凑但绝不粘连；词间距则有明确标准，通常要求能放下一个小写字母“o”。这个视觉化标准很容易练习，能保证行文通透、有“呼吸感”，大量文字排在一起也不会显得拥挤。</p>
+<p><strong>5、克制的倾斜度：垂直或微微前倾</strong></p>
+<p>传统手写体提倡大幅右斜以求流畅，而衡水体为了清晰，要求字母的竖笔近乎垂直，或整体保持极小的、统一的5度左右前倾。这能避免因倾斜角度不一而产生的杂乱感，让整体卷面显得更庄重、冷静，符合考试场景。</p>
+<h2>二、新人入门要牢记三点</h2>
+<p>1、在最开始的练习中，不必先练习特别的字母，可以先练习直线和圆
+的写法，大部分英文字母都是由这二者组成，因此写好英文之前，应先
+保证直线横平竖直，圆圆润无缺陷。</p>
+<p><center><img alt="" class="img-fluid" max-height="100%" max-width="100%" src="../static/images/upload/202608/1785843802.png" width="70%"/></center></p>
+<p>2、字母斜度，即字母与一线格的夹角，规范书写下的字母与线之间的夹角为75-85度。</p>
+<p><center><img alt="" class="img-fluid" max-height="100%" max-width="100%" src="../static/images/upload/202608/1785843904.png" width="50%"/></center></p>
+<p>3、写一个字母，从起笔到收笔，握笔均要用力，避免手抖，尤其是收
+笔时，不要因为该字母即将写完就提早放松，导致前功尽弃。记住：下笔
+要准（定好位置），运笔要稳（认真书写），收笔要忍（别太心急）。</p>
+<p><center><img alt="" class="img-fluid" max-height="100%" max-width="100%" src="../static/images/upload/202608/1785844140.png" width="50%"/></center></p>
+<p>4、大写字母略高于横线上方的一条虚线即可，即高出小写字母"a"或“o”三分之一左右即可。</p>
+<p><center><img alt="" class="img-fluid" max-height="100%" max-width="100%" src="../static/images/upload/202608/1785844322.png" width="80%"/></center></p>
+<h2>三、衡水体26个英文大写字母写法总结</h2>
+<p><center><img alt="" class="img-fluid" max-height="100%" max-width="100%" src="../static/images/upload/202608/1785844779.png"/></center></p>
+<p><center><img alt="" class="img-fluid" max-height="100%" max-width="100%" src="../static/images/upload/202608/1785844802.png"/></center></p>
+<h2>四、衡水体26个英文小写字母写法总结</h2>
+<p><center><img alt="" class="img-fluid" max-height="100%" max-width="100%" src="../static/images/upload/202608/1785942521.png"/></center></p>
+<p><center><img alt="" class="img-fluid" max-height="100%" max-width="100%" src="../static/images/upload/202608/1785942534.png"/></center></p>
+<div class="row">
+<div class="col-12 text-center" style="padding:5px">
+<!-- ========== 新增：分享按钮（位于翻页按钮之下） ========== -->
+<div class="share-btn-wrapper">
+<button type="button" class="btn-share" id="btnShare" title="分享此页面">
+<i class="fa fa-share-alt"></i> 分享页面
+</button>
+</div>
+<!-- ========== 分享按钮结束 ========== -->
+</div>
+</div>
+
+<hr />
+<!--<div class="col-12 text-center" style="padding:5px;margin:10px;color:red"><a href="../comment_list.html" target="_blank"><strong style="color:red">网站公告：2026年7月招聘兼职>>>>>></strong></a></div> -->
+<!-- ========== 新增：低调推广方框（放置于正文底部） ========== -->
+<!--
+<div class="subtle-promo-box">
+<i class="fa fa-volume-up" aria-hidden="true"></i>
+<span class="subtle-promo-text">📌 面试天下网：一款服务于上班族的口袋书，让大家在地铁里/公交上可以学习大模型技术！</span><br />
+<i class="fa fa-volume-up" aria-hidden="true"></i>
+<span class="subtle-promo-text">📌 <a href="../comment_list.html" target="_blank"><strong style="color:purple">网站公告：人人都需要的干眼克星上线啦&gt;&gt;&gt;&gt;&gt;&gt;</strong></a></span><br />
+<i class="fa fa-volume-up" aria-hidden="true"></i>
+<span class="subtle-promo-text">📌 <a href="../comment_list.html" target="_blank"><strong style="color:purple">网站公告：2026年7月招聘兼职&gt;&gt;&gt;&gt;&gt;&gt;</strong></a></span>
+</div>
+-->
+<!-- ========== 推广方框结束 ========== -->
+
+</div><!--正文结束-->
+</div><!--row结束：导航+正文-->
+</div><!--container结束-->
+<div id="mask"></div>
+<!--注册弹框-->
+<div class="popup" >
+<button class="btn_close" style="">x</button>
+<div class="form-group">
+<center><label><font style="font-size:24px;font-weight:bold;padding-top:10px;color:#e04f5f;">登录/注册</font></label></center>
+<br/>
+<input type="text" class="form-control" placeholder="手机号" id="phone">
+<br/>
+<input type="text" class="form-control" placeholder="验证码" id="code">
+<br/>
+<input type="button" class="btn btn-small get-code" style="background-color: #80bdff;" onclick="send()" id="btnSendCode" value="点击获取验证码"/>
+<br/> <br/> <span id="jbPhoneTip"></span>
+<!--
+<label for="pwd">密码:</label>
+<input type="password" class="form-control" placeholder="密码(不少于6位)" id="pwd">
+<label for="pwd">确认密码:</label>
+<input type="password" class="form-control" placeholder="确认密码" id="pwd2" onkeyup="checkpassword()">
+<span id="tips"></span></input>-->
+</div>
+<span id="modifytip"></span>
+<center style="margin-top:2px">
+<button type="button" class="btn btn-primary" onclick="register()" id="register">登录/注册</button>
+</center>
+</div>
+
+
+<div id="footer">
+<div class="text-center" style="margin-bottom:0">
+<br/>
+<font style="color:#999;font-size:18px"><strong style="color:#999;font-size:18px"> 衡水体学习网 @ 2026年</strong></font>
+<br/>
+<p style="margin: 6px 0px;">
+<font style="color:#999;font-size:15px;margin-top:10px;">衡水体学习网 - 让工整书写成为你的考场优势</font><br />
+<!--
+
+<font style="color:#999;font-size:12px;margin-top:10px;">运行时间：839 天，网站会员：302 人，最新注册时间：2026-10-21 22:18:38</font><br />
+
+-->
+</p>
+<br/>
+<br/>
+</div>
+</div>
+<br/> <br/>
+<script>
+$(function() {
+$('.btn_show').click(function(event) {
+var clickedButtonDOM = event.target; //获取按钮的DOM元素
+var id = clickedButtonDOM.getAttribute('id');//获取指定的元素
+$('#phone').val('');
+$('#code').val('');
+$('#mask').css({
+display: 'block',
+height: $(document).height()
+});
+var $Popup = $('.popup');
+$Popup.css({
+left: ($('body').width() - $Popup.width()) / 2+ 'px',
+top: ($(window).height() - $Popup.height()) / 2 + $(window).scrollTop() + 'px',
+display: 'block'
+});
+});
+$('.btn_show2').click(function(event) {
+var clickedButtonDOM = event.target; //获取按钮的DOM元素
+var id = clickedButtonDOM.getAttribute('id');//获取指定的元素
+$('#phone').val('');
+$('#code').val('');
+$('#mask').css({
+display: 'block',
+height: $(document).height()
+});
+var $Popup = $('.popup2');
+$Popup.css({
+left: ($('body').width() - $Popup.width()) / 2+ 'px',
+top: ($(window).height() - $Popup.height()) / 2 + $(window).scrollTop() + 'px',
+display: 'block'
+});
+});
+$('.btn_close').click(function() {
+$('#mask,.popup,.popup2').css('display', 'none');
+});
+// 只在移动端处理下拉菜单冲突
+if ($(window).width() < 768) {
+// 移动端：手动处理下拉菜单
+$('.dropdown-toggle').on('click', function(e) {
+e.preventDefault();
+e.stopPropagation();
+var $this = $(this);
+var $parent = $this.parent('.dropdown');
+var $menu = $this.siblings('.dropdown-menu');
+// 关闭其他打开的下拉菜单
+$('.dropdown-menu').not($menu).removeClass('show');
+$('.dropdown').not($parent).removeClass('show');
+// 切换当前下拉菜单
+$parent.toggleClass('show');
+$menu.toggleClass('show');
+// 确保折叠菜单保持打开状态
+$('#navbarNav').addClass('show');
+});
+// 点击导航链接后自动关闭折叠菜单
+$('.navbar-nav .nav-link:not(.dropdown-toggle)').click(function() {
+$('#navbarNav').collapse('hide');
+});
+// 点击外部关闭下拉菜单
+$(document).click(function(event) {
+if (!$(event.target).closest('.dropdown').length) {
+$('.dropdown-menu').removeClass('show');
+$('.dropdown').removeClass('show');
+}
+});
+}
+});
+function checkpassword() {
+var password = document.getElementById("pwd").value;
+var repassword = document.getElementById("pwd2").value;
+if(password == repassword) {
+document.getElementById("tips").innerHTML="";
+document.getElementById("register").disabled = false;
+}else {
+document.getElementById("tips").innerHTML="<br><font color='red'>两次输入密码不一致!</font>";
+document.getElementById("register").disabled = true;
+}
+}
+</script>
+<script>
+function register(){
+var phone = $('#phone').val();
+if(phone == null || phone == '')
+{
+alert("手机号不能为空！");
+return;
+}
+var code = $('#code').val();
+if(code == null || code == '')
+{
+alert("验证码不能为空！");
+return;
+}
+$.ajax({
+type: "POST", // 用POST方式传输
+dataType: "text", // 数据格式:JSON
+url: "/register.html", // 目标地址
+data: "phone=" + phone +"&code="+code,
+success: function (data){
+jsonObj = $.parseJSON(data);
+if(jsonObj.code == 1)
+{
+if (jsonObj.user_uri != null && jsonObj.user_uri != '')
+{
+window.location.href= jsonObj.user_uri; //验证成功
+}else
+{
+window.location.href='../index.html'; //验证成功
+}
+}
+else if(jsonObj.code == 0)
+{
+$("#jbPhoneTip").html("<font color='red'>× 校验失败，如需帮助，请联系系统管理员。</font>");
+}
+}
+});
+}
+var isPhone = 1;
+var isName = 1;
+var isCity = 1;
+var isWorkInfo = 1;
+//验证手机号码
+function checkPhone(){
+var phone = $('#phone').val();
+var pattern = /^1[0-9]{10}$/;
+isPhone = 1;
+if(phone == '') {
+alert('请输入手机号码');
+isPhone = 0;
+return;
+}
+if(!pattern.test(phone)){
+alert('请输入正确的手机号码');
+isPhone = 0;
+return;
+}
+}
+//自己编写的功能
+var InterValObj; //timer变量，控制时间
+var count = 30; //间隔函数，1秒执行
+var curCount;//当前剩余秒数
+function send()
+{
+checkPhone();
+if(isPhone){
+sendMessage(); //倒计时
+}else{
+$('#phone').focus();
+}
+}
+function sendMessage()
+{
+curCount = count;
+// 设置button效果，开始计时
+document.getElementById("btnSendCode").setAttribute("disabled","true" );//设置按钮为禁用状态
+document.getElementById("btnSendCode").value="请在" + curCount + "后再次获取";//更改按钮文字
+InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器timer处理函数，1秒执行一次
+var phone = $('#phone').val();
+// 向后台发送处理数据
+$.ajax({
+type: "POST", // 用POST方式传输
+dataType: "text", // 数据格式:JSON
+url: "/mobile.html", // 目标地址
+data: "mobile="+phone,
+success: function (data){
+//data = parseInt(data, 10);
+jsonObj = $.parseJSON(data);
+if(jsonObj.code == 1)
+{
+<!--$("#jbPhoneTip").html("<font color='#339933'>√ 短信验证码已发到您的手机，短信签名：面试天下网，请查收！</font>");-->
+$("#jbPhoneTip").html("<font color='#339933'>√ 短信验证码为您手机号码的后四位，请您直接输入即可！</font>");
+<!--alert(jsonObj.msg);-->
+}
+else if(jsonObj.code == 2)
+{
+$("#jbPhoneTip").html("<font color='red'>× 短信验证码发送频繁，请稍后再试！</font>");
+}
+else if(jsonObj.code == 3)
+{
+$("#jbPhoneTip").html("<font color='red'>× 此手机号已经被占用，无法注册！</font>");
+}
+else{
+$("#jbPhoneTip").html("<font color='red'>× 短信验证码发送失败，请重新发送！</font>");
+}
+}
+});
+}
+//timer处理函数
+function SetRemainTime()
+{
+if (curCount == 0)
+{
+window.clearInterval(InterValObj);// 停止计时器
+document.getElementById("btnSendCode").removeAttribute("disabled");//移除禁用状态改为可用
+document.getElementById("btnSendCode").value="重新发送验证码";
+$("#jbPhoneTip").html("");
+}
+else
+{
+curCount--;
+document.getElementById("btnSendCode").value="请在" + curCount + "秒后再次获取";
+}
+}
+</script>
+<script src="../static/KaTeX/katex.min.js"></script>
+<script src="../static/KaTeX/auto-render.min.js"></script>
+<script>
+function triggerRenderingLaTeX(element) {
+renderMathInElement(
+element,
+{
+delimiters: [
+{left: "$$", right: "$$", display: true},
+{left: "\\[", right: "\\]", display: true},
+{left: "$", right: "$", display: false},
+{left: "\\(", right: "\\)", display: false}
+]
+}
+);
+}
+document.addEventListener("DOMContentLoaded", function() {
+triggerRenderingLaTeX(document.body);
+});
+</script>
+<script src="../static/js/trafficstatsweb.js"></script>
+<script src="../static/js/product-promo-medium.js"></script>
+</body>
+</html>
