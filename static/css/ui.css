@@ -4,6 +4,17 @@
    纸张感的底色、克制的绿色强调色、无多余装饰的排版。
    ============================================================ */
 
+/* ---------- 自定义显示字体 ---------- */
+/* 小豆岛山中月简（REEJI Xiaodou MoonGB Flash）：只用于大标题、编号与站名，
+   正文仍使用系统无衬线，保证屏幕上的长文可读性。 */
+@font-face {
+    font-family: "REEJI Xiaodou";
+    src: url("../fonts/xiaodou-moon-flash.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* ---------- 主题变量 ---------- */
 :root {
     --bg: #f6f7f4;
@@ -16,8 +27,8 @@
     --accent-soft: #e7f0ec;
     --shadow: 0 1px 2px rgba(24, 38, 32, 0.05);
     --radius: 10px;
-    /* 标题使用衬线字体，接近纸媒的书卷感；正文仍用无衬线，保证屏幕可读性 */
-    --serif: "Songti SC", "SimSun", "Noto Serif SC", Georgia, "Times New Roman", serif;
+    /* 标题字体：优先使用站内自定义手写体，缺字时回落到宋体 */
+    --display: "REEJI Xiaodou", "Songti SC", "SimSun", "Noto Serif SC", Georgia, "Times New Roman", serif;
 }
 
 [data-theme="dark"] {
@@ -100,8 +111,10 @@ strong {
 
 .navbar-brand {
     color: var(--text) !important;
-    font-weight: 600;
-    font-size: 17px;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 20px !important;
+    letter-spacing: 1px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -338,7 +351,7 @@ strong {
 
 .home-title {
     margin: 0 0 22px;
-    font-family: var(--serif);
+    font-family: var(--display);
     font-size: 46px !important;
     font-weight: 600 !important;
     line-height: 1.32;
@@ -403,7 +416,7 @@ strong {
     margin: 0;
     padding: 0;
     border: 0 !important;
-    font-family: var(--serif);
+    font-family: var(--display);
     font-size: 26px !important;
     font-weight: 600 !important;
     line-height: 1.5;
@@ -442,7 +455,7 @@ strong {
 }
 
 .work-no {
-    font-family: var(--serif);
+    font-family: var(--display);
     font-size: 15px;
     letter-spacing: .08em;
     color: var(--muted);
@@ -511,7 +524,7 @@ strong {
 }
 
 .chapter-no {
-    font-family: var(--serif);
+    font-family: var(--display);
     font-size: 26px;
     line-height: 1;
     color: var(--muted);
@@ -572,8 +585,8 @@ strong {
 .home-quote p {
     max-width: 720px;
     margin: 0 auto;
-    font-family: var(--serif);
-    font-size: 22px !important;
+    font-family: var(--display);
+    font-size: 24px !important;
     line-height: 1.9;
     letter-spacing: .5px;
     color: var(--muted);
@@ -592,8 +605,8 @@ strong {
 
 .page-title {
     margin: 0 0 22px;
-    font-family: var(--serif);
-    font-size: 30px !important;
+    font-family: var(--display);
+    font-size: 34px !important;
     font-weight: 600 !important;
     letter-spacing: .5px;
 }
@@ -700,11 +713,11 @@ blockquote {
 }
 
 /* ---------- 正文排版层级 ---------- */
-/* 教程与文章页的主标题：改用衬线墨字，去掉原来偏艳的红色 */
+/* 教程与文章页的主标题：使用站内手写体，去掉原来偏艳的红色 */
 .row.content > .col-9 .chapter-header h1,
 .row.content > .col-12 .chapter-header h1 {
-    font-family: var(--serif);
-    font-size: 26px !important;
+    font-family: var(--display);
+    font-size: 30px !important;
     font-weight: 600 !important;
     line-height: 1.5 !important;
     letter-spacing: .5px;
@@ -779,6 +792,18 @@ blockquote {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+/* 正文配图：居中并与图注组成一个图文块 */
+.article-figure {
+    margin: 28px 0 4px;
+    text-align: center;
+}
+
+.article-figure img {
+    max-width: min(100%, 620px) !important;
+    height: auto;
+    border-radius: 8px;
 }
 
 /* 移动端折叠教程目录的开关 */
@@ -1304,10 +1329,10 @@ tbody td:first-child {
         border-radius: var(--radius) !important;
     }
 
-    /* 正文主标题在窄屏降到 21px，避免一行只剩几个字 */
+    /* 正文主标题在窄屏降到 25px，避免一行只剩几个字 */
     .row.content > .col-9 .chapter-header h1,
     .row.content > .col-12 .chapter-header h1 {
-        font-size: 21px !important;
+        font-size: 25px !important;
         letter-spacing: 0;
     }
 
