@@ -9,7 +9,9 @@
    正文仍使用系统无衬线，保证屏幕上的长文可读性。 */
 @font-face {
     font-family: "REEJI Xiaodou";
-    src: url("../fonts/xiaodou-moon-flash.ttf") format("truetype");
+    /* 已按全站实际用到的字符子集化：woff2 优先（约 340KB），ttf 兜底 */
+    src: url("../fonts/xiaodou-moon-flash-subset.woff2") format("woff2"),
+         url("../fonts/xiaodou-moon-flash-subset.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;

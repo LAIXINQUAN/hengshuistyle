@@ -263,26 +263,6 @@ $('.dropdown').removeClass('show');
 });
 </script>
 
-<script src="static/KaTeX/katex.min.js"></script>
-<script src="static/KaTeX/auto-render.min.js"></script>
-<script>
-function triggerRenderingLaTeX(element) {
-renderMathInElement(
-element,
-{
-delimiters: [
-{left: "$$", right: "$$", display: true},
-{left: "\\[", right: "\\]", display: true},
-{left: "$", right: "$", display: false},
-{left: "\\(", right: "\\)", display: false}
-]
-}
-);
-}
-document.addEventListener("DOMContentLoaded", function() {
-triggerRenderingLaTeX(document.body);
-});
-</script>
 <script src="static/js/trafficstatsweb.js"></script>
 </body>
 </html>

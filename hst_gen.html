@@ -658,14 +658,16 @@ tempElement.textContent = text;
 document.body.appendChild(tempElement);
 const height = tempElement.offsetHeight;
 document.body.removeChild(tempElement);
-return Math.ceil(height / 50) * 4;
+// 返回“文字行数”，供四线格按行绘制，不再乘 4 造成下方多出空网格
+	return Math.ceil(height / 50);
 }
 function updatePreview() {
 const rawText = textContent.value;
 previewText.textContent = (!rawText || rawText.trim() === '') ? '请输入文本内容查看预览...' : rawText;
 const containerWidth = previewContainer.offsetWidth;
 const lineCount = calculateLineCount(previewText.textContent, containerWidth);
-createDynamicLines(lineCount + 10);
+// 每组四线格含 4 条线；额外 +1 行留白，避免四线格贴满文字
+	createDynamicLines((lineCount + 1) * 4);
 }
 function clearContent() {
 textContent.value = '';
@@ -753,7 +755,7 @@ color: #2d3748;
 letter-spacing: 0.5px;
 height: ${contentHeightPx}px;
 overflow: hidden;
-top: ${-(page * contentHeightPx) + 24}px;
+top: ${-(page * contentHeightPx + 6)}px;
 `;
 textElement.textContent = text;
 cloneContainer.appendChild(textElement);
