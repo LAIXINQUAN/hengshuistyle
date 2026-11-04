@@ -599,7 +599,48 @@ const sampleBtn = document.getElementById('sample-btn');
 const clearBtn = document.getElementById('clear-btn');
 const toggleGridBtn = document.getElementById('toggle-grid-btn');
 const loading = document.getElementById('loading');
+
+// 统一排版常量：预览与 PDF 导出共用同一套尺寸，保证两者像素级对齐
+const FONT_FAMILY = "'Shuyao Hengshui', cursive";
+const FONT_SIZE = 24;
+const LINE_HEIGHT = 50;
+const LETTER_SPACING = 0.5;
+const TEXT_PAD_TOP = 6;
+const TEXT_PAD_LEFT = 10;
+const CONTAINER_PAD_TOP = 25;
+const CONTAINER_PAD_X = 25;
+const BORDER_WIDTH = 1;
+
 let gridVisible = true;
+let gridMetricsCache = null;
+
+/* 计算四线格几何参数：依据字体真实字形度量，保证字母严格落在格线之间 */
+function getGridMetrics() {
+if (gridMetricsCache) return gridMetricsCache;
+const ctx = document.createElement('canvas').getContext('2d');
+ctx.font = FONT_SIZE + 'px ' + FONT_FAMILY;
+// measureText 对整串字符返回其最大上升/下降高度，可分别取大写/小写/下伸部分
+const fontBox = ctx.measureText('Hg');
+const ascBox = ctx.measureText('ABCDEFGHIJKLMNOPQRSTUVWXYZbdfhkljt');
+const xBox = ctx.measureText('acemnorsuvwxz');
+const descBox = ctx.measureText('gjpqy');
+const fontAsc = fontBox.fontBoundingBoxAscent || FONT_SIZE * 0.83;
+const fontDesc = fontBox.fontBoundingBoxDescent || FONT_SIZE * 0.21;
+const ascHeight = ascBox.actualBoundingBoxAscent || FONT_SIZE * 0.7;
+const xHeight = xBox.actualBoundingBoxAscent || FONT_SIZE * 0.5;
+const descHeight = descBox.actualBoundingBoxDescent || FONT_SIZE * 0.21;
+// 行盒内基线位置 = 半行距 + 字体上升高度
+const baselineOffset = (LINE_HEIGHT - (fontAsc + fontDesc)) / 2 + fontAsc;
+gridMetricsCache = {
+baselineOffset: baselineOffset,
+groupHeight: ascHeight + descHeight,
+// 四条线相对“组顶线”的偏移：顶线 / x 高线 / 基线（加粗） / 底线
+lineOffsets: [0, ascHeight - xHeight, ascHeight, ascHeight + descHeight],
+// 组顶线相对容器外边框顶部的绝对 y 坐标
+gridTop: BORDER_WIDTH + CONTAINER_PAD_TOP + TEXT_PAD_TOP + baselineOffset - ascHeight,
+};
+return gridMetricsCache;
+}
 function updateGridButtonState() {
 if (gridVisible) {
 toggleGridBtn.textContent = '📏 四线格：显示';
@@ -624,50 +665,62 @@ updateGridButtonState();
 applyGridVisibility();
 updatePreview();
 }
-function createDynamicLines(lineCount) {
+/* 生成四线格线条：groups 为四线组数量，每组对应一行文字 */
+function createDynamicLines(groups) {
 dynamicLines.innerHTML = '';
 if (!gridVisible) {
 dynamicLines.style.height = '0px';
 return;
 }
-const baseSpacing = 10;
-let currentTop = 0;
-const totalGroups = Math.ceil(lineCount / 4);
-for (let group = 0; group < totalGroups; group++) {
-for (let lineInGroup = 0; lineInGroup < 4; lineInGroup++) {
+const metrics = getGridMetrics();
+const groupStep = LINE_HEIGHT;
+for (let i = 0; i < groups; i++) {
+const groupTop = i * groupStep;
+for (let lineIndex = 0; lineIndex < metrics.lineOffsets.length; lineIndex++) {
 const line = document.createElement('div');
 line.className = 'line';
-if (lineInGroup === 2) line.classList.add('bold');
-line.style.top = currentTop + 'px';
+if (lineIndex === 2) line.classList.add('bold');
+line.style.top = (groupTop + metrics.lineOffsets[lineIndex]) + 'px';
 dynamicLines.appendChild(line);
-currentTop += baseSpacing;
 }
-if (group < totalGroups - 1) currentTop += baseSpacing;
 }
-dynamicLines.style.height = currentTop + 'px';
+dynamicLines.style.height = (groups * groupStep) + 'px';
+// 整块网格下移到与文字基线对齐的位置（-1px 用于抵消容器边框）
+const gridTopCss = metrics.gridTop - BORDER_WIDTH;
+dynamicLines.style.top = gridTopCss + 'px';
+previewContainer.style.backgroundPosition = '0 ' + gridTopCss + 'px';
 }
-function calculateLineCount(text, containerWidth) {
+/* 用隐藏元素模拟排版，返回文本在指定宽度下的实际行数 */
+function calculateLineCount(text, textWidth) {
 if (!text) return 0;
-const tempElement = document.createElement('div');
-tempElement.style.cssText = 'position:absolute;visibility:hidden;white-space:pre-wrap;word-wrap:break-word;';
-tempElement.style.fontFamily = "'Shuyao Hengshui', cursive";
-tempElement.style.fontSize = '24px';
-tempElement.style.lineHeight = '50px';
-tempElement.style.width = (containerWidth - 40) + 'px';
-tempElement.textContent = text;
-document.body.appendChild(tempElement);
-const height = tempElement.offsetHeight;
-document.body.removeChild(tempElement);
-// 返回“文字行数”，供四线格按行绘制，不再乘 4 造成下方多出空网格
-	return Math.ceil(height / 50);
+const probe = document.createElement('div');
+probe.style.cssText = `
+position: absolute;
+visibility: hidden;
+left: -9999px;
+top: 0;
+white-space: pre-wrap;
+font-family: ${FONT_FAMILY};
+font-size: ${FONT_SIZE}px;
+line-height: ${LINE_HEIGHT}px;
+letter-spacing: ${LETTER_SPACING}px;
+width: ${textWidth}px;
+`;
+probe.textContent = text;
+document.body.appendChild(probe);
+const lineCount = Math.ceil(probe.offsetHeight / LINE_HEIGHT);
+document.body.removeChild(probe);
+return lineCount;
 }
+/* 刷新预览文字与四线格，使文字行与格线一一对应 */
 function updatePreview() {
 const rawText = textContent.value;
 previewText.textContent = (!rawText || rawText.trim() === '') ? '请输入文本内容查看预览...' : rawText;
-const containerWidth = previewContainer.offsetWidth;
-const lineCount = calculateLineCount(previewText.textContent, containerWidth);
-// 每组四线格含 4 条线；额外 +1 行留白，避免四线格贴满文字
-	createDynamicLines((lineCount + 1) * 4);
+const paddingLeft = parseFloat(getComputedStyle(previewText).paddingLeft) || 0;
+const textWidth = previewText.clientWidth - paddingLeft;
+const lineCount = calculateLineCount(previewText.textContent, textWidth);
+// 每组四线格对应一行文字；额外多画一组作为留白
+createDynamicLines(lineCount + 1);
 }
 function clearContent() {
 textContent.value = '';
@@ -683,6 +736,7 @@ Practice makes perfect!
 Keep writing every day.`;
 updatePreview();
 }
+/* 生成并下载 PDF 字帖：按页切片渲染，保证每页文字与四线格严格对齐 */
 async function generatePDF() {
 const text = textContent.value;
 if (!text || text.trim() === "") {
@@ -691,122 +745,109 @@ return;
 }
 loading.style.display = 'flex';
 try {
+// 字体加载完成后再取一次度量，避免拿到回退字体的错误数据
+if (document.fonts && document.fonts.ready) await document.fonts.ready;
+gridMetricsCache = null;
+const metrics = getGridMetrics();
 const { jsPDF } = window.jspdf;
 const pdf = new jsPDF('p', 'pt', 'a4');
 const pageWidthPt = 595.28;
+const pageHeightPt = 841.89;
 const pageMarginPt = 40;
 const contentWidthPt = pageWidthPt - pageMarginPt * 2;
 const contentWidthPx = contentWidthPt * 96 / 72;
-const pageHeightPt = 841.89;
-const lineHeightPt = 50 * 72 / 96;
-const linesPerPage = Math.floor((pageHeightPt - 80) / lineHeightPt);
-const contentHeightPx = linesPerPage * 50;
-const tempDiv = document.createElement('div');
-tempDiv.style.cssText = `
-position: absolute;
-visibility: hidden;
-white-space: pre-wrap;
-word-wrap: break-word;
-font-family: 'Shuyao Hengshui', cursive;
-font-size: 24px;
-line-height: 50px;
-width: ${contentWidthPx}px;
-`;
-tempDiv.textContent = text;
-document.body.appendChild(tempDiv);
-const textTotalHeight = tempDiv.offsetHeight;
-document.body.removeChild(tempDiv);
-const totalLines = Math.ceil(textTotalHeight / 50);
-const totalPages = Math.ceil(totalLines / linesPerPage);
+// 页面可用高度（px）：A4 高度减去上下页边距
+const availableHeightPx = (pageHeightPt - pageMarginPt * 2) * 96 / 72;
+const bottomPad = 20;
+// 每页可容纳的完整行数：由网格可用高度决定，避免最后一行越过页底被裁掉
+const linesPerPage = Math.floor((availableHeightPx - bottomPad - metrics.gridTop - metrics.groupHeight) / LINE_HEIGHT) + 1;
+const contentHeightPx = metrics.gridTop + metrics.groupHeight + (linesPerPage - 1) * LINE_HEIGHT + bottomPad;
+// 文字实际可用宽度 = 容器内容宽 - 文字左内边距，与预览完全一致
+const textWidthPx = contentWidthPx - CONTAINER_PAD_X * 2 - TEXT_PAD_LEFT;
+const lineCount = calculateLineCount(text, textWidthPx);
+const totalPages = Math.max(1, Math.ceil(lineCount / linesPerPage));
+const gridTopCss = metrics.gridTop - BORDER_WIDTH;
 for (let page = 0; page < totalPages; page++) {
 if (page > 0) pdf.addPage();
-const cloneContainer = document.createElement('div');
-cloneContainer.style.cssText = `
+// 导出容器：与预览使用同一套内边距，文字与网格才能逐像素对齐
+const container = document.createElement('div');
+container.style.cssText = `
 position: absolute;
 left: -9999px;
 top: 0;
 width: ${contentWidthPx}px;
-padding: 0 20px;
+height: ${contentHeightPx}px;
+padding: ${CONTAINER_PAD_TOP}px ${CONTAINER_PAD_X}px 0;
+box-sizing: border-box;
 background-color: #ffffff;
-border: 1px solid #e2e8f0;
+border: ${BORDER_WIDTH}px solid #e2e8f0;
 border-radius: 8px;
 overflow: hidden;
-height: ${contentHeightPx}px;
-${gridVisible ? `
-background-image: linear-gradient(to bottom, #f8fafc 1px, transparent 1px);
-background-size: 100% 50px;
-background-position: 0 42px;
-` : ''}
 `;
 const textElement = document.createElement('p');
 textElement.style.cssText = `
-font-family: 'Shuyao Hengshui', cursive;
-font-size: 24px;
-line-height: 50px;
+font-family: ${FONT_FAMILY};
+font-size: ${FONT_SIZE}px;
+line-height: ${LINE_HEIGHT}px;
 margin: 0;
-/* 用负 margin-top 让全文在固定高度视窗内向上滚动到当前页，避免整块文字被移出容器 */
-margin-top: ${-(page * contentHeightPx + 6)}px;
+/* 用负上外边距把全文在固定高度视窗内向上滚动到当前页 */
+margin-top: ${-(page * linesPerPage * LINE_HEIGHT)}px;
 white-space: pre-wrap;
-z-index: 2;
-padding-top: 6px;
-padding-left: 10px;
+padding-top: ${TEXT_PAD_TOP}px;
+padding-left: ${TEXT_PAD_LEFT}px;
 width: 100%;
 box-sizing: border-box;
 color: #2d3748;
-letter-spacing: 0.5px;
+letter-spacing: ${LETTER_SPACING}px;
 `;
 textElement.textContent = text;
-cloneContainer.appendChild(textElement);
+container.appendChild(textElement);
 if (gridVisible) {
 const linesContainer = document.createElement('div');
 linesContainer.style.cssText = `
 position: absolute;
-top: 42px;
-left: 25px;
-right: 25px;
-bottom: 0;
+top: ${gridTopCss}px;
+left: ${CONTAINER_PAD_X}px;
+right: ${CONTAINER_PAD_X}px;
 z-index: 1;
 `;
-const linesNeeded = Math.min(
-linesPerPage * 4,
-totalLines * 4 - page * linesPerPage * 4 + 8
-);
-let top = 0;
-const spacing = 10;
-const groups = Math.ceil(linesNeeded / 4);
-for (let g = 0; g < groups; g++) {
-for (let l = 0; l < 4; l++) {
-if (g * 4 + l >= linesNeeded) break;
+// 每页都铺满整页四线格：文字不足整页时，下方留作空白练习行
+const groups = linesPerPage;
+let lastTop = 0;
+for (let gi = 0; gi < groups; gi++) {
+const groupTop = gi * LINE_HEIGHT;
+for (let li = 0; li < metrics.lineOffsets.length; li++) {
 const line = document.createElement('div');
+const lineTop = groupTop + metrics.lineOffsets[li];
 line.style.cssText = `
 position: absolute;
 left: 0;
 right: 0;
-height: ${l === 2 ? '2px' : '1px'};
-background-color: ${l === 2 ? '#a0aec0' : '#cbd5e0'};
-top: ${top}px;
+height: ${li === 2 ? '2px' : '1px'};
+background-color: ${li === 2 ? '#a0aec0' : '#cbd5e0'};
+top: ${lineTop}px;
 `;
 linesContainer.appendChild(line);
-top += spacing;
+lastTop = lineTop;
 }
-if (g < groups - 1) top += spacing;
 }
-linesContainer.style.height = top + 'px';
-cloneContainer.appendChild(linesContainer);
+linesContainer.style.height = lastTop + 'px';
+container.appendChild(linesContainer);
 }
-document.body.appendChild(cloneContainer);
-const canvas = await html2canvas(cloneContainer, {
+document.body.appendChild(container);
+const canvas = await html2canvas(container, {
 scale: 2,
 backgroundColor: "#ffffff",
 logging: false,
 useCORS: true
 });
-document.body.removeChild(cloneContainer);
+document.body.removeChild(container);
+// 使用 JPEG 压缩：PNG 单页常达 10MB，会让整份字帖体积过大、下载缓慢
 pdf.addImage(
-canvas.toDataURL('image/png'),
-'PNG',
+canvas.toDataURL('image/jpeg', 0.92),
+'JPEG',
 pageMarginPt,
-40,
+pageMarginPt,
 contentWidthPt,
 contentHeightPx * 72 / 96
 );
@@ -827,6 +868,13 @@ toggleGridBtn.addEventListener('click', toggleGrid);
 window.addEventListener('resize', updatePreview);
 updateGridButtonState();
 loadSampleText();
+// 字体就绪后重新测量字形并刷新预览，避免首次渲染用回退字体的度量
+if (document.fonts && document.fonts.ready) {
+document.fonts.ready.then(function() {
+gridMetricsCache = null;
+updatePreview();
+});
+}
 });
 })();
 </script>
