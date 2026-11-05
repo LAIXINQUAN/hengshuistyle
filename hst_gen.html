@@ -759,11 +759,11 @@ const contentWidthPx = contentWidthPt * 96 / 72;
 // 页面可用高度（px）：A4 高度减去上下页边距
 const availableHeightPx = (pageHeightPt - pageMarginPt * 2) * 96 / 72;
 const bottomPad = 20;
-// 每页可容纳的完整行数：由网格可用高度决定，避免最后一行越过页底被裁掉
-const linesPerPage = Math.floor((availableHeightPx - bottomPad - metrics.gridTop - metrics.groupHeight) / LINE_HEIGHT) + 1;
-const contentHeightPx = metrics.gridTop + metrics.groupHeight + (linesPerPage - 1) * LINE_HEIGHT + bottomPad;
+// 每页可容纳的完整行数：由页面可用高度（扣除容器边框与上内边距）决定
+const linesPerPage = Math.floor((availableHeightPx - bottomPad - BORDER_WIDTH - CONTAINER_PAD_TOP) / LINE_HEIGHT);
+const contentHeightPx = BORDER_WIDTH + CONTAINER_PAD_TOP + linesPerPage * LINE_HEIGHT + bottomPad;
 // 文字实际可用宽度 = 容器内容宽 - 文字左内边距，与预览完全一致
-const textWidthPx = contentWidthPx - CONTAINER_PAD_X * 2 - TEXT_PAD_LEFT;
+const textWidthPx = contentWidthPx - BORDER_WIDTH * 2 - CONTAINER_PAD_X * 2 - TEXT_PAD_LEFT;
 const lineCount = calculateLineCount(text, textWidthPx);
 const totalPages = Math.max(1, Math.ceil(lineCount / linesPerPage));
 const gridTopCss = metrics.gridTop - BORDER_WIDTH;
@@ -801,7 +801,19 @@ color: #2d3748;
 letter-spacing: ${LETTER_SPACING}px;
 `;
 textElement.textContent = text;
-container.appendChild(textElement);
+// 固定高度的裁切窗口：只露出本页整行，避免上一页行尾笔画漏到页首
+const clipWindow = document.createElement('div');
+clipWindow.style.cssText = `
+position: absolute;
+left: ${CONTAINER_PAD_X}px;
+right: ${CONTAINER_PAD_X}px;
+top: ${CONTAINER_PAD_TOP}px;
+height: ${linesPerPage * LINE_HEIGHT}px;
+overflow: hidden;
+z-index: 2;
+`;
+clipWindow.appendChild(textElement);
+container.appendChild(clipWindow);
 if (gridVisible) {
 const linesContainer = document.createElement('div');
 linesContainer.style.cssText = `
