@@ -23,6 +23,18 @@
 font-family: 'Shuyao Hengshui';
 src: url('static/fonts/hengshuiti.ttf?v=b0d9b2fbb32f998efb800c42714d7747') format('truetype');
 }
+/* 舒窈意大利斜体：按 = 可打出空白四线三格 */
+@font-face {
+font-family: 'Shuyao Italic';
+src: url('static/fonts/shuyao-italic.ttf') format('truetype');
+font-display: swap;
+}
+/* 舒窈意大利斜体·自带四线三格：每个字形自带四条横线 */
+@font-face {
+font-family: 'Shuyao Italic Grid';
+src: url('static/fonts/shuyao-italic-grid.ttf') format('truetype');
+font-display: swap;
+}
 * {
 box-sizing: border-box;
 margin: 0;
@@ -298,6 +310,45 @@ color: #b9aa92;
 font-style: italic;
 font-size: 0.95rem;
 }
+/* 字体选择行 */
+.font-row {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.6rem;
+flex-wrap: wrap;
+margin: 0 0 0.4rem;
+font-family: "Noto Serif SC", "楷体", serif;
+color: #4e3e2e;
+}
+.font-row label {
+font-size: 0.9rem;
+letter-spacing: 0.08em;
+}
+.font-select {
+padding: 0.45rem 1rem;
+border: 1.5px solid #d4c0a5;
+border-radius: 30px;
+background: #fffdf9;
+color: #3e3322;
+font-size: 0.9rem;
+outline: none;
+font-family: inherit;
+cursor: pointer;
+}
+.font-select:focus {
+border-color: #b3926c;
+box-shadow: 0 0 0 4px rgba(180, 140, 100, 0.15);
+}
+/* 字体使用提示 */
+.font-hint {
+display: none;
+text-align: center;
+font-size: 0.8rem;
+color: #8b7a65;
+margin: 0 0 0.8rem;
+letter-spacing: 0.04em;
+}
 .button-row {
 display: flex;
 gap: 0.8rem;
@@ -446,9 +497,19 @@ padding: 1.5rem 1rem;
 <div class="control-panel">
 <h2>英文录入</h2>
 <textarea id="text-content" placeholder="例如：The quick brown fox jumps over the lazy dog. \nABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890" rows="8"></textarea>
+<div class="font-row">
+<label for="font-select">字体风格</label>
+<select id="font-select" class="font-select">
+<option value="hengshui">舒窈衡水体（默认）</option>
+<option value="italic">舒窈意大利斜体</option>
+<option value="italic-grid">舒窈意大利斜体 · 自带四线三格</option>
+</select>
+</div>
+<p class="font-hint" id="font-hint"></p>
 <div class="button-row">
 <button class="btn-hengshui btn-clear-style" id="clear-btn">🗑️ 清空内容</button>
 <button class="btn-hengshui" id="sample-btn">📝 加载示例文本</button>
+<button class="btn-hengshui" id="insert-blank-btn" style="display:none;">⬜ 插入空白四线行</button>
 </div>
 </div>
 <div class="preview">
@@ -599,9 +660,11 @@ const sampleBtn = document.getElementById('sample-btn');
 const clearBtn = document.getElementById('clear-btn');
 const toggleGridBtn = document.getElementById('toggle-grid-btn');
 const loading = document.getElementById('loading');
+const fontSelect = document.getElementById('font-select');
+const fontHint = document.getElementById('font-hint');
+const insertBlankBtn = document.getElementById('insert-blank-btn');
 
 // 统一排版常量：预览与 PDF 导出共用同一套尺寸，保证两者像素级对齐
-const FONT_FAMILY = "'Shuyao Hengshui', cursive";
 const FONT_SIZE = 24;
 const LINE_HEIGHT = 50;
 const LETTER_SPACING = 0.5;
@@ -611,6 +674,36 @@ const CONTAINER_PAD_TOP = 25;
 const CONTAINER_PAD_X = 25;
 const BORDER_WIDTH = 1;
 
+// 可选字体：切换后预览与 PDF 都使用同一字体
+const FONT_OPTIONS = {
+hengshui: {
+label: '舒窈衡水体',
+family: "'Shuyao Hengshui', cursive",
+builtInGrid: false,
+fileName: '清书英文站-衡水体英文字帖.pdf',
+hint: '',
+},
+italic: {
+label: '舒窈意大利斜体',
+family: "'Shuyao Italic', cursive",
+builtInGrid: false,
+// 字体设计者给定的四线格比例（相对字号），使本站格线与字体里的 = 完全重合
+gridEm: { asc: 0.820, x: 0.4385, desc: 0.371 },
+fileName: '清书英文站-意大利斜体英文字帖.pdf',
+hint: '提示：输入 = 可打出空白四线三格；每行末尾记得补一个空格再换行',
+},
+'italic-grid': {
+label: '舒窈意大利斜体 · 自带四线三格',
+family: "'Shuyao Italic Grid', cursive",
+builtInGrid: true,
+gridEm: { asc: 0.820, x: 0.4385, desc: 0.371 },
+fileName: '清书英文站-意大利斜体四线三格字帖.pdf',
+hint: '该字体每个字母自带四线三格：直接输入即可，用 = 可补空白格（行末补一个空格再换行）',
+},
+};
+let activeFontKey = 'hengshui';
+let activeFontFamily = FONT_OPTIONS.hengshui.family;
+
 let gridVisible = true;
 let gridMetricsCache = null;
 
@@ -618,17 +711,27 @@ let gridMetricsCache = null;
 function getGridMetrics() {
 if (gridMetricsCache) return gridMetricsCache;
 const ctx = document.createElement('canvas').getContext('2d');
-ctx.font = FONT_SIZE + 'px ' + FONT_FAMILY;
-// measureText 对整串字符返回其最大上升/下降高度，可分别取大写/小写/下伸部分
+ctx.font = FONT_SIZE + 'px ' + activeFontFamily;
+// 字体整体上升/下降高度：用于计算行盒内的基线位置
 const fontBox = ctx.measureText('Hg');
+const fontAsc = fontBox.fontBoundingBoxAscent || FONT_SIZE * 0.83;
+const fontDesc = fontBox.fontBoundingBoxDescent || FONT_SIZE * 0.21;
+let ascHeight, xHeight, descHeight;
+const option = FONT_OPTIONS[activeFontKey];
+if (option.gridEm) {
+// 字体自带四线格时沿用字体设计者的比例，保证与字体里的 = 空白格逐线重合
+ascHeight = option.gridEm.asc * FONT_SIZE;
+xHeight = option.gridEm.x * FONT_SIZE;
+descHeight = option.gridEm.desc * FONT_SIZE;
+} else {
+// 否则用实测字形度量：大写字头 / 小写 x 高 / 下伸高度
 const ascBox = ctx.measureText('ABCDEFGHIJKLMNOPQRSTUVWXYZbdfhkljt');
 const xBox = ctx.measureText('acemnorsuvwxz');
 const descBox = ctx.measureText('gjpqy');
-const fontAsc = fontBox.fontBoundingBoxAscent || FONT_SIZE * 0.83;
-const fontDesc = fontBox.fontBoundingBoxDescent || FONT_SIZE * 0.21;
-const ascHeight = ascBox.actualBoundingBoxAscent || FONT_SIZE * 0.7;
-const xHeight = xBox.actualBoundingBoxAscent || FONT_SIZE * 0.5;
-const descHeight = descBox.actualBoundingBoxDescent || FONT_SIZE * 0.21;
+ascHeight = ascBox.actualBoundingBoxAscent || FONT_SIZE * 0.7;
+xHeight = xBox.actualBoundingBoxAscent || FONT_SIZE * 0.5;
+descHeight = descBox.actualBoundingBoxDescent || FONT_SIZE * 0.21;
+}
 // 行盒内基线位置 = 半行距 + 字体上升高度
 const baselineOffset = (LINE_HEIGHT - (fontAsc + fontDesc)) / 2 + fontAsc;
 gridMetricsCache = {
@@ -700,7 +803,7 @@ visibility: hidden;
 left: -9999px;
 top: 0;
 white-space: pre-wrap;
-font-family: ${FONT_FAMILY};
+font-family: ${activeFontFamily};
 font-size: ${FONT_SIZE}px;
 line-height: ${LINE_HEIGHT}px;
 letter-spacing: ${LETTER_SPACING}px;
@@ -721,6 +824,43 @@ const textWidth = previewText.clientWidth - paddingLeft;
 const lineCount = calculateLineCount(previewText.textContent, textWidth);
 // 每组四线格对应一行文字；额外多画一组作为留白
 createDynamicLines(lineCount + 1);
+}
+/* 切换字体：加载字体文件、按新字形重新度量格线并刷新预览 */
+async function applyFont(key) {
+const option = FONT_OPTIONS[key] || FONT_OPTIONS.hengshui;
+activeFontKey = key in FONT_OPTIONS ? key : 'hengshui';
+activeFontFamily = option.family;
+previewText.style.fontFamily = activeFontFamily;
+// 自带四线三格的字体不需要再叠加本站格线，避免出现双层线
+gridVisible = !option.builtInGrid;
+updateGridButtonState();
+applyGridVisibility();
+fontHint.textContent = option.hint;
+fontHint.style.display = option.hint ? 'block' : 'none';
+// 「插入空白四线行」依赖字体里的 = 字形，仅斜体字体可用
+insertBlankBtn.style.display = option.builtInGrid || activeFontKey === 'italic' ? 'inline-flex' : 'none';
+try {
+await document.fonts.load(FONT_SIZE + 'px ' + activeFontFamily);
+} catch (e) {
+// 字体加载失败时退回默认度量，不阻断后续流程
+}
+gridMetricsCache = null;
+updatePreview();
+}
+/* 在光标处插入一整行空白四线三格（由字体里的 = 字形拼成） */
+function insertBlankRow() {
+const ctx = document.createElement('canvas').getContext('2d');
+ctx.font = FONT_SIZE + 'px ' + activeFontFamily;
+const equalWidth = ctx.measureText('=').width || FONT_SIZE * 1.2;
+// 按 PDF 页面可用的文字宽度计算个数，保证导出时一行不会被折行
+const pdfTextWidth = (595.28 - 40 * 2) * 96 / 72 - BORDER_WIDTH * 2 - CONTAINER_PAD_X * 2 - TEXT_PAD_LEFT;
+const count = Math.max(1, Math.floor((pdfTextWidth - 10) / equalWidth));
+// 行末补一个空格再换行：避免这类等号连排在 Word 里被转义成双横线
+const row = '='.repeat(count) + ' \n';
+const start = textContent.selectionStart === null ? textContent.value.length : textContent.selectionStart;
+const end = textContent.selectionEnd === null ? start : textContent.selectionEnd;
+textContent.setRangeText(row, start, end, 'end');
+updatePreview();
 }
 function clearContent() {
 textContent.value = '';
@@ -745,8 +885,15 @@ return;
 }
 loading.style.display = 'flex';
 try {
-// 字体加载完成后再取一次度量，避免拿到回退字体的错误数据
-if (document.fonts && document.fonts.ready) await document.fonts.ready;
+// 等当前字体加载完成后再取度量，避免拿到回退字体的错误数据
+if (document.fonts) {
+try {
+await document.fonts.load(FONT_SIZE + 'px ' + activeFontFamily);
+await document.fonts.ready;
+} catch (e) {
+// 字体加载失败时继续用现有度量
+}
+}
 gridMetricsCache = null;
 const metrics = getGridMetrics();
 const { jsPDF } = window.jspdf;
@@ -786,7 +933,7 @@ overflow: hidden;
 `;
 const textElement = document.createElement('p');
 textElement.style.cssText = `
-font-family: ${FONT_FAMILY};
+font-family: ${activeFontFamily};
 font-size: ${FONT_SIZE}px;
 line-height: ${LINE_HEIGHT}px;
 margin: 0;
@@ -864,7 +1011,7 @@ contentWidthPt,
 contentHeightPx * 72 / 96
 );
 }
-pdf.save('清书英文站-衡水体英文字帖.pdf');
+pdf.save(FONT_OPTIONS[activeFontKey].fileName);
 } catch (error) {
 console.error("生成PDF时出错:", error);
 alert("生成PDF时出错，请重试");
@@ -877,16 +1024,13 @@ generateBtn.addEventListener('click', generatePDF);
 sampleBtn.addEventListener('click', loadSampleText);
 clearBtn.addEventListener('click', clearContent);
 toggleGridBtn.addEventListener('click', toggleGrid);
+fontSelect.addEventListener('change', function() { applyFont(fontSelect.value); });
+insertBlankBtn.addEventListener('click', insertBlankRow);
 window.addEventListener('resize', updatePreview);
 updateGridButtonState();
 loadSampleText();
-// 字体就绪后重新测量字形并刷新预览，避免首次渲染用回退字体的度量
-if (document.fonts && document.fonts.ready) {
-document.fonts.ready.then(function() {
-gridMetricsCache = null;
-updatePreview();
-});
-}
+// 字体就绪后按当前字体重新测量字形并刷新预览，避免首次渲染用回退字体的度量
+applyFont(fontSelect.value || 'hengshui');
 });
 })();
 </script>
