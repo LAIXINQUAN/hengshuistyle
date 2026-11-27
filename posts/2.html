@@ -23,15 +23,42 @@
 <script defer src="https://registry.npmmirror.com/jquery/3.2.1/files/dist/jquery.min.js"></script>
 <script defer src="https://registry.npmmirror.com/popper.js/1.14.3/files/dist/umd/popper.min.js"></script>
 <script defer src="https://registry.npmmirror.com/bootstrap/4.1.0/files/dist/js/bootstrap.min.js"></script>
-<script defer src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/rainbow.min.css" />
-<link rel="stylesheet" type="text/css" href="../static/highlight/lines.css" />
-<script>document.addEventListener('DOMContentLoaded',function(){hljs.initHighlightingOnLoad();
-});</script>
 <script  defer src="../static/js/popup.js"></script>
 <script  defer src="../static/js/share.js"></script>
 <link rel="stylesheet" href="../static/css/ui.css">
 <script src="../static/js/theme.js" defer></script>
+
+<script>
+/* highlight.js 按需加载：全站原本 pre/code 为 0，却每页都在拉 48KB 脚本 */
+document.addEventListener('DOMContentLoaded', function () {
+  var nodes = document.querySelectorAll('pre code, pre');
+  if (!nodes.length) return;
+  var css = [
+    '../static/highlight/rainbow.min.css',
+    '../static/highlight/lines.css'
+  ];
+  css.forEach(function (href) {
+    var l = document.createElement('link');
+    l.rel = 'stylesheet'; l.href = href;
+    document.head.appendChild(l);
+  });
+  var s = document.createElement('script');
+  s.src = '../static/highlight/highlight.min.js';
+  s.onload = function () {
+    try {
+      nodes.forEach(function (n) {
+        if (n.tagName !== 'CODE') {
+          var c = n.querySelector('code');
+          if (c) n = c; else return;
+        }
+        hljs.highlightBlock(n);
+      });
+    } catch (e) {}
+  };
+  s.onerror = function () {};
+  document.head.appendChild(s);
+});
+</script>
 </head>
 <style>
 body {
