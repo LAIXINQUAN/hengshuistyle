@@ -1,0 +1,391 @@
+body{
+    font-family: "Microsoft Yahei",-apple-system,"PingFang SC","Helvetica Neue",STHeiti,Tahoma,Simsun,sans-serif;
+}
+#mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: #666;
+    opacity: 0.5;
+    filter: alpha(opacity=50)-moz-opacity: 0.5;
+    display: none;
+}
+.popup {
+    position: absolute;
+    left: 50%;
+    width: 600px;
+    height: 380px;
+    background: #faebd7;
+    z-index: 1000;
+    border: 3px solid #6c757;
+    display: none;
+    padding: 1.4%;
+    border-radius: 10px;
+    box-shadow: #495057 -3px 0px 10px, #495057 3px 0px 10px, #495057 0px -3px 10px, #495057 0px 3px 10px;
+}
+
+.popup2 {
+    position: absolute;
+    left: 50%;
+    width: 300px;
+    height: 368px;
+    background: #faebd7;
+    z-index: 1000;
+    border: 3px solid #6c757;
+    display: none;
+    padding: 1.4%;
+    border-radius: 5px;
+    box-shadow: #495057 -3px 0px 10px, #495057 3px 0px 10px, #495057 0px -3px 10px, #495057 0px 3px 10px;
+}
+
+.btn_close,.btn_close2 {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #721c24;
+    border-radius: 10px;
+    background-color: #ffc107;
+}
+/* .form-inline {
+    width: 200px;
+}*/
+.row {
+margin-right: 0px;
+margin-left: 0px;
+}
+
+#footer {
+    position:relative;
+    bottom:0;
+    width:100%;
+    height:60px;
+}
+
+blockquote {
+    margin: 1em 0;
+    padding: 0.5em;
+    border-left: 4px solid #ffc107;
+    color: #664d03;
+    background-color: #fff9e6;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+.table .thead-dark th {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
+}
+
+.table-danger {
+    background-color: #f5c6cb;
+}
+
+.table-warning {
+    background-color: #ffeeba;
+}
+
+.table-success {
+    background-color: #c3e6cb;
+}
+
+th {
+    text-align: center!important;
+}
+
+th a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+/* 直接在table上实现圆角 */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 15px;
+    text-align: left;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 使用伪元素创建圆角效果 */
+table:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+thead {
+    background: linear-gradient(135deg, #856404, #856404);
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+thead th {
+    padding: 16px 15px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+thead th:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:hover {
+    background-color: #e9f7fe;
+}
+
+tbody td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #eaecef;
+    color: #444;
+    line-height: 1.5;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 第一列特殊样式 */
+tbody td:first-child {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .table-container {
+        border-radius: 8px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    thead th, tbody td {
+        padding: 12px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    thead th, tbody td {
+        padding: 10px 8px;
+    }
+}
+
+/* 亮度降到85%，自动变深 */
+
+a:hover {
+  filter: brightness(0.98);
+  text-decoration: none;
+}
+
+
+
+a:hover font {
+  color: inherit;
+  filter: brightness(2);
+}
+
+/* ===== 导航栏自定义样式 ===== */
+
+/* PC端导航栏右对齐 */
+.navbar-custom {
+    justify-content: flex-end;
+    padding: 0.5rem 1rem;
+}
+
+/* 汉堡按钮样式 */
+.navbar-dark .navbar-toggler {
+    border-color: rgba(255,255,255,0.3);
+    padding: 8px 10px;
+    transition: all 0.3s;
+}
+
+.navbar-dark .navbar-toggler:hover,
+.navbar-dark .navbar-toggler:focus {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.5);
+}
+
+/* 下拉菜单基础样式 */
+.navbar-dark .navbar-nav .dropdown-menu {
+    background-color: #343a40;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    margin-top: 0.5rem;
+    min-width: 200px;
+    padding: 0.5rem 0;
+}
+
+.navbar-dark .navbar-nav .dropdown-item {
+    color: #f8f9fa;
+    padding: 10px 20px;
+    transition: all 0.2s;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.navbar-dark .navbar-nav .dropdown-item:hover,
+.navbar-dark .navbar-nav .dropdown-item:focus {
+    background-color: #495057;
+    color: #fff;
+    padding-left: 25px;
+}
+
+.navbar-dark .navbar-nav .dropdown-divider {
+    border-top-color: #5a6268;
+}
+
+/* 移动端专用样式 */
+@media (max-width: 767.98px) {
+    /* 导航栏整体布局 */
+    .navbar-custom {
+        justify-content: space-between !important;
+        flex-wrap: wrap;
+        padding: 10px 15px;
+    }
+
+    /* 汉堡按钮显示 */
+    .navbar-toggler {
+        display: block;
+        order: 2;
+        margin-left: auto;
+    }
+
+    /* 折叠菜单容器 */
+    .navbar-collapse {
+        width: 100%;
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    /* 导航列表样式 */
+    .navbar-nav {
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    /* 导航项样式 */
+    .navbar-nav .nav-item {
+        text-align: center;
+        width: 100%;
+        margin: 2px 0;
+    }
+
+    /* 导航链接样式 */
+    .nav-link {
+        padding: 12px 15px !important;
+        font-size: 16px;
+        display: inline-block;
+        width: auto;
+    }
+
+    /* 移动端下拉菜单样式 */
+    .navbar-dark .navbar-nav .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        width: 100% !important;
+        text-align: center;
+        background-color: #2c3035 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+        min-width: 100% !important;
+    }
+
+    /* 移动端下拉项样式 */
+    .navbar-dark .navbar-nav .dropdown-item {
+        text-align: center;
+        padding: 12px 20px !important;
+        color: #f8f9fa !important;
+        background-color: transparent !important;
+        border-bottom: 1px solid #3a3f44;
+    }
+
+    .navbar-dark .navbar-nav .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .navbar-dark .navbar-nav .dropdown-item:hover,
+    .navbar-dark .navbar-nav .dropdown-item:focus {
+        background-color: #3a3f44 !important;
+        color: #fff !important;
+        padding-left: 20px !important;
+    }
+
+    /* 移动端分隔线 */
+    .navbar-dark .navbar-nav .dropdown-divider {
+        border-top-color: #3a3f44;
+        margin: 0;
+    }
+
+    /* 下拉箭头旋转动画 */
+    .nav-item.dropdown.show .dropdown-toggle::after {
+        transform: rotate(180deg);
+    }
+
+    .nav-item.dropdown .dropdown-toggle::after {
+        transition: transform 0.3s;
+    }
+}
+
+/* PC端隐藏汉堡按钮 */
+@media (min-width: 768px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-collapse {
+        display: flex !important;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+    }
+}

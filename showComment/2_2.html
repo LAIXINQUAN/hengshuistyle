@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+<head>
+<!-- 国内 CDN 预连接：在解析 HTML 最早期就开始握手，省掉 TLS 往返（仅列本页真正用到的域） -->
+<link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
+<link rel="preconnect" href="https://cdn.staticfile.org" crossorigin>
+<link rel="dns-prefetch" href="https://registry.npmmirror.com">
+<link rel="dns-prefetch" href="https://cdn.staticfile.org">
+<link rel="preload" href="../static/fonts/xiaodou-display.woff2" as="font" type="font/woff2" crossorigin>
+<script>/* 提前应用主题，避免首屏闪烁 */(function(){try{var t=localStorage.getItem("hst-theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<meta charset="utf-8">
+<title>清书英文站的诞生</title>
+<link rel="icon" type="image/png" sizes="512x512" href="../static/images/favicon.webp">
+<link rel="icon" href="../static/images/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="../static/images/favicon.webp">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://registry.npmmirror.com/bootstrap/4.1.0/files/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../static/css/style.css"/>
+<link rel="stylesheet" href="../static/css/notice.css"/>
+
+<script defer src="https://registry.npmmirror.com/jquery/3.2.1/files/dist/jquery.min.js"></script>
+<script defer src="https://registry.npmmirror.com/popper.js/1.14.3/files/dist/umd/popper.min.js"></script>
+<script defer src="https://registry.npmmirror.com/bootstrap/4.1.0/files/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/rainbow.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/highlight/lines.css" />
+<script>document.addEventListener('DOMContentLoaded',function(){hljs.initHighlightingOnLoad();
+});</script>
+<script  defer src="../static/js/popup.js"></script>
+<style>
+blockquote p{
+font-size:1.05rem;
+margin: 5px 0;
+color: #664d03;
+}
+</style>
+<link rel="stylesheet" href="../static/css/ui.css">
+<script src="../static/js/theme.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-custom" style="justify-content:flex-end;">
+<!-- 品牌/logo（移动端显示） -->
+<span class="navbar-brand d-md-none" style="color:#fff; font-size:18px;">清书英文站</span>
+<!-- 汉堡按钮 -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-light-icon"></span>
+</button>
+<!-- 折叠菜单容器 -->
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+<a class="nav-link " href="../index.html">首页</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../posts/6.html">什么是衡水体</a>
+</li>
+<!--
+<li class="nav-item">
+<a class="nav-link  " href="../showComment/1.html?nav=introduction">认识衡水体</a>
+</li>
+-->
+<li class="nav-item">
+<a class="nav-link  " href="../hst_gen.html">衡水体 · 英文生成器</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../hst_cn_gen.html">衡水体 · 中文生成器</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="../posts/2.html">衡水体26个英文字母</a>
+</li>
+<!--
+<li class="nav-item">
+<a class="nav-link  " href="../showComment/3.html?nav=story">衡水体与考研英语</a>
+</li>
+<li class="nav-item">
+</li>
+-->
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="2_2.html#" id="navbardrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+衡水体教程与英语考试
+</a>
+<div class="dropdown-menu" aria-labelledby="navbardrop1">
+<a class="dropdown-item" href="../hst.html">衡水体入门教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="3.html">衡水体与考研英语</a>
+</div>
+</li>
+<li class="nav-item">
+<a class="nav-link  active  " href="../comment_list.html">网站公告</a>
+</li>
+<li class="nav-item">
+<a class="nav-link " href="2.html">关于网站</a>
+</li>
+
+
+
+</ul>
+</div>
+<div class="theme-slot">
+<div class="theme-switch" role="switch" tabindex="0" aria-checked="false" aria-label="切换深色/浅色主题">
+<div class="theme-canvas"></div>
+</div>
+</div></nav>
+
+<div class="row content">
+<div class="announcement-card">
+<div class="text-center header-section">
+<br/>
+<h1>清书英文站的诞生</h1>
+<div class="meta-info">
+<span>📅 发布时间：2026-08-02 </span>
+<span>👁️ 阅读次数：1438 次 </span>
+
+</div>
+</div>
+<!-- 添加分隔线 -->
+<!--<div class="header-divider"></div>-->
+<h2>关于本站</h2>
+<p>清书英文站是一个完全免费、无需注册的衡水体学习站点。这里提供从零基础到篇章练习的完整教程，以及中英文衡水体生成工具，帮助你用更少的时间练出工整、清晰、适合考试的英文书写。</p>
+<h2>站内有什么</h2>
+<p>第一次来，建议先读<a href="../posts/6.html">《什么是衡水体》</a>，了解这种字体的由来与卷面价值；再从<a href="../posts/2.html">26 个英文字母</a>入门，逐个掌握字形、笔顺与倾斜度；随后进入<a href="../hst.html">《衡水体入门教程》</a>，按章节完成从字母、单词、句子到整篇文章的系统练习。</p>
+<p>需要范本和字帖时，可以直接使用<a href="../hst_gen.html">衡水体 · 英文生成器</a>与<a href="../hst_cn_gen.html">衡水体 · 中文生成器</a>：输入任意中英文内容，即可生成带辅助线的规范字帖，支持描摹、对照与打印，练到哪里就生成到哪里。</p>
+<h2>为什么做这个站</h2>
+<p>网上的衡水体教程大多零散破碎，东一句“字母要圆润”，西一句“倾斜度要一致”，初学者常被这些碎片绕晕。本站把书写当成一门可以系统掌握的技能：先理解规则，再刻意练习，最后用生成器获得即时反馈。三步走下来，进步看得见。</p>
+<p>我也相信规范只是起点。先把字写得干净、清晰，在考场上稳稳拿住卷面分；跨过这道门槛之后，字迹风格往哪里走，由你自己决定。</p>
+<h2>作者与联系</h2>
+<p>本站由 <strong>LAIQB</strong> 独立开发与维护，更多作品欢迎访问作者主页：<a href="https://laixinquan.github.io/" target="_blank" rel="noopener">https://laixinquan.github.io/</a>。</p>
+<p>站内所有内容免费开放，没有广告、无需登录、没有付费项目。使用中遇到问题或有改进建议，欢迎到<a href="../comment_list.html">网站公告</a>留言反馈。</p>
+</div>
+</div>
+<!--
+<hr />
+<blockquote>
+<p>这里是面试天下，一个集技术与人文的交流平台，欢迎大家的关注和参与。</p>
+<p>技术只会随着时代的发展而逐渐贬值，犹如之前的算盘手艺。用技术武装自己仅是第一步，懂得营销自己才是核心竞争力。</p>
+</blockquote>
+<hr />
+<br />
+<div class="alert alert-warning">
+<h3>发文规范：</h3>
+<p>1、这里是自由交流的天地，我们希望大家公平、公正、自由地发表自己的看法。</p>
+<p>2、我们希望看到真实的诉说，我们反对任何造假，我们希望看到扬善惩恶，让社会发展的更好。</p>
+<p>3、谋反，自古以来在历朝历代都是罪大恶极，在这里不允许出现反党反国家的言论。</p>
+<p>4、我们保证每个人的信息都是严格保密，不会署名，只希望这里是个自由交流的天地。</p>
+<p>5、每人每个月可以发表三条点评，避免产生噪声以影响社群的安宁。</p>
+</div>
+-->
+</div>
+
+
+<div id="footer">
+<div class="text-center" style="margin-bottom:0">
+<br/>
+<font style="color:#999;font-size:18px"><strong style="color:#999;font-size:18px"> 清书英文站 @ 2026年</strong></font>
+<br/>
+<p style="margin: 6px 0px;">
+<font style="color:#999;font-size:15px;margin-top:10px;">清书英文站 - 让工整书写成为你的考场优势</font><br />
+<!--
+
+<font style="color:#999;font-size:12px;margin-top:10px;">运行时间：839 天，网站会员：302 人，最新注册时间：2026-10-21 22:18:38</font><br />
+
+-->
+</p>
+<br/>
+<br/>
+</div>
+</div>
+<br/> <br/>
+<script>document.addEventListener('DOMContentLoaded',function(){
+$(function() {
+// 只在移动端处理下拉菜单冲突
+if ($(window).width() < 768) {
+// 移动端：手动处理下拉菜单
+$('.dropdown-toggle').on('click', function(e) {
+e.preventDefault();
+e.stopPropagation();
+var $this = $(this);
+var $parent = $this.parent('.dropdown');
+var $menu = $this.siblings('.dropdown-menu');
+// 关闭其他打开的下拉菜单
+$('.dropdown-menu').not($menu).removeClass('show');
+$('.dropdown').not($parent).removeClass('show');
+// 切换当前下拉菜单
+$parent.toggleClass('show');
+$menu.toggleClass('show');
+// 确保折叠菜单保持打开状态
+$('#navbarNav').addClass('show');
+});
+// 点击导航链接后自动关闭折叠菜单
+$('.navbar-nav .nav-link:not(.dropdown-toggle)').click(function() {
+$('#navbarNav').collapse('hide');
+});
+// 点击外部关闭下拉菜单
+$(document).click(function(event) {
+if (!$(event.target).closest('.dropdown').length) {
+$('.dropdown-menu').removeClass('show');
+$('.dropdown').removeClass('show');
+}
+});
+}
+});
+
+});</script>
+
+
+
+
+<script>
+/* 访问统计：推迟到 load 之后的空闲期再发，避免与首屏资源抢连接（原实现 defer 阶段就发，实测拖慢 load 约 1s） */
+(function(){
+  function fire(){
+    var s=document.createElement("script"); s.src="../static/js/trafficstatsweb.js"; s.defer=true;
+    document.body.appendChild(s);
+  }
+  function schedule(){
+    if(window.requestIdleCallback) requestIdleCallback(fire,{timeout:3000});
+    else setTimeout(fire,600);
+  }
+  if(document.readyState==="complete") schedule();
+  else window.addEventListener("load",schedule);
+})();
+</script>
+<script>
+/* KaTeX 懒加载：正文无公式时不下载（省约 100KB）；检测到公式才按需拉取 */
+(function(){
+  var CSS="https://registry.npmmirror.com/katex/0.10.0/files/dist/katex.min.css", JS="https://registry.npmmirror.com/katex/0.10.0/files/dist/katex.min.js", AR="https://registry.npmmirror.com/katex/0.10.0/files/dist/contrib/auto-render.min.js";
+  var MARK=["$$","\\(","\\["];
+  function hasMath(){
+    var b=document.body; if(!b) return false;
+    var s=b.innerText||b.textContent||"";
+    for(var i=0;i<MARK.length;i++){ if(s.indexOf(MARK[i])>-1) return true; }
+    return false;
+  }
+  function boot(){
+    if(!hasMath()) return;
+    var l=document.createElement("link"); l.rel="stylesheet"; l.href=CSS; document.head.appendChild(l);
+    function load(u,cb){var s=document.createElement("script");s.src=u;s.onload=cb;document.body.appendChild(s);}
+    load(JS,function(){ load(AR,function(){
+      if(typeof renderMathInElement!=="function") return;
+      renderMathInElement(document.body,{delimiters:[
+        {left:"$$",right:"$$",display:true},
+        {left:"\\[",right:"\\]",display:true},
+        {left:"\\(",right:"\\)",display:false}
+      ]});
+    });});
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot); else boot();
+})();
+</script>
+</body>
+</html>

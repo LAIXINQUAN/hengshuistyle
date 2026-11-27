@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+<head>
+<!-- 国内 CDN 预连接：在解析 HTML 最早期就开始握手，省掉 TLS 往返（仅列本页真正用到的域） -->
+<link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
+<link rel="dns-prefetch" href="https://registry.npmmirror.com">
+<link rel="preload" href="static/fonts/xiaodou-display.woff2" as="font" type="font/woff2" crossorigin>
+<script>/* 提前应用主题，避免首屏闪烁 */(function(){try{var t=localStorage.getItem("hst-theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<meta charset="utf-8">
+<title>清书英文站 - 专注于衡水体的学习</title>
+<meta name="description" content="清书英文站提供零基础衡水体入门教程与英文写作教程，从字母到篇章练习，帮你练就工整英文书写，提升卷面分与考场优势。">
+<link rel="icon" type="image/png" sizes="512x512" href="static/images/favicon.webp">
+<link rel="icon" href="static/images/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="static/images/favicon.webp">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msvalidate.01" content="69FD31A68BF62481A7DB30705C1E215D" />
+<link rel="stylesheet" href="https://registry.npmmirror.com/bootstrap/4.1.0/files/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="static/css/style.css"/>
+<link rel="stylesheet" href="static/css/ui.css">
+<script defer src="https://registry.npmmirror.com/jquery/3.2.1/files/dist/jquery.min.js"></script>
+<script defer src="https://registry.npmmirror.com/popper.js/1.14.3/files/dist/umd/popper.min.js"></script>
+<script defer src="https://registry.npmmirror.com/bootstrap/4.1.0/files/dist/js/bootstrap.min.js"></script>
+<script src="static/js/theme.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-custom" style="justify-content:flex-end;">
+<!-- 品牌/logo（移动端显示） -->
+<span class="navbar-brand d-md-none" style="color:#fff; font-size:18px;">清书英文站</span>
+<!-- 汉堡按钮 -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-light-icon"></span>
+</button>
+<!-- 折叠菜单容器 -->
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+<a class="nav-link  active " href="index.html">首页</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="posts/6.html">什么是衡水体</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="hst_gen.html">衡水体 · 英文生成器</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="hst_cn_gen.html">衡水体 · 中文生成器</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="posts/2.html">衡水体26个英文字母</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="index.html#" id="navbardrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+衡水体教程与英语考试
+</a>
+<div class="dropdown-menu" aria-labelledby="navbardrop1">
+<a class="dropdown-item" href="hst.html">衡水体入门教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="showComment/3.html">衡水体与考研英语</a>
+</div>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="comment_list.html">网站公告</a>
+</li>
+<li class="nav-item">
+<a class="nav-link " href="showComment/2.html">关于网站</a>
+</li>
+</ul>
+</div>
+<div class="theme-slot">
+<div class="theme-switch" role="switch" tabindex="0" aria-checked="false" aria-label="切换深色/浅色主题">
+<div class="theme-canvas"></div>
+</div>
+</div></nav>
+
+<main class="home">
+
+<!-- 书名页：一句话说清这个站做什么，右侧直接摆一张练成后的卷面 -->
+<section class="home-hero reveal">
+<div class="home-hero-copy">
+<p class="home-eyebrow">清书英文站 · 衡水体书写</p>
+<h1 class="home-title">把英文写成<br>一行干净的字</h1>
+<p class="home-lead">衡水体以圆润饱满、整齐划一的笔画，把卷面变成隐形的加分项。这里有一份从字母讲到篇章的入门教程，也有两份可以直接打印的练字工具。</p>
+<p class="home-meta"><span>5 章教程</span><span>12 节正文</span><span>2 份生成器</span></p>
+</div>
+<figure class="hero-sample">
+<img src="static/images/upload/202611/essay-sheet-hero.webp" alt="练成之后的衡水体作文卷面">
+<figcaption>衡水体写成的中考作文卷面：字距、行距与倾斜都保持一致</figcaption>
+</figure>
+</section>
+
+<!-- 三个入口：让第一次来访的人马上知道从哪里开始 -->
+<section class="entry-strip reveal">
+<a class="entry" href="posts/6.html">
+<span class="entry-no">01</span>
+<span class="entry-body"><strong>什么是衡水体</strong><span>先弄清它是什么、为什么能提分</span></span>
+</a>
+<a class="entry" href="hst/2.html">
+<span class="entry-no">02</span>
+<span class="entry-body"><strong>26 个字母怎么写</strong><span>从 a 到 z 的字形、占格与倾斜</span></span>
+</a>
+<a class="entry" href="hst_gen.html" target="_blank">
+<span class="entry-no">03</span>
+<span class="entry-body"><strong>打印一张字帖</strong><span>输入英文，一键生成四线格范本</span></span>
+</a>
+</section>
+
+<div class="home-rule reveal"><span></span></div>
+
+<!-- 两份练字工具 -->
+<section class="home-section reveal">
+<div class="section-head">
+<p class="section-label"><span>01</span>练字工具</p>
+<h2 class="section-title">先写起来，再谈手感</h2>
+</div>
+<div class="work-grid">
+<article class="work-card">
+<div class="work-card-head">
+<span class="work-no">01</span>
+<span class="work-tag">英文 · 字帖</span>
+</div>
+<h3>衡水体 · 英文生成器</h3>
+<p>这款衡水体英文生成器，专为中高考应试书写而生。它能将任意输入的英文，一键转化为规范、整洁的衡水体字帖。生成的字形严格遵循衡水体精髓：圆润饱满、无勾无连，每个字母大小均匀、重心平稳、微微右倾，确保扫描后卷面清晰美观，有效规避连笔造成的误判。工具提供可调节的辅助线设置，并支持浅色描摹模式与标准打印模式切换，满足从临摹到对照书写的进阶需求。无论是制作字母专项训练，还是生成篇章模写素材，它都是助力学生快速练成“高分卷面体”的提分利器。</p>
+<a class="work-link" href="hst_gen.html" target="_blank">立即使用 <span aria-hidden="true">→</span></a>
+</article>
+<article class="work-card">
+<div class="work-card-head">
+<span class="work-no">02</span>
+<span class="work-tag">中文 · 字帖</span>
+</div>
+<h3>衡水体 · 中文生成器</h3>
+<p>这款衡水体中文生成器，将衡水体整洁、清晰的理念延伸至汉字书写。它能把输入的文本，自动排版生成米字格或田字格字帖，生成的字迹力求结构端庄、大小均一、不连笔，整体卷面效果干净利落，尤其适合追求工整度的考试场景。工具既内置了《通用规范汉字表》等海量练字内容，也支持用户自由定制文本，实现课文同步默写或高频考点词练习。通过调控字体的灰度深浅，可轻松制作描红、临摹及脱格进阶字帖。一键下载打印，即可拥有专属的提分字帖，是快速改善卷面分的实用工具。</p>
+<a class="work-link" href="hst_cn_gen.html" target="_blank">立即使用 <span aria-hidden="true">→</span></a>
+</article>
+</div>
+</section>
+
+<!-- 教程目录 -->
+<section class="home-section reveal">
+<div class="section-head">
+<p class="section-label"><span>02</span>教程目录</p>
+<h2 class="section-title">十二节，从笔画到卷面</h2>
+</div>
+<div class="chapter-index">
+<div class="chapter-row">
+<span class="chapter-no">01</span>
+<div class="chapter-body">
+<span class="chapter-name">前言</span>
+<span class="chapter-sections">
+<a href="hst/6.html">什么是衡水体</a>
+<a href="hst/4.html">衡水体引发的热议</a>
+</span>
+</div>
+<span class="chapter-count">2 节</span>
+</div>
+<div class="chapter-row">
+<span class="chapter-no">02</span>
+<div class="chapter-body">
+<span class="chapter-name">入门教程</span>
+<span class="chapter-sections">
+<a href="hst/3.html">衡水体的核心特点</a>
+<a href="hst/2.html">26 个英文字母写法</a>
+<a href="hst/1.html">意大利体介绍</a>
+<a href="hst/9.html">衡水体练习指南</a>
+</span>
+</div>
+<span class="chapter-count">4 节</span>
+</div>
+<div class="chapter-row">
+<span class="chapter-no">03</span>
+<div class="chapter-body">
+<span class="chapter-name">规范与自查</span>
+<span class="chapter-sections">
+<a href="hst/7.html">大写字母的高度与占格</a>
+<a href="hst/8.html">花体与衡水体的区别</a>
+</span>
+</div>
+<span class="chapter-count">2 节</span>
+</div>
+<div class="chapter-row">
+<span class="chapter-no">04</span>
+<div class="chapter-body">
+<span class="chapter-name">间距与排版</span>
+<span class="chapter-sections">
+<a href="hst/10.html">倾斜度与字形</a>
+<a href="hst/11.html">间距与行距</a>
+</span>
+</div>
+<span class="chapter-count">2 节</span>
+</div>
+<div class="chapter-row">
+<span class="chapter-no">05</span>
+<div class="chapter-body">
+<span class="chapter-name">应试实战</span>
+<span class="chapter-sections">
+<a href="hst/12.html">考试书写节奏</a>
+<a href="hst/13.html">卷面自评</a>
+</span>
+</div>
+<span class="chapter-count">2 节</span>
+</div>
+</div>
+<p class="chapter-more"><a href="hst.html">从教程导论开始阅读 →</a></p>
+</section>
+
+<section class="home-quote reveal">
+<p>“练字是少数几件，投入就一定看得见的事。”</p>
+</section>
+
+</main>
+
+</div>
+
+
+<div id="footer">
+<div class="text-center" style="margin-bottom:0">
+<br/>
+<font style="color:#999;font-size:18px"><strong style="color:#999;font-size:18px"> 清书英文站 @ 2026年</strong></font>
+<br/>
+<p style="margin: 6px 0px;">
+<font style="color:#999;font-size:15px;margin-top:10px;">清书英文站 - 让工整书写成为你的考场优势</font><br />
+<!--
+
+<font style="color:#999;font-size:12px;margin-top:10px;">运行时间：839 天，网站会员：302 人，最新注册时间：2026-10-21 22:18:38</font><br />
+
+-->
+</p>
+<br/>
+<br/>
+</div>
+</div>
+<br/> <br/>
+<script>document.addEventListener('DOMContentLoaded',function(){
+$(function() {
+// 只在移动端处理下拉菜单冲突
+if ($(window).width() < 768) {
+// 移动端：手动处理下拉菜单
+$('.dropdown-toggle').on('click', function(e) {
+e.preventDefault();
+e.stopPropagation();
+var $this = $(this);
+var $parent = $this.parent('.dropdown');
+var $menu = $this.siblings('.dropdown-menu');
+// 关闭其他打开的下拉菜单
+$('.dropdown-menu').not($menu).removeClass('show');
+$('.dropdown').not($parent).removeClass('show');
+// 切换当前下拉菜单
+$parent.toggleClass('show');
+$menu.toggleClass('show');
+// 确保折叠菜单保持打开状态
+$('#navbarNav').addClass('show');
+});
+// 点击导航链接后自动关闭折叠菜单
+$('.navbar-nav .nav-link:not(.dropdown-toggle)').click(function() {
+$('#navbarNav').collapse('hide');
+});
+// 点击外部关闭下拉菜单
+$(document).click(function(event) {
+if (!$(event.target).closest('.dropdown').length) {
+$('.dropdown-menu').removeClass('show');
+$('.dropdown').removeClass('show');
+}
+});
+}
+});
+
+});</script>
+
+<script>
+/* 访问统计：推迟到 load 之后的空闲期再发，避免与首屏资源抢连接（原实现 defer 阶段就发，实测拖慢 load 约 1s） */
+(function(){
+  function fire(){
+    var s=document.createElement("script"); s.src="static/js/trafficstatsweb.js"; s.defer=true;
+    document.body.appendChild(s);
+  }
+  function schedule(){
+    if(window.requestIdleCallback) requestIdleCallback(fire,{timeout:3000});
+    else setTimeout(fire,600);
+  }
+  if(document.readyState==="complete") schedule();
+  else window.addEventListener("load",schedule);
+})();
+</script>
+</body>
+</html>
