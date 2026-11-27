@@ -17,11 +17,7 @@
 <script defer src="https://registry.npmmirror.com/jquery/3.2.1/files/dist/jquery.min.js"></script>
 <script defer src="https://registry.npmmirror.com/popper.js/1.14.3/files/dist/umd/popper.min.js"></script>
 <script defer src="https://registry.npmmirror.com/bootstrap/4.1.0/files/dist/js/bootstrap.min.js"></script>
-<script defer src="https://registry.npmmirror.com/jspdf/2.5.1/files/dist/jspdf.umd.min.js"></script>
-<script defer src="https://registry.npmmirror.com/html2canvas/1.4.1/files/dist/html2canvas.min.js"></script>
-<!--<script defer src="https://registry.npmmirror.com/jspdf/2.5.1/files/dist/jspdf.umd.min.js"></script>
-<script defer src="https://registry.npmmirror.com/html2canvas/1.4.1/files/dist/html2canvas.min.js"></script>
--->
+<!---->
 <style>
 @font-face {
 font-family: 'Shuyao Hengshui';
@@ -878,6 +874,26 @@ Practice makes perfect!
 Keep writing every day.`;
 updatePreview();
 }
+/* PDF 导出库按需加载：jspdf 129KB + html2canvas 54KB 只有点导出时才需要 */
+var __pdfLibsPromise = null;
+function ensurePdfLibs() {
+  if (__pdfLibsPromise) return __pdfLibsPromise;
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = function () { reject(new Error('加载失败: ' + src)); };
+      document.head.appendChild(s);
+    });
+  }
+  __pdfLibsPromise = Promise.all([
+    window.jspdf ? Promise.resolve() : loadScript('https://registry.npmmirror.com/jspdf/2.5.1/files/dist/jspdf.umd.min.js'),
+    window.html2canvas ? Promise.resolve() : loadScript('https://registry.npmmirror.com/html2canvas/1.4.1/files/dist/html2canvas.min.js')
+  ]);
+  return __pdfLibsPromise;
+}
+
 /* 生成并下载 PDF 字帖：按页切片渲染，保证每页文字与四线格严格对齐 */
 async function generatePDF() {
 const text = textContent.value;
@@ -898,6 +914,7 @@ await document.fonts.ready;
 }
 gridMetricsCache = null;
 const metrics = getGridMetrics();
+await ensurePdfLibs();
 const { jsPDF } = window.jspdf;
 const pdf = new jsPDF('p', 'pt', 'a4');
 const pageWidthPt = 595.28;
